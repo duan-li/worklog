@@ -1,6 +1,6 @@
 ---
 layout: page
-title: git Cheatsheet
+title: git
 ---
 
 ## Basic

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Jekyll Cheatsheet
+title: Jekyll
 ---
 
 # General Usage
