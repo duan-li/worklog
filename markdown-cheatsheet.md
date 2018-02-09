@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Github Markdown Cheatsheet
+title: Markdown Cheatsheet
 ---
 
 # Examples
@@ -71,6 +71,23 @@ I think you should use an
 `<addr>` element here instead.
 
 # Advantage
+## KaTeX
+
+You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
+
+The *Gamma function* satisfying `$\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$` like $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+
+
+```
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
+```
+
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
+
 ## UML diagram
 ```
 ```mermaid
