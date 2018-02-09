@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Markdown
+title: Markdown Cheatsheet
 ---
 
 # Examples
