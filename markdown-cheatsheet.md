@@ -75,18 +75,32 @@ I think you should use an
 
 You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
 
-The *Gamma function* satisfying `$\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$` like $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+The *Gamma function* satisfying `{% katex %}\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N{% endkatex %}` like {% katex %}\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N{% endkatex %} is via the Euler integral
 
 
 ```
-$$
+{% katex display %}
 \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
+{% endkatex %}
 ```
 
-$$
+{% katex display %}
 \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
+{% endkatex %}
+
+Or
+
+```
+{% katex display %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+```
+
+{% katex display %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+
+
 
 ## UML diagram
 ```
