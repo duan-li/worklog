@@ -70,6 +70,29 @@ As Kanye West said:
 I think you should use an
 `<addr>` element here instead.
 
+# Advantage
+
+## Flow chart
+
+```
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+`` `
+```
+
+
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+```
+
 # GitHub Flavored Markdown
 GitHub.com uses its own version of the Markdown syntax that provides an additional set of useful features, many of which make it easier to work with content on GitHub.com.
 
@@ -149,7 +172,7 @@ Typing an `@` symbol, followed by a username, will notify that person to come an
 Any URL (like http://www.github.com/) will be automatically converted into a clickable link.
 
 ## Strikethrough
-Any word wrapped with two tildes (like ~~this~~) will appear crossed out.
+Any word wrapped with two tildes (like `~~this~~` ~~this~~) will appear crossed out.
 
 ## Emoji
 To see a list of every image we support, check out the [Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
