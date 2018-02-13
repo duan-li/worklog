@@ -24,6 +24,8 @@ url: "https://inputx.github.io" # the base hostname & protocol for your site, e.
 twitter_username: inputx
 github_username:  inputx
 
+paginate: 5
+
 # Build settings
 markdown: kramdown
 theme: minima
