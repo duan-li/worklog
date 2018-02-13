@@ -2,6 +2,7 @@
 layout: post
 title: No Offset Query
 date:   2018-02-12 11:06:03 +1000
+categories: code
 ---
 
 # Life With out Offset
