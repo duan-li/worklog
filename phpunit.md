@@ -17,3 +17,6 @@ title: PHPUNIT
 
 # Event
 `expectsEvents`
+
+# Object
+`assertInstanceOf`
