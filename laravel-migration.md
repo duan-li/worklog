@@ -75,16 +75,18 @@ Schema::dropIfExists('table_name');
 ```
 
 # View
+
 ## Create view
 ```
 DB::statement("
-CREATE 
-    OR REPLACE 
-    SQL SECURITY INVOKER
-VIEW `search_index_giftcards` AS
+        CREATE 
+            OR REPLACE 
+            SQL SECURITY INVOKER
+        VIEW `search_index_giftcards` AS
 
-SELECT * 
-FROM `table`
+        SELECT * 
+        FROM `table`
+        ")
 
 ```
 ## Drop view
