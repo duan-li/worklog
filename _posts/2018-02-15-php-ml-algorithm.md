@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PHP ML Algorithms
+title: PHP Machine Learning Algorithms
 date: 2018-02-15 13:06:03 +1000
 ---
 

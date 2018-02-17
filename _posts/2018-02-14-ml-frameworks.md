@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ML Frameworks
+title: Machine Learning Frameworks
 date: 2018-02-14 15:06:03 +1000
 ---
 
