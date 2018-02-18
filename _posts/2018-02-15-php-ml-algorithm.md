@@ -5,7 +5,7 @@ date: 2018-02-15 13:06:03 +1000
 ---
 
 * Association rule learning
-    * [Apriori](http://php-ml.readthedocs.io/en/latest/machine-learning/association/apriori/) ([Chinese](http://blog.csdn.net/u011067360/article/details/24810415)) ([Example]({% site_baseurl post_url 2018-02-18-apriori-example %}))
+    * [Apriori](http://php-ml.readthedocs.io/en/latest/machine-learning/association/apriori/) ([Chinese](http://blog.csdn.net/u011067360/article/details/24810415)) ([Example]({{ site.baseurl }}{% post_url 2018-02-18-apriori-example %}))
 * Classification 
     * [SVC](http://php-ml.readthedocs.io/en/latest/machine-learning/classification/svc/)
     * [k-Nearest Neighbors](http://php-ml.readthedocs.io/en/latest/machine-learning/classification/k-nearest-neighbors/) ([Chinese](https://coolshell.cn/articles/8052.html))
