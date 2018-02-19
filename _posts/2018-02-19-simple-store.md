@@ -6,11 +6,11 @@ date: 2018-02-19 16:38:03 +1000
 
 # Element
  * User
- 	- id
- 	- name
- 	- email
- 	- password
- 	- timestamp
+   * id
+   * name
+   * email
+   * password
+   * timestamp
  * Product
  	* id
  	* name
