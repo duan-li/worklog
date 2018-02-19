@@ -1,6 +1,6 @@
 ---
 layout: post
-title: apriori example
+title: PHP-ML Apriori example
 date: 2018-02-18 12:06:03 +1000
 ---
 # Initial
