@@ -18,7 +18,12 @@ graph LR
 A[User] -- one2many --> B[Order]
 B[Order] -- one2many --> C[Order Item]
 C[Order Item] -- one2one --> D[Product]
+```
+
+
+```mermaid
+graph LR
+
 D[Product] -- many2many --> E[Tag]
 D[Product] -- many2many --> F[Category]
-
 ```
