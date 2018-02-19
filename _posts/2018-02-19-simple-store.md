@@ -6,11 +6,11 @@ date: 2018-02-19 16:38:03 +1000
 
 # Element
  * User
- 	* id
- 	* name
- 	* email
- 	* password
- 	* timestamp
+ 	- id
+ 	- name
+ 	- email
+ 	- password
+ 	- timestamp
  * Product
  	* id
  	* name
@@ -65,7 +65,7 @@ D[Product] -- many2many --> F[Category]
 ```mermaid
 graph LR
 R[Review] -- one2one --> P[Product]
-R[Review] -- one2one --> P[Order]
-R[Review] -- one2one --> P[Order Item]
+R[Review] -- one2one --> O[Order]
+R[Review] -- one2one --> I[Order Item]
 ```
 
