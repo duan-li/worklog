@@ -15,10 +15,10 @@ date: 2018-02-19 16:38:03 +1000
 ```mermaid
 graph LR
 
-User[Square Rect] --> Order[Square Rect]
-Order[Square Rect] --> Order Item[Square Rect]
-Order Item[Square Rect] --> Product[Square Rect]
-Product[Square Rect] --> Tag[Square Rect]
-Product[Square Rect] --> Category[Square Rect]
+A[User] --> B[Order]
+B[Order] --> C[Order Item]
+C[Order Item] --> D[Product]
+Square Rect[Product] --> E[Tag]
+Square Rect[Product] --> F[Category]
 
 ```
