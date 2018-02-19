@@ -12,38 +12,38 @@ date: 2018-02-19 16:38:03 +1000
    * password
    * timestamp
  * Product
- 	* id
- 	* name
- 	* price
- 	* timestamp
+   * id
+   * name
+   * price
+   * timestamp
  * Order
- 	* id
- 	* user_id
- 	* amount
- 	* timestamp
+   * id
+   * user_id
+   * amount
+   * timestamp
  * Order Item
- 	* id
- 	* order_id
- 	* product_id
- 	* name
- 	* qty
- 	* price
- 	* subtotal
- 	* timestamp
+   * id
+   * order_id
+   * product_id
+   * name
+   * qty
+   * price
+   * subtotal
+   * timestamp
  * Category
- 	* id
- 	* name
- 	* timestamp
+   * id
+   * name
+   * timestamp
  * Tag
- 	* id
- 	* name
- 	* timestamp
+   * id
+   * name
+   * timestamp
  * Review
- 	* id
- 	* user_id
- 	* type
- 	* entity_id
- 	* content
+   * id
+   * user_id
+   * type
+   * entity_id
+   * content
 
 
 ```mermaid
