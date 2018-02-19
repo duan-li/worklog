@@ -18,7 +18,7 @@ graph LR
 A[User] --> B[Order]
 B[Order] --> C[Order Item]
 C[Order Item] --> D[Product]
-Square Rect[Product] --> E[Tag]
-Square Rect[Product] --> F[Category]
+D[Product] --> E[Tag]
+D[Product] --> F[Category]
 
 ```
