@@ -74,7 +74,7 @@ R[Review] -- one2one --> I[Order Item]
 # Migration
 
 ## Users
-```
+```php
 Schema::create('users', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name');
@@ -86,7 +86,7 @@ Schema::create('users', function (Blueprint $table) {
 
 
 ## Products
-```
+```php
 Schema::create('products', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name');
@@ -97,7 +97,7 @@ Schema::create('products', function (Blueprint $table) {
 ```
 
 ## Orders
-```
+```php
 Schema::create('orders', function (Blueprint $table) {
     $table->increments('id');
     $table->integer('user_id')->unsigned(true);
@@ -109,7 +109,7 @@ Schema::create('orders', function (Blueprint $table) {
 ```
 
 ## Order Items
-```
+```php
 Schema::create('items', function (Blueprint $table) {
     $table->increments('id');
     $table->integer('order_id')->nullable(false)->unsigned(true);
@@ -127,7 +127,7 @@ Schema::create('items', function (Blueprint $table) {
 ```
 
 ## Categories
-```
+```php
 Schema::create('categories', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name');
@@ -136,7 +136,7 @@ Schema::create('categories', function (Blueprint $table) {
 ```
 
 ### Link Category to Product
-```
+```php
 Schema::create('category_product', function (Blueprint $table) {
     $table->increments('id');
     $table->integer('product_id')->unsigned(true)->nullable();
@@ -147,7 +147,7 @@ Schema::create('category_product', function (Blueprint $table) {
 ```
 
 ## Tags
-```
+```php
 Schema::create('tags', function (Blueprint $table) {
     $table->increments('id');
     $table->string('name');
@@ -156,7 +156,7 @@ Schema::create('tags', function (Blueprint $table) {
 ```
 
 ### Link tag to Product
-```
+```php
 Schema::create('product_tag', function (Blueprint $table) {
     $table->increments('id');
     $table->integer('product_id')->unsigned(true)->nullable();
@@ -167,7 +167,7 @@ Schema::create('product_tag', function (Blueprint $table) {
 ```
 
 ## Reviews
-```
+```php
 Schema::create('reviews', function (Blueprint $table) {
 	$table->increments('id');
 	$table->integer('user_id')->unsigned(true);
