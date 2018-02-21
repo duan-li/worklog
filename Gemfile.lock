@@ -36,6 +36,7 @@ GEM
       execjs (~> 2.7)
       jekyll (~> 3.5)
     jekyll-mermaid (1.0.0)
+    jekyll-paginate (1.1.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
     jekyll-seo-tag (2.4.0)
@@ -77,6 +78,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.6)
   jekyll-katex
   jekyll-mermaid
+  jekyll-paginate
   minima (~> 2.0)
   tzinfo-data
 
