@@ -5,7 +5,7 @@ title: PHPUNIT
 # Basic Usage
 
 ## Static
-`assertCount`, `assertEquals`, `assertContains`, `assertNotContains`, `assertTrue`, `assertFalse`, `assertSame`, `assertNotSame`, `assertNull`, `assertNotNull`, `assertGreaterThan`
+`assertCount`, `assertEquals`, `assertContains`, `assertNotContains`, `assertTrue`, `assertFalse`, `assertSame`, `assertNotSame`, `assertNull`, `assertNotNull`, `assertGreaterThan`, `assertRegExp`, `assertArrayHasKey`
 
 ## Response
 `assertStatus`, `assertSuccessful`, `assertJsonStructure`, `assertJson`, `assertRedirect`, `assertViewHas`, `assertSee`, `assertDontSee`, `assertJsonFragment`, `assertSessionHas`, `assertSessionHasErrors`
