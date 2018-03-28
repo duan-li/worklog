@@ -51,7 +51,7 @@ $this->get(route("route.name"))
 
 ## Middleware
 **Middleware class**
-```
+```php
 namespace App\Http\Middleware;
 
 use Closure;
@@ -73,7 +73,7 @@ class Sample
 ```
 
 **Test case**
-```
+```php
 use App\Http\Middleware\Sample;
 use Mockery;
 
