@@ -8,8 +8,8 @@ date: 2018-03-28 12:07 +1100
 graph TB
 
 A[Relate code/Base code] --> B((How it work))
-A[Relate code/Base code] --> C((What result))
 A[Relate code/Base code] --> D[Task arm]
+A[Relate code/Base code] --> C((What result))
 D[Task arm] --> E((Waht result need))
 D[Task arm] --> F[Tool/Function]
 F[Tool/Function] --> G((How to use it))
