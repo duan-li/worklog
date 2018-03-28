@@ -11,6 +11,12 @@ title: Carbon
 
 https://carbon.nesbot.com/docs/
 
+## Unit test
+```php
+$now = \Carbon\Carbon::create(2020,01, 12, 01, 01, 01);
+\Carbon\Carbon::setTestNow($now);
+```
+
 ## Date/Time Format
 
 Day Character | Example 
