@@ -26,14 +26,24 @@ title: PHPUNIT
 
 # Laravel
 
+## Console Command
+```php
+$this->artisan('command', [
+            'param1' => 'value1',
+            '--param2' => 'value2',
+        ]);
+$output = Artisan::output();
+
+static::assertContains('output wording', $output);
+```
 ## Controller
 Two ways to test controller
-```
+```php
 $response = $this->get(action('Controller@edit', [$retailer->id]))
             ->assertSuccessful();
 ```
 
-```
+```php
 $this->get(route("route.name"))
             ->assertSuccessful();
 ```
