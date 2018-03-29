@@ -17,5 +17,5 @@ F[Tool/Function] --> G((How to use it))
 F[Tool/Function] --> J[Test it]
 F[Tool/Function] --> H((How it work/any other example))
 J[Test it] --> K((Test case))
-J[Test it] --> K((See real result))
+J[Test it] --> M((See real result))
 ```
