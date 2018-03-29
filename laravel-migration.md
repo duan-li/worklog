@@ -7,14 +7,14 @@ title: Laravel Migration
 
 ## Check table
 
-```
+```php
 if (!Schema::hasTable('ams_retail_partners')) {
 	// Opt tables
 }
 ```
 
 ## Create table
-```
+```php
 Schema::create('provider_settings', function (Blueprint $table) {
     $table->increments('id');
 
@@ -29,7 +29,7 @@ Schema::create('provider_settings', function (Blueprint $table) {
 
 ### Create table with foreign key
 
-```
+```php
 Schema::create('link_product_retailer', function (Blueprint $table) {
     $table->increments('id');
     $table->integer('product_id')->unsigned()->nullable();
@@ -42,7 +42,7 @@ Schema::create('link_product_retailer', function (Blueprint $table) {
 ## Foreign Key
 
 ### Drop Foreign Key
-```
+```php
 Schema::table('table', function(Blueprint $table){
     $table->dropForeign('foreign_name');
 });
@@ -50,26 +50,26 @@ Schema::table('table', function(Blueprint $table){
 
 ## Index
 ### Add index
-```
+```php
 Schema::table('table', function(Blueprint $table) {
     $table->index(['col1', 'col2']);
 });
 ```
 
 ### Remove index
-```
+```php
 Schema::table('table', function(Blueprint $table) {
     $table->dropIndex('index_name');
 });
 ```
 
 ## Rename table
-```
+```php
 Schema::rename('talbe_name', 'new_talbe_name');
 ```
 
 ## Drop table
-```
+```php
 Schema::dropIfExists('table_name');
  // DROP TABLE IF EXISTS `search_estore_tags_index`;
 ```
@@ -77,7 +77,7 @@ Schema::dropIfExists('table_name');
 # View
 
 ## Create view
-```
+```php
 DB::statement("
         CREATE 
             OR REPLACE 
@@ -90,6 +90,16 @@ DB::statement("
 
 ```
 ## Drop view
-```
+```php
 DB::statement('DROP VIEW IF EXISTS `product_retailer`;');
+```
+
+# Table row
+```php
+\App\Models\Model::where( [
+    'key' => 'value'
+])->first()->update([
+    'key' => 'value'
+    ],
+]);
 ```
