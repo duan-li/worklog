@@ -26,6 +26,24 @@ title: PHPUNIT
 
 # Laravel
 
+## Validation
+```php
+$data = [
+    'name' => 'Daniel'
+];
+
+$rule = [
+    'name'  => 'required'
+];
+
+$v = $this->app['validator']->make(
+        $data,
+        $rule
+    );
+
+static::assertTrue($v->passes());
+
+```
 ## Console Command
 ```php
 $this->artisan('command', [
