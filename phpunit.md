@@ -118,4 +118,44 @@ class SampleMiTest extends \TestCase
 }
 ```
 
+## Model
+** Code **
+```php
+$productProvider = new Product;
+
+$product = $productProvider->where('id', 1)->first();
+ 
+$product->name = 'name';
+
+$productNumber = $product->number;
+
+$product->save();
+
+```
+** Test **
+
+```php
+
+$model = \Mockery::mock(Product::class);
+
+$model->shouldReceive('where')
+    ->once()
+    ->andReturnSelf();
+
+$model->->shouldReceive('first')
+    ->once()
+    ->andReturnSelf();
+
+$model->shouldReceive('setAttribute')
+    ->once();
+
+$model->shouldReceive('getAttribute')
+    ->with('number')
+    ->andReturn($this->faker->numberBetween(1,10));
+
+$model->shouldReceive('save')
+    ->once();    
+
+```
+
 
