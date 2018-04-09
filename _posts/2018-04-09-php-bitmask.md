@@ -30,7 +30,7 @@ show_flags(FLAG_1 | FLAG_3);
 ```
 
 
-(Demo)[https://3v4l.org/tTZnW#output]
+[Demo](https://3v4l.org/tTZnW#output)
 
 
 
