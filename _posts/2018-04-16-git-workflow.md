@@ -13,6 +13,10 @@ date: 2018-04-16 11:53 +1000
  - Release
  - Staging
 
+Any new branch you start, either hot fix or feature, you should always branch off from master.
+You do the magic and once you have finished, you merge master again in your brach to keep it up to date
+If your current branch needs some other feature that is not in master but in release. You can merge that feature branch in to your current branch instead of release.
+
 
 # Commit
 ```
