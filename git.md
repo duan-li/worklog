@@ -30,6 +30,15 @@ or
 > Make a commit and use a text file as commit message
 `git commit -F <file>`
 
+## Commit
+
+> Check changes in a git commit
+`git diff <commitID>^!`
+`git diff-tree -p <commitID>`
+
+> Serach keyword from commit message
+`git log --grep=<keyword>`
+
 ## Branch
 > List all branchs
 `git branch`

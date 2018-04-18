@@ -119,7 +119,7 @@ class SampleMiTest extends \TestCase
 ```
 
 ## Model
-** Code **
+**Code**
 ```php
 $productProvider = new Product;
 
@@ -132,7 +132,7 @@ $productNumber = $product->number;
 $product->save();
 
 ```
-** Test **
+**Test**
 
 ```php
 
@@ -159,3 +159,111 @@ $model->shouldReceive('save')
 ```
 
 
+## Abstract Class
+**Abstract Class**
+```php
+abstract class AbstractClass
+{
+    public function method()
+    {
+        return $this->property;
+    }
+}
+```
+
+**Test case**
+```php
+class SampleMiTest extends \TestCase
+{
+    private function getSubclass($property)
+    {
+        $subclass = new class($property) extends AbstractClass
+        {
+            protected $property;
+
+            public function __construct($property)
+            {
+                $this->property = $property;
+            }
+        };
+
+        return $subclass;
+    }
+
+    public function testMethod()
+    {
+        $property = 'string';
+
+        $sub = $this->getSubclass($property);
+
+        static::assertSame($property, $sub->getMethod());
+    }
+}
+```
+
+## Request
+**Test Code**
+```php
+// Create request and set attribute
+use Illuminate\Http\Request;
+
+$request = new Request;
+$request->attribute = 'value';
+
+// Mockery request
+$request = Mockery::mock(\Illuminate\Http\Request::class);
+$request->shouldReceive('hasSession')
+    ->andReturn(true)
+    ->shouldReceive('getSession')
+    ->andReturn(md5(''))
+    ->shouldReceive('get')
+    ->andReturn('test')
+    ->shouldReceive('has')
+    ->andReturn(false)
+    ;
+
+// Mockery request with upload file
+
+$expected = [
+    'path' => sprintf('csv-storage://%s/%s', $this->getUploadPath(), __FILE__),
+    'size' => 0,
+    'mimeType' => $csv ? 'text/csv' : 'application/pdf'
+]
+
+$uploadedFile = Mockery::mock(\Illuminate\Http\UploadedFile::class);
+$uploadedFile
+    ->shouldReceive('hashName')
+    ->andReturn(__FILE__)
+    ->shouldReceive('getMimeType')
+    ->andReturn($expected['mimeType'])
+    ->shouldReceive('getSize')
+    ->andReturn($expected['size']);
+
+$request = Mockery::mock(\Illuminate\Http\Request::class);
+$request->shouldReceive('hasFile')
+->andReturn(true)
+->shouldReceive('file')
+->andReturn($inputFile);
+
+
+// MOckery request with getting file
+$file = new \stdClass();
+$file->name = 'name';
+$file->uuid = 'uuid';
+$file->mimeType = 'mimeType';
+$file->size = 100;
+$file->isImage = $image;
+
+if ($image) {
+    $file->originalImageInfo = new \stdClass();
+    $file->originalImageInfo->height = 100;
+    $file->originalImageInfo->width = 100;
+}
+
+$requestFile = json_encode($file);
+$request = Mockery::mock(Request::class);
+$request->shouldReceive('get')->andReturn($requestFile);
+
+
+
+```
