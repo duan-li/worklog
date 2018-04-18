@@ -41,7 +41,7 @@ Further paragraphs come after blank lines.
 ## Hot Fixes branch
 ```mermaid
 graph TB
-M1((Master Branch)) --> M2((Master Branch))
+M1((Master Branch)) --fork--> M2((Master Branch))
 M2((Master Branch)) --> M3((Master Branch))
 
 
@@ -50,8 +50,7 @@ M1((Master Branch)) --> W1((Work Branch))
 W1((Work Branch)) --> W2[Commit work]
 W2[Commit work] --> W3((Work Branch))
 M2((Master Branch)) --resolve conflict--> W3((Work Branch))
-W3((Work Branch)) --> W4((Work Branch))
-W4((Work Branch)) --> P{Pull request}
+W3((Work Branch)) --> P{Pull request}
 P{Pull request} --merge to--> M3((Master Branch))
 ```
 
