@@ -17,7 +17,7 @@ title: PHPUNIT
 `expectException`
 
 ## Event
-`expectsEvents`
+`expectsEvents`, `expectsJobs`
 
 ## Object
 `assertInstanceOf`
