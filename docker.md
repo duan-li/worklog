@@ -23,3 +23,24 @@ docker start -ai container-name
 ```
 docker rm container-name
 ```
+
+## Push local image to Hub
+**Set environment variable**
+```
+export DOCKER_ID_USER="username"
+```
+
+**Login**
+```
+docker login
+```
+
+**Tag your image**
+```
+docker tag local_image_name $DOCKER_ID_USER/hub_image_repo:tag_name
+```
+
+**Push image**
+```
+docker push $DOCKER_ID_USER/hub_image_repo:tag_name
+```
