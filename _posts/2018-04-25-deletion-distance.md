@@ -3,9 +3,7 @@ layout: post
 title: "Deletion Distance"
 date: 2018-04-25 15:50 +1000
 ---
-# Deletion Distance
-
-## Overview
+# Overview
 The deletion distance of two strings is the minimum number of characters you need to delete in the two strings in order to get the same string. For instance, the deletion distance between `heat` and `hit` is `3`:
 
  - By deleting `e` and `a` in `heat`, and `i` in `hit`, we get the string `ht` in both cases.
@@ -41,7 +39,7 @@ function deletionDistance($str1, $str2) {
 
 ```
 
-## Hints
+# Hints
 
 * Recommend your peer to identify the base cases first. That is, cases where one of the strings is the empty string. In this case, the deletion distance is simply the length of the other string. After that, encourage them to try cases that are somewhat similar, such as one string containing `1` or `2` characters.
 * If your peer needs additional assistance, help them by hinting toward a recursive relation between the `deletionDistance(str1, str2)`, and the `deletionDistance` for some prefixes of `str1` and `str2`. After they find the relation, you may suggest using Dynamic Programming.
@@ -49,23 +47,23 @@ function deletionDistance($str1, $str2) {
   * Case 1: The last character in `str1` is equal to the last character in `str2`. In that case, one may assume that these two characters aren’t deleted, and look at the prefixes that don’t include the last character.
   * Case 2: The last character in `str1` is different from the last character in `str2`. In that case, at least one of the characters must be deleted, thus we get the following equation: `d(str1,str2) = 1 + min( d(str1.substring(0, n-1), str2), d(str1, str2.substring(0, m-1)) )` where `n` is the length of `str1`, `m` is the length of `str2`, and `d(x,y)` is the deletion distance between `x` and `y`.
 
-## Solution
+# Solution
 Let `str1Len` and `str2Len` be the lengths of `str1` and `str2`, respectively. Consider the function: `opt(i,j)` which returns the deletion distance for the `i'th` prefix of `str1`, and the `j'th` prefix of `str2`. What we want to do in this solution, is to use dynamic programming in order to build a function that calculates opt(str1Len, str2Len). Notice the following:
 
 * `opt(0,j) = j and opt(i,0) = i`
 
 This is true because if one string is the empty string, we have no choice but to delete all letters in the other string.
 
-* If i,j > 0 and str1[i] ≠ str2[j] then opt(i,j) = 1 + min(opt(i-1, j), opt(i, j-1))
+* If `i,j > 0` and `str1[i] ≠ str2[j]` then `opt(i,j) = 1 + min(opt(i-1, j), opt(i, j-1))`
 
-This holds since we need to delete at least one of the letters str1[i] or str2[j] and the deletion of one of the letters is counted as 1 deletion (hence the 1 in the formula). Then, since we’re left with either the (i-1)'th prefix of str1, or the (j-1)'th prefix of str2, need to take the minimum between opt(i-1,j) and opt(i,j-1). We, therefore, get the equation opt(i,j) = 1 + min(opt(i-1,j), opt(i,j-1)).
+This holds since we need to delete at least one of the letters `str1[i]` or `str2[j]` and the deletion of one of the letters is counted as `1` deletion (hence the `1` in the formula). Then, since we’re left with either the `(i-1)'th` prefix of str1, or the `(j-1)'th` prefix of `str2`, need to take the minimum between `opt(i-1,j)` and `opt(i,j-1)`. We, therefore, get the equation `opt(i,j) = 1 + min(opt(i-1,j), opt(i,j-1))`.
 
-If i,j > 0 and str1[i] = str2[j], then opt(i,j) = opt(i-1, j-1)
+* If `i,j > 0` and `str1[i] = str2[j]`, then `opt(i,j) = opt(i-1, j-1)`
 
-This holds since we don’t need to delete the last letters in order to get the same string, we simply use the same deletions we would to the (i-1)'th and (j-1)'th prefixes.
+This holds since we don’t need to delete the last letters in order to get the same string, we simply use the same deletions we would to the `(i-1)'th` and `(j-1)'th` prefixes.
 
-### Solution 1
-After finding the relations above for `opt(i,j)`, we use dynamic programming methods to calculate `opt(str1Len, str2Len)`, i.e. the deletion distance for the two strings, by calculating `opt(i,j)` for all 0 ≤ i ≤ str1Len, 0 ≤ j ≤ str2Len, and saving previous values for later use:
+## Solution 1
+After finding the relations above for `opt(i,j)`, we use dynamic programming methods to calculate `opt(str1Len, str2Len)`, i.e. the deletion distance for the two strings, by calculating `opt(i,j)` for all `0 ≤ i ≤ str1Len`, `0 ≤ j ≤ str2Len`, and saving previous values for later use:
 
 **Pseudocode:**
 ```
@@ -89,12 +87,12 @@ function deletionDistance(str1, str2):
 
     return memo[str1Len][str2Len]
 ```
-Time Complexity: we have a nested loop that executes O(1) steps at every iteration, thus we the time complexity is O(N⋅M) where N and M are the lengths of str1 and str2, respectively.
+**Time Complexity**: we have a nested loop that executes `O(1)` steps at every iteration, thus we the time complexity is `O(N⋅M)` where `N` and `M` are the lengths of `str1` and `str2`, respectively.
 
-Space Complexity: we save every value of opt(i,j) in our memo 2D array, which takes O(N⋅M) space, where N and M are the lengths of str1 and str2, respectively.
+**Space Complexity**: we save every value of `opt(i,j)` in our `memo` 2D array, which takes O(N⋅M) space, where `N` and `M` are the lengths of `str1` and `str2`, respectively.
 
-### Solution 2
-The solution above takes O(N⋅M) space since we save all previous values, but notice that opt(i,j) requires only opt(i-1,j), opt(i,j-1) and opt(i-1,j-1). Thus, by iterating first through 0 ≤ i ≤ str1Len, and then for every i calculating 0 ≤ j ≤ str2Len, we need only to save the values for the current i and the last i. This will reduce the space needed for the function.
+## Solution 2
+The solution above takes `O(N⋅M)` space since we save all previous values, but notice that `opt(i,j)` requires only `opt(i-1,j)`, `opt(i,j-1)` and `opt(i-1,j-1)`. Thus, by iterating first through `0 ≤ i ≤ str1Len`, and then for every `i` calculating `0 ≤ j ≤ str2Len`, we need only to save the values for the current `i` and the last `i`. This will reduce the space needed for the function.
 
 Pseudocode:
 ```
@@ -127,12 +125,12 @@ function deletionDistance(str1, str2):
                                            
     return prevMemo[str2Len]
  ```
-Time Complexity: the time complexity stays the same, i.e. O(N⋅M), since we still run a nested loop with N⋅M iterations.
+**Time Complexity**: the time complexity stays the same, i.e. `O(N⋅M)`, since we still run a nested loop with `N⋅M` iterations.
 
-Space Complexity: O(min(N,M)), as we only need to hold two rows of the double array.
+**Space Complexity**: `O(min(N,M))`, as we only need to hold two rows of the double array.
 
 
-## Example Code
+# Example Code
 
 **PHP code**
 ```php

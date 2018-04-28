@@ -1,11 +1,9 @@
 ---
 layout: post
-title: "Deletion Distance"
+title: "Lactation Cookies"
 date: 2018-04-28 10:50 +1000
 ---
-# Lactation Cookies
-
-## Cookies recipes
+# Cookies recipes
 * 1 cup **self raising wholemeal flour** (if you have plain flour, add 1/2 teaspoon baking powder) 
 * 1/2 cup **butter** (you can use organic virgin coconut oil instead if you prefer) 
 * 3/4 cup **brown sugar** (if you want to reduce sugar, you could try just 1/2 cup) 
@@ -20,7 +18,7 @@ date: 2018-04-28 10:50 +1000
 * OPTIONAL: 1/2 cup of your favourite biscuit ingredients (see suggested list below) - 
 
 
-## Method
+# Method
 1. In a large _mixing bowl_, cream the **butter** and **sugar**, then add the **egg** and **vanilla**. Mix well. 
 2. In a _separate bowl_, combine the **flaxseed** and **water**, let them sit for a few minutes before adding to `mix`. 
 3. Add the **dry ingredients** (apart from the **oats** and your additional ingredients) and mix well again. 
