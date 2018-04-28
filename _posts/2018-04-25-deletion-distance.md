@@ -157,7 +157,7 @@ function deletionDistance($str1, $str2) {
 **Python code 1 (working)**
 
 ```python
-def deletion_distance(s1, s2):
+def deletionDistance(s1, s2):
   cur = list(range(len(s2) + 1))
   prev = [0] * (len(s2) + 1)
   for i in range(len(s1)):
@@ -172,7 +172,7 @@ def deletion_distance(s1, s2):
 
 **Python code 2 (not working)**
 ```python
-def delete_distance(s1, s2):
+def deletionDistance(s1, s2):
 	m = [[0 for j in range(len(s2)+1)] for i in range(len(s1)+1)]
 	for i in range(len(s1)+1):
     	for j in range(len(s2)+1):
@@ -190,7 +190,7 @@ def delete_distance(s1, s2):
 **Python code 3 (not working)**
 
 ```python
-def delete_distance(s1, s2):
+def deletionDistance(s1, s2):
     m = [[0 for j in range(len(s2)+1)] for i in range(len(s1)+1)]
     for i in range(len(s1)+1):
         for j in range(len(s2)+1):
@@ -214,7 +214,7 @@ def delete_distance(s1, s2):
 $testCase = [
 	["", "", 0],
 	["", "hit", 3],
-	["neat", "hit", 4],
+	["neat", "", 4],
 	["heat", "hit", 3],
 	["hot", "not", 2],
 	["some", "thing", 9],
@@ -233,6 +233,30 @@ foreach($testCase as $key=>$case) {
 }
 ```
 
+**Python**
+```python
+testCase = [
+	["", "", 0],
+	["", "hit", 3],
+	["neat", "", 4],
+	["heat", "hit", 3],
+	["hot", "not", 2],
+	["some", "thing", 9],
+	["abc", "adbc", 1],
+	["awesome", "awesome", 0],
+	["ab", "ba", 2],
+];
+# print(testCase)
+
+index = 1;
+for case in testCase:
+  if(case[2] != deletionDistance(case[0], case[1])):
+    print('#' + str(index) + 'failed<br />\n');
+  else:
+    print('#' + str(index) + 'passed<br />\n');
+  index+=1
+
+```
 
 
 https://stackoverflow.com/questions/44490091/deletion-distance-between-2-strings
