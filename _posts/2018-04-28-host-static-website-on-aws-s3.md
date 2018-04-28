@@ -28,3 +28,5 @@ https://docs.aws.amazon.com/AmazonS3/latest/user-guide/static-website-hosting.ht
 https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html
 
 https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html
+
+https://medium.com/@lockdown2k17/aws-s3-static-website-hosting-using-ssl-acm-112e6d6b6d97
