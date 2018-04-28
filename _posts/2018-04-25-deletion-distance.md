@@ -134,7 +134,7 @@ function deletionDistance(str1, str2):
 
 **PHP code**
 ```php
-function deletion_distance($str1, $str2) {
+function deletionDistance($str1, $str2) {
 	$cur = range(0, strlen($str1));
 	$prev = [];
 	for($i=0; $i<=strlen($str2); $i++){
@@ -150,7 +150,7 @@ function deletion_distance($str1, $str2) {
 			$cur[$j+1] = min($prev[$j]+$sub, $cur[$j]+1, $prev[$j+1]+1);
 		}
 	}
-	return $cur[-1];
+	return $cur[count($cur)-1];
 }
 ```
 
@@ -206,6 +206,31 @@ def delete_distance(s1, s2):
                 s1s2del = s1del + s2del
                 m[i][j] = min(m[i-1][j-1] + s1s2del, m[i-1][j] + s1del, m[i][j-1] + s2del)
     return m[len(s1)][len(s2)]
+```
+
+# Test case
+**PHP**
+```php
+$testCase = [
+	["", "", 0],
+	["", "hit", 3],
+	["neat", "hit", 4],
+	["heat", "hit", 3],
+	["hot", "not", 2],
+	["some", "thing", 9],
+	["abc", "adbc", 1],
+	["awesome", "awesome", 0],
+	["ab", "ba", 2],
+];
+
+foreach($testCase as $key=>$case) {
+	$index = $key+1;
+	if ($case[2] != deletionDistance($case[0], $case[1])) {
+		echo "Test case #{$index} failed<br />\n";
+	} else {
+		echo "Test case #{$index} passed<br />\n";
+	}
+}
 ```
 
 
