@@ -45,6 +45,7 @@ static::assertTrue($v->passes());
 
 ```
 ## Console Command
+This way can check output.
 ```php
 $this->artisan('command', [
             'param1' => 'value1',
@@ -54,6 +55,22 @@ $output = Artisan::output();
 
 static::assertContains('output wording', $output);
 ```
+
+### Command tester
+This way can use debug and output.
+```php
+$command = new \App\Console\Commands\CommandClass();
+$command->setLaravel($this->app);
+
+$tester = new \Symfony\Component\Console\Tester\CommandTester($command);
+$tester->execute([
+            'param1' => 'value1',
+            '--param2' => 'value2',
+        ]);
+$output = $tester->getDisplay();
+self::assertContains('Wording that expected.', $output);
+```
+
 ## Controller
 Two ways to test controller
 ```php
