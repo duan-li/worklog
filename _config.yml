@@ -32,9 +32,10 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-mermaid
+  - jekyll-paginate
 
 paginate: 8
-paginate_path: "/worklog/pages:num/"
+paginate_path: "/worklog/page:num/"
 
 
 # Exclude from processing.
