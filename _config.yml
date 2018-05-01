@@ -32,6 +32,7 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-mermaid
+  - jekyll-paginate-v2
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
@@ -92,7 +93,8 @@ pagination:
   indexpage: 'index'
 
 ############################################################
-
+paginate: 8
+paginate_path: "/worklog/pages:num/"
 
 
 # Exclude from processing.

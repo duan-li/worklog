@@ -35,7 +35,7 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jekyll-compose', group: [:jekyll_plugins]
 
-gem 'jekyll-paginate', group: :jekyll_plugins
+# gem 'jekyll-paginate', group: :jekyll_plugins
 gem 'jekyll-paginate-v2', group: :jekyll_plugins
 
 # Performance-booster for watching directories on Windows
