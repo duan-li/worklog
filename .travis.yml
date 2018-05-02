@@ -5,7 +5,7 @@ services:
 
 before_install:
   - docker pull topdevbox/static-website-toolbox
-  - docker run -it --name="toolbox" -v .:/${REPODIR} topdevbox/static-website-toolbox /bin/bash -c "cd ${REPODIR};bundle install;jekyll build;"
+  - docker run -it --name="toolbox" -v "${PWD}:/${REPODIR}" topdevbox/static-website-toolbox /bin/bash -c "cd ${REPODIR};bundle install;jekyll build;"
 
 script:
   - ls
