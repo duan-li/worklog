@@ -49,6 +49,7 @@ RUN apt-get autoremove && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 
+```bash
 git clone https://github.com/inputx/worklog.git;cd worklog
 
 bundle install
@@ -62,3 +63,4 @@ json'
 
 aws s3 rm s3://good2all.com --recursive
 aws s3 sync ./_site s3://good2all.com/
+```
