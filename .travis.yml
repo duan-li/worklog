@@ -5,14 +5,15 @@ services:
 
 before_install:
   - docker pull topdevbox/static-website-toolbox
-  - docker run -it --name="toolbox" topdevbox/static-website-toolbox /bin/bash -c "git clone $REPO; cd $REPODIR;bundle install;jekyll build;"
+  - docker run -it --name="toolbox" -v .:/${REPODIR} topdevbox/static-website-toolbox /bin/bash -c "cd ${REPODIR};bundle install;jekyll build;"
 
 script:
   - ls
+  - docker ps -a
 
 notifications:
   email:
     recipients:
-      - $EMAIL1
-    on_success: change # default: change
+      - ${EMAIL1}
+    on_success: always # default: change
     on_failure: always # default: always
