@@ -7,6 +7,8 @@ before_install:
   - docker pull topdevbox/static-website-toolbox
   - docker run -it --name="toolbox" topdevbox/static-website-toolbox /bin/bash -c "git clone $REPO; cd $REPODIR;bundle install;jekyll build;"
 
+script:
+  - ls
 
 notifications:
   email:
