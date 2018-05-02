@@ -5,7 +5,6 @@ services:
 
 before_install:
   - docker pull topdevbox/static-website-toolbox
-  - $REPO
   - docker run -it --name="toolbox" lc/sw-toolbox:1 /bin/bash -c "git clone $REPO; cd $REPODIR;bundle install;"
 
 script:
