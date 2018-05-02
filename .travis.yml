@@ -5,10 +5,12 @@ services:
 
 before_install:
   - docker pull topdevbox/static-website-toolbox
+  - docker pull governmentpaas/awscli
   - docker run -it --name="toolbox" -v "${PWD}:/${REPODIR}" topdevbox/static-website-toolbox /bin/bash -c "cd ${REPODIR};bundle install;jekyll build;"
 
 script:
   - ls
+  - docker run -it governmentpaas/awscli aws help
   - docker ps -a
 
 notifications:
