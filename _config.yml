@@ -26,7 +26,7 @@ url: "https://good2all.com"
 twitter_username: inputx
 github_username:  inputx
 
-# paginate: 5
+paginate: 10
 
 # Build settings
 markdown: kramdown
@@ -36,9 +36,32 @@ plugins:
   - jekyll-mermaid
   - jekyll-paginate
 
-paginate: 8
+
 #paginate_path: "/worklog/page:num/"
 paginate_path: "/page:num/"
+
+
+# hyde ##############################
+# Dependencies
+# markdown:         redcarpet
+# highlighter:      pygments
+
+# Permalinks
+# permalink:        pretty
+# relative_permalinks: true
+
+# Setup
+tagline:          'Tech'
+
+author:
+  name:           'inputx'
+  url:            https://github.com/inputx
+
+# Custom vars
+version:          2.1.0
+
+# hyde ##############################
+
 
 
 # Exclude from processing.

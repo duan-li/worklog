@@ -1,24 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="en-us">
 
   {% include head.html %}
 
   <body>
 
-    {% include header.html %}
+    {% include sidebar.html %}
 
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </main>
+    <div class="content container">
+      {{ content }}
+    </div>
 
-    {% include footer.html %}
-    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
-    <script>
-      mermaid.initialize({startOnLoad:true});
-      window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'))
-    </script>
   </body>
-
 </html>
