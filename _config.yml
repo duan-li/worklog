@@ -16,9 +16,7 @@
 title: Goodays Worklog
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Write down what's on your mind
 #baseurl: "/worklog" # the subpath of your site, e.g. /blog
 #url: "https://inputx.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "/"
@@ -26,7 +24,7 @@ url: "https://good2all.com"
 twitter_username: inputx
 github_username:  inputx
 
-# paginate: 5
+paginate: 10
 
 # Build settings
 markdown: kramdown
@@ -36,9 +34,32 @@ plugins:
   - jekyll-mermaid
   - jekyll-paginate
 
-paginate: 8
+
 #paginate_path: "/worklog/page:num/"
 paginate_path: "/page:num/"
+
+
+# hyde ##############################
+# Dependencies
+# markdown:         redcarpet
+# highlighter:      pygments
+
+# Permalinks
+# permalink:        pretty
+# relative_permalinks: true
+
+# Setup
+tagline:          'Tech'
+
+author:
+  name:           'inputx'
+  url:            https://github.com/inputx
+
+# Custom vars
+version:          2.1.0
+
+# hyde ##############################
+
 
 
 # Exclude from processing.
