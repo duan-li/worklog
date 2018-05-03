@@ -29,16 +29,19 @@ jobs:
       if: branch = draft
       script:
         - echo "DONE"
-      deploy:
-        provider: s3
-        access_key_id:
-          secure: "Iycxy/SOABWjE1Twv6oBDUG3hAsdXzapah3ND71qICYts4k2K77zkcNierylOgykpo2geTBqq6Y9D8DaXflt/M3Zwkmd/fNWT425hceL3d3hGQhgvt1kRZZYl2MNUrkuQLHmzla7ImWIQsyadvodaMzCVC4YGmgALRqJJEJbd+4wuK62g3UHSEppa4h1fOZXefYB14FuW+AjYHge/kFtDZsHQfVhf3JdY620lIkmIsctfEAtm4eXS7/JKsNxKVxh5bIhLVcKymBRFrJj0LnDKdS/7CYLyE4AWt765HRYJF6DE3qpGAAGatM2bmW8WLVmSfKFlUJewkuoYpofAl53k5f+wI1a0wqY8Y2OskDXG6nRzAPeu05wj7D2JzIXG8wBmFCWVLiwJl0ZURxrF+Ofmw5BPjI7vaz1Po2B24kQdvPeg8HoHHMaY7Cj/ypYUXTZXUxcX3B6Mqjn7Va6WhFz1zWpMo73rtpUT1j6xK1dnjPkkyxlGRd6jOZu4IbzATW7w/Td/TtsmEPlJfKqOGZzKVEaNUYtL5KuD5ilisfAf3QynGnzL8OSlRd9sY9rgXs2UWx2swpOpcc4SKijC5juO5V0VzYWp3MjaPH6xm3czfzUS5WjYD+S6PPpf1H8TVwZhuirncWjZmRvN4uN3iQb1+aMEvHMGbkM8vGAT2zX4gE="
-        secret_access_key:
-          secure: "JMY8+WBpDZMBGRZUyed0hH0e5xkMi0ocLfEBpHoX92pwVZuB1+YV4pgjZgLNnRlq45wQL95/MgUdb8HP3c97qHQhhJNDzZMfS9ydDYsj5D2JNJhk6kIvPtN28SKrLCoUj1AJJaZUU4n7uDbYkZTa8HD/O0LZnbwIfoczqbucf37HBlJiRtMKT2njXlnwwDc2K9no9qsZRiwT65u31LTGvrAyH09DQo9P5FPA9LQj16h63WgcaXEgdIpXSjZ9dQr+hM4d1pGvGjaOQw2et7u05mbBCVGSY1SktI0YPsWzn2nU8riwuTrrq4/fGD7EIniOfGuxOeMdSxlgZHgpNviDwFVJiZ+SBRqkb1rQHeySn4HWkspC3s122DaYzm70+zS+6j4w21l+LGpeLi2uMTSg9rll1Xrj/4l/1Jv+/naQcxEHi7MDWRiEKkVbeDlcy/HH8CiVyNJL47vEzRlPJHDIa96UGkV3lo2Dq4DVXmlenKoMI6eF1YHzUzSw4Bq58Dx21WnCV9iU0f08z/47zgucfSFXnb7R+ZSumpj8w5WH/CMrDjqcrUdQ/DNAZVsxsL0HweNTCIEzQBdLySfZeyS9nQhDWF9mgw2nCfqgvd1se03ESYiqWbwpKV8oWU175Ko3aRkdBQM37aftmtY5bnmrpbCXSsMlaLVIVqItPzo+52Y="
-        bucket: "good2all.com"
-        skip_cleanup: true
-        region: us-east-1
-        local_dir: _site
+
+deploy:
+  provider: s3
+  access_key_id:
+    secure: "Iycxy/SOABWjE1Twv6oBDUG3hAsdXzapah3ND71qICYts4k2K77zkcNierylOgykpo2geTBqq6Y9D8DaXflt/M3Zwkmd/fNWT425hceL3d3hGQhgvt1kRZZYl2MNUrkuQLHmzla7ImWIQsyadvodaMzCVC4YGmgALRqJJEJbd+4wuK62g3UHSEppa4h1fOZXefYB14FuW+AjYHge/kFtDZsHQfVhf3JdY620lIkmIsctfEAtm4eXS7/JKsNxKVxh5bIhLVcKymBRFrJj0LnDKdS/7CYLyE4AWt765HRYJF6DE3qpGAAGatM2bmW8WLVmSfKFlUJewkuoYpofAl53k5f+wI1a0wqY8Y2OskDXG6nRzAPeu05wj7D2JzIXG8wBmFCWVLiwJl0ZURxrF+Ofmw5BPjI7vaz1Po2B24kQdvPeg8HoHHMaY7Cj/ypYUXTZXUxcX3B6Mqjn7Va6WhFz1zWpMo73rtpUT1j6xK1dnjPkkyxlGRd6jOZu4IbzATW7w/Td/TtsmEPlJfKqOGZzKVEaNUYtL5KuD5ilisfAf3QynGnzL8OSlRd9sY9rgXs2UWx2swpOpcc4SKijC5juO5V0VzYWp3MjaPH6xm3czfzUS5WjYD+S6PPpf1H8TVwZhuirncWjZmRvN4uN3iQb1+aMEvHMGbkM8vGAT2zX4gE="
+  secret_access_key:
+    secure: "JMY8+WBpDZMBGRZUyed0hH0e5xkMi0ocLfEBpHoX92pwVZuB1+YV4pgjZgLNnRlq45wQL95/MgUdb8HP3c97qHQhhJNDzZMfS9ydDYsj5D2JNJhk6kIvPtN28SKrLCoUj1AJJaZUU4n7uDbYkZTa8HD/O0LZnbwIfoczqbucf37HBlJiRtMKT2njXlnwwDc2K9no9qsZRiwT65u31LTGvrAyH09DQo9P5FPA9LQj16h63WgcaXEgdIpXSjZ9dQr+hM4d1pGvGjaOQw2et7u05mbBCVGSY1SktI0YPsWzn2nU8riwuTrrq4/fGD7EIniOfGuxOeMdSxlgZHgpNviDwFVJiZ+SBRqkb1rQHeySn4HWkspC3s122DaYzm70+zS+6j4w21l+LGpeLi2uMTSg9rll1Xrj/4l/1Jv+/naQcxEHi7MDWRiEKkVbeDlcy/HH8CiVyNJL47vEzRlPJHDIa96UGkV3lo2Dq4DVXmlenKoMI6eF1YHzUzSw4Bq58Dx21WnCV9iU0f08z/47zgucfSFXnb7R+ZSumpj8w5WH/CMrDjqcrUdQ/DNAZVsxsL0HweNTCIEzQBdLySfZeyS9nQhDWF9mgw2nCfqgvd1se03ESYiqWbwpKV8oWU175Ko3aRkdBQM37aftmtY5bnmrpbCXSsMlaLVIVqItPzo+52Y="
+  bucket: "good2all.com"
+  skip_cleanup: true
+  region: us-east-1
+  local_dir: _site
+  on:
+    branch: draft
 
 
 
