@@ -10,17 +10,8 @@ services:
 before_install:
   - docker pull topdevbox/bundler
   - docker pull topdevbox/awscli
-  - docker run -it -v "${PWD}:/${REPODIR}" topdevbox/bundler /bin/sh -c "cd ${REPODIR};bundler install;/usr/bin/jekyll build"
+  - docker run -it -v "${PWD}:/${REPODIR}" topdevbox/bundler /bin/sh -c "cd ${REPODIR};bundler install --jobs=4;/usr/bin/jekyll build"
 
-
-jobs:
-  include:
-    - stage: deploy to staging
-      rvm: 2.3
-      install: skip # bundle install is not required
-      script: ./deploy.sh
-    - &test-staging
-      stage: test staging
 
 jobs:
   include:
@@ -45,5 +36,5 @@ notifications:
   email:
     recipients:
       - inputx@gmail.com
-    on_success: always # default: change
+    on_success: change # default: change
     on_failure: always # default: always
