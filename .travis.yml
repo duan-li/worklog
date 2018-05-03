@@ -37,8 +37,8 @@ deploy:
   secret_access_key:
     secure: "JMY8+WBpDZMBGRZUyed0hH0e5xkMi0ocLfEBpHoX92pwVZuB1+YV4pgjZgLNnRlq45wQL95/MgUdb8HP3c97qHQhhJNDzZMfS9ydDYsj5D2JNJhk6kIvPtN28SKrLCoUj1AJJaZUU4n7uDbYkZTa8HD/O0LZnbwIfoczqbucf37HBlJiRtMKT2njXlnwwDc2K9no9qsZRiwT65u31LTGvrAyH09DQo9P5FPA9LQj16h63WgcaXEgdIpXSjZ9dQr+hM4d1pGvGjaOQw2et7u05mbBCVGSY1SktI0YPsWzn2nU8riwuTrrq4/fGD7EIniOfGuxOeMdSxlgZHgpNviDwFVJiZ+SBRqkb1rQHeySn4HWkspC3s122DaYzm70+zS+6j4w21l+LGpeLi2uMTSg9rll1Xrj/4l/1Jv+/naQcxEHi7MDWRiEKkVbeDlcy/HH8CiVyNJL47vEzRlPJHDIa96UGkV3lo2Dq4DVXmlenKoMI6eF1YHzUzSw4Bq58Dx21WnCV9iU0f08z/47zgucfSFXnb7R+ZSumpj8w5WH/CMrDjqcrUdQ/DNAZVsxsL0HweNTCIEzQBdLySfZeyS9nQhDWF9mgw2nCfqgvd1se03ESYiqWbwpKV8oWU175Ko3aRkdBQM37aftmtY5bnmrpbCXSsMlaLVIVqItPzo+52Y="
   bucket: "good2all.com"
-  skip_cleanup: true
-  region: us-east-1
+  skip_cleanup: false
+  region: ap-southeast-2
   local_dir: _site
   on:
     branch: draft
