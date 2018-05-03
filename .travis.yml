@@ -10,6 +10,9 @@ services:
 before_install:
   - docker pull topdevbox/bundler
   - docker pull topdevbox/awscli
+  
+
+install:
   - docker run -it -v "${PWD}:/${REPODIR}" topdevbox/bundler /bin/sh -c "cd ${REPODIR};bundler install --jobs=4;/usr/bin/jekyll build"
 
 
