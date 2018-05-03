@@ -8,7 +8,7 @@ services:
   - docker
 
 before_install:
-  - docker pull topdevbox/static-website-toolbox
+  - docker pull topdevbox/bundle
   - docker pull topdevbox/awscli
 
 script:
