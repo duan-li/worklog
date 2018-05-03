@@ -1,8 +1,9 @@
 sudo: required
 
-# branches:
-#  only:
-#  - master
+branches:
+ only:
+ - master
+ - draft
 
 services:
   - docker

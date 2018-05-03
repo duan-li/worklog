@@ -52,6 +52,9 @@ or
 > check out branch
 `git checkout <branch-name>`
 
+> merge branch into current branch
+`git merge from-branch`
+
 ## History
 > check commit history
 `git log`
