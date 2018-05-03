@@ -71,6 +71,12 @@ or
 > history order reverse
 `git log --reverse`
 
+> View the change history of a file or dir
+`git log -p dirname/filename`
+
+> simplify history message
+`git log --oneline -- _includes/`
+
 ## Remote
 > Set a new remote
 `git remote add origin https://github.com/user/repo.git`
@@ -83,3 +89,14 @@ or
 
 > Push to remote branch
 `git push origin master`
+
+
+
+
+
+
+```
+
+
+
+```
