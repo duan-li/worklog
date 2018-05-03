@@ -10,13 +10,13 @@ services:
 before_install:
   - docker pull topdevbox/bundler
   - docker pull topdevbox/awscli
+  - docker run -it -v "${PWD}:/${REPODIR}" topdevbox/bundler /bin/sh -c "cd ${REPODIR};bundler install;/usr/bin/jekyll build"
 
 script:
   - pwd
   - ls
-  - docker run -it -v "${PWD}:/${REPODIR}" topdevbox/bundler /bin/sh -c "cd ${REPODIR};bundler install;/usr/bin/jekyll build"
-  - docker run -it -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" governmentpaas/awscli aws s3 rm s3://good2all.com --recursive --output=table
-  - docker run -it -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" -v "${PWD}/_site:/site" governmentpaas/awscli aws s3 sync /site s3://good2all.com/ --output=table
+  - docker run -it -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" topdevbox/awscli aws s3 rm s3://good2all.com --recursive --output=table
+  - docker run -it -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" -e AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" -v "${PWD}/_site:/site" topdevbox/awscli aws s3 sync /site s3://good2all.com/ --output=table
   - docker ps -a
 
 notifications:
