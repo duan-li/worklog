@@ -89,14 +89,3 @@ or
 
 > Push to remote branch
 `git push origin master`
-
-
-
-
-
-
-```
-
-
-
-```
