@@ -72,6 +72,18 @@ I think you should use an
 
 # Advantage
 
+## KaTeX
+
+```
+```katex
+\Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
+`` `
+```
+
+```katex
+\Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
+```
+
 ## UML diagram
 ```
 ```mermaid
