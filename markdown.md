@@ -79,7 +79,7 @@ Use the `katex` liquid tag for LaTeX math equations like so:
 ```
 { % katex % }
 \Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
-{% endkatex %}
+{ % endkatex % }
 ```
 
 {% katex %}
@@ -91,14 +91,14 @@ If you want the equation to be rendered in display mode (on its own line, center
 ```
 { % katex display % }
 \Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
-{% endkatex %}
+{ % endkatex % }
 ```
 
 ### More KaTeX examples
 ```
 { % katex % }
 c = \pm\sqrt{a^2 + b^2}
-{% endkatex %}
+{ % endkatex % }
 ```
 
 {% katex %}
@@ -108,7 +108,7 @@ c = \pm\sqrt{a^2 + b^2}
 ```
 { % katex display % }
 c = \pm\sqrt{a^2 + b^2}
-{% endkatex %}
+{ % endkatex % }
 ```
 
 {% katex display %}
