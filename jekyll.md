@@ -125,3 +125,14 @@ bundle exec jekyll unpublish _posts/2014-01-24-my-new-draft.md
 jekyll unpublish _posts/2014-01-24-my-new-draft.md
 ```
 
+# Ignore files and folders
+```
+_site
+.sass-cache
+.jekyll-metadata
+.puls.swp
+.push
+.bundle
+.bundle/*
+```
+
