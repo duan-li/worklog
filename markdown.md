@@ -74,15 +74,47 @@ I think you should use an
 
 ## KaTeX
 
+Use the `katex` liquid tag for LaTeX math equations like so:
+
 ```
-```katex
+{% katex %}
 \Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
-`` `
+{% endkatex %}
 ```
 
-```katex
+{% katex %}
 \Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
+{% endkatex %}
+
+If you want the equation to be rendered in display mode (on its own line, centered, large symbols), just pass in the `display` parameter:
+
 ```
+{% katex display %}
+\Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
+{% endkatex %}
+```
+
+### More KaTeX examples
+```
+{% katex %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+```
+
+{% katex %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+
+```
+{% katex display %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+```
+
+{% katex display %}
+c = \pm\sqrt{a^2 + b^2}
+{% endkatex %}
+
 
 ## UML diagram
 ```
