@@ -102,6 +102,7 @@ or
 * `d`: diff view like `git diff`
 * `r`: branch refs view like `git branch`, but it shows remote branchs
 * `c`: stage view
+* `h`: help view
 
 ### Status view
 * `u`: add file or unstage file
@@ -115,3 +116,4 @@ or
 `bind P !git push origin`
 
 http://jonas.nitro.dk/tig/manual.html
+https://devhints.io/tig
