@@ -22,6 +22,8 @@ This is because we can use `Handler` to filter different exceptions.
 https://medium.com/@connorleech/use-the-repository-design-pattern-in-a-laravel-application-13f0b46a3dce
 https://github.com/connor11528/laravel-vue-tasks
 https://www.dunebook.com/brief-overview-of-design-patterns-used-in-laravel/3/
+https://bosnadev.com/2015/03/07/using-repository-pattern-in-laravel-5/
+http://www.laravelbestpractices.com/
 
 ## The Customize Request in controller
 No `Illuminate\Http\Request` instance goes to any controller. 
