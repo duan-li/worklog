@@ -106,7 +106,6 @@ or
 ### Status view
 * `u`: add file or unstage file
 * `C`: make a commit
-* ``
 
 
 ## Bind shortcut key
@@ -114,3 +113,5 @@ or
 `bind status P !git push origin`
 
 `bind P !git push origin`
+
+http://jonas.nitro.dk/tig/manual.html
