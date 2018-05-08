@@ -89,3 +89,28 @@ or
 
 > Push to remote branch
 `git push origin master`
+
+
+# Tig
+## Install
+`brew install tig`
+
+## View 
+* `m`: Main view
+* `s`: status view like `git status`
+* `l`: log view like `git log`
+* `d`: diff view like `git diff`
+* `r`: branch refs view like `git branch`, but it shows remote branchs
+* `c`: stage view
+
+### Status view
+* `u`: add file or unstage file
+* `C`: make a commit
+* ``
+
+
+## Bind shortcut key
+
+`bind status P !git push origin`
+
+`bind P !git push origin`
