@@ -18,3 +18,21 @@ class DriverException extends \Exception
 
 This is because we can use `Handler` to filter different exceptions.
 
+## The Repository Design Pattern
+https://medium.com/@connorleech/use-the-repository-design-pattern-in-a-laravel-application-13f0b46a3dce
+https://github.com/connor11528/laravel-vue-tasks
+https://www.dunebook.com/brief-overview-of-design-patterns-used-in-laravel/3/
+
+## The Customize Request in controller
+No `Illuminate\Http\Request` instance goes to any controller. 
+Controller must use customize request class instance. 
+
+
+## Test pattern
+### Unit test (PoT)
+Process-oriented test
+For all task, unit test clearly show how function/program working. 
+
+### Accessibility test (RoT)
+Result-oriented test
+For controller, Accessibility test doesn't know or care how function/program working.
