@@ -38,3 +38,7 @@ For all task, unit test clearly show how function/program working.
 ### Accessibility test (RoT)
 Result-oriented test
 For controller, Accessibility test doesn't know or care how function/program working.
+
+
+## Decorating Laravel Repositories
+https://matthewdaly.co.uk/blog/2017/03/01/decorating-laravel-repositories/

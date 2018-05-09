@@ -62,6 +62,13 @@ graph TB
 ```
 
 
+## Release branch
+
+Branch name is `release-<release-number>`. `release-number` will be `platform-version-frameword-version-<any-number>`. 
+	
+
+
+
 
 
 
