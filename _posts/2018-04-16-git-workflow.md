@@ -73,5 +73,7 @@ Branch name is `release-<release-number>`. `release-number` will be `platform-ve
 
 
 
+
 Ref 
 https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project
+https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
