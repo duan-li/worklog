@@ -12,6 +12,7 @@ date: 2018-04-16 11:53 +1000
  - Master
  - Release
  - Staging
+ - Maintenance
 
 Any new branch you start, either hot fix or feature, you should always branch off from master.
 You do the magic and once you have finished, you merge master again in your brach to keep it up to date
