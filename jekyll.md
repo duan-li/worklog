@@ -133,6 +133,12 @@ bundle exec jekyll unpublish _posts/2014-01-24-my-new-draft.md
 jekyll unpublish _posts/2014-01-24-my-new-draft.md
 ```
 
+### Build index
+```
+bundle exec jekyll algolia
+```
+
+
 # Ignore files and folders
 ```
 _site
