@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Jekyll algolia
-date: 2018-05-10 05:44 +0000
+date: 2018-05-10 10:44 +0000
 ---
 
 ### ENV
@@ -44,5 +44,11 @@ export ALGOLIA_INDEX_NAME='index_name'
 ```
 bundle exec jekyll algolia
 ```
+
+
+# Next
+* update bunlde docker image add zlib
+* update post travis-ci add how to use command encrpt keys
+* update travis config make sure job is still working
 
 
