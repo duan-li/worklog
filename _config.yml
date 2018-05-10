@@ -61,6 +61,9 @@ version:          2.1.0
 # hyde ##############################
 
 
+algolia:
+  application_id: 'JW7LLYK6XP'
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
