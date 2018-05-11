@@ -47,7 +47,6 @@ bundle exec jekyll algolia
 
 
 # Next
-* update bunlde docker image add zlib
 * update post travis-ci add how to use command encrpt keys
 * update travis config make sure job is still working
 
