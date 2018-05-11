@@ -55,12 +55,15 @@ or
 > merge branch into current branch
 `git merge from-branch`
 
+> push branch with username and password 
+`git push https://username:password@myrepository.biz/file.git --all`
+
 ## Tag
 > List all tags
 `git tag`
 
 > Create Tag
-``
+`git tag -a v1.4 -m "my version 1.4"`
 
 > Remvoe tag
 `git tag -d <name>`
@@ -104,6 +107,11 @@ or
 
 
 ## Other
+### Repo size
+[Ref](https://stackoverflow.com/questions/8185276/find-size-of-git-repo)
+
+`git count-objects -vH`
+
 ### File size
 [How to find/identify large files/commits in Git history?](https://stackoverflow.com/questions/10622179/how-to-find-identify-large-files-commits-in-git-history)
 ```
@@ -116,7 +124,9 @@ git rev-list --objects --all \
 | gnumfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 ```
 
-
+### Reduce Repo size
+`git reflog expire --all --expire=now`
+`git gc --prune=now --aggressive`
 
 
 # Tig
