@@ -77,9 +77,9 @@ I think you should use an
 Use the `katex` liquid tag for LaTeX math equations like so:
 
 ```
-{% katex %}
+{ % katex % }
 \Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
-{% endkatex %}
+{ % endkatex % }
 ```
 
 {% katex %}
@@ -89,16 +89,16 @@ Use the `katex` liquid tag for LaTeX math equations like so:
 If you want the equation to be rendered in display mode (on its own line, centered, large symbols), just pass in the `display` parameter:
 
 ```
-{% katex display %}
+{ % katex display % }
 \Gamma(z) = \int_0^1\infty t^{z-1}e^{-t}dt\,.
-{% endkatex %}
+{ % endkatex % }
 ```
 
 ### More KaTeX examples
 ```
-{% katex %}
+{ % katex % }
 c = \pm\sqrt{a^2 + b^2}
-{% endkatex %}
+{ % endkatex % }
 ```
 
 {% katex %}
@@ -106,9 +106,9 @@ c = \pm\sqrt{a^2 + b^2}
 {% endkatex %}
 
 ```
-{% katex display %}
+{ % katex display % }
 c = \pm\sqrt{a^2 + b^2}
-{% endkatex %}
+{ % endkatex % }
 ```
 
 {% katex display %}
