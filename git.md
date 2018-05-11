@@ -55,6 +55,18 @@ or
 > merge branch into current branch
 `git merge from-branch`
 
+## Tag
+> List all tags
+`git tag`
+
+> Create Tag
+``
+
+> Remvoe tag
+`git tag -d <name>`
+
+
+
 ## History
 > check commit history
 `git log`
@@ -89,6 +101,22 @@ or
 
 > Push to remote branch
 `git push origin master`
+
+
+## Other
+### File size
+[How to find/identify large files/commits in Git history?](https://stackoverflow.com/questions/10622179/how-to-find-identify-large-files-commits-in-git-history)
+```
+# need run brew install coreutils
+git rev-list --objects --all \
+| git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+| sed -n 's/^blob //p' \
+| sort --numeric-sort --key=2 \
+| cut -c 1-12,41- \
+| gnumfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
+```
+
+
 
 
 # Tig
