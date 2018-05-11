@@ -28,6 +28,9 @@ bundle install
 jekyll build
 ```
 
+```
+bundle exec jekyll build
+```
 
 ## Preview
 **Start local server**
