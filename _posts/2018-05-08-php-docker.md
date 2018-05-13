@@ -46,6 +46,42 @@ ENTRYPOINT ["/usr/sbin/php-fpm7", "-F"]
 
 ```
 
+docker run -it \
+-v /Users/Duan/Dockercraft/php-fpm/php7:/etc/php7:ro \
+-v /Users/Duan/Dockercraft/php-fpm/www:/var/www \
+-v /Users/Duan/Dockercraft/php-fpm/run:/var/run \
+-v /Users/Duan/Dockercraft/php-fpm/log:/var/log/php7 \
+-p 9000:9000 php-fpm
+
+docker run -it \
+-v /root/php/php7:/etc/php7:ro \
+-v /root/php/www:/var/www \
+-v /root/php/run:/run/php \
+-v /root/php/log:/var/log/php7 \
+-p 9000:9000 php
+
+SCRIPT_FILENAME=/var/www/index.php REQUEST_METHOD=GET cgi-fcgi -bind -connect 172.0.0.1:9000
+
+SCRIPT_NAME=/index.php \
+SCRIPT_FILENAME=/index.php \
+QUERY_STRING=VAR1 \
+DOCUMENT_ROOT=/var/www/ \
+REQUEST_METHOD=GET \
+cgi-fcgi -bind -connect 127.0.0.1:9000
+
+
+
+SCRIPT_NAME=/index.php \
+SCRIPT_FILENAME=/index.php \
+QUERY_STRING=VAR1 \
+DOCUMENT_ROOT=/var/www/ \
+REQUEST_METHOD=GET \
+cgi-fcgi -bind -connect ./php7.0-fpm.sock
+
+
+// working 
+SCRIPT_FILENAME=/var/www/index.php REQUEST_METHOD=GET cgi-fcgi -bind -connect ./php7.0-fpm.sock
+
 ```
 /usr/sbin # ./php-fpm7 -v
 PHP 7.1.16 (fpm-fcgi) (built: Apr  9 2018 10:23:39)
@@ -56,3 +92,6 @@ Zend Engine v3.1.0, Copyright (c) 1998-2018 Zend Technologies
 https://github.com/dylanlindgren/docker-phpfpm/blob/master/Dockerfile
 
 https://github.com/codecasts/php-alpine
+
+https://github.com/docker-library/php/blob/master/Dockerfile-alpine.template
+
