@@ -24,6 +24,7 @@ RUN apk --update add ca-certificates
 # add the repository, make sure you replace the correct versions if you want.
 RUN echo "@php https://php.codecasts.rocks/v3.7/php-7.1" >> /etc/apk/repositories
 
+#php cli is php7-cli
 RUN apk add --update php-fpm@php \
 		php-common@php \
 		php-curl@php \
@@ -85,6 +86,15 @@ SCRIPT_FILENAME=/var/www/index.php REQUEST_METHOD=GET cgi-fcgi -bind -connect ./
 ```
 /usr/sbin # ./php-fpm7 -v
 PHP 7.1.16 (fpm-fcgi) (built: Apr  9 2018 10:23:39)
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.1.0, Copyright (c) 1998-2018 Zend Technologies
+```
+
+
+```
+
+Duan:php-fpm Duan$ docker run -it php php -v
+PHP 7.1.17 (cli) (built: May  3 2018 17:39:19) ( NTS )
 Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.1.0, Copyright (c) 1998-2018 Zend Technologies
 ```
