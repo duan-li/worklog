@@ -44,3 +44,7 @@ docker tag local_image_name $DOCKER_ID_USER/hub_image_repo:tag_name
 ```
 docker push $DOCKER_ID_USER/hub_image_repo:tag_name
 ```
+
+# Docker Compose
+`docker-compose up`
+
