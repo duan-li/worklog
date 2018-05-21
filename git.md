@@ -129,6 +129,16 @@ git rev-list --objects --all \
 `git gc --prune=now --aggressive`
 
 
+### Revert last commit
+```
+git reset HEAD~ 
+// do some update
+git add ...   
+git commit -c ORIG_HEAD
+
+git push --force
+```
+
 # Tig
 ## Install
 `brew install tig`
