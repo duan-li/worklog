@@ -19,3 +19,7 @@ docker run -it -v /Users/Duan/Code/lc/database/migrations:/lc phpcs --standard=P
 
 
 docker run -it -v /Users/Duan/Code/lc/database/migrations:/lc phpmd phpmd /lc/2018_05_17_113100_migrate_membership_do_not_share_offer_package.php codesize
+
+
+* xdebug
+* xhprof
