@@ -354,17 +354,17 @@ sudo apt -y install sysbench
 // prepare test
 docker run -it --rm dockercraft/sysbench --test=oltp_write_only --table_size=100000 \
 --db-driver=mysql --mysql-db=test --mysql-user=root \
---mysql-password=simplepassword --mysql-host=206.189.94.99 prepare
+--mysql-password=simplepassword --mysql-host=127.0.0.1 prepare
 
 // run test
 docker run -it --rm dockercraft/sysbench --test=oltp_write_only --table_size=100000 \
 --db-driver=mysql --mysql-db=test --mysql-user=root \
---mysql-password=simplepassword --mysql-host=206.189.94.99 run
+--mysql-password=simplepassword --mysql-host=127.0.0.1 run
 
 // not work
 docker run -it --rm dockercraft/sysbench --db-driver=mysql --mysql-user=root \
 --mysql-password=simplepassword \
---mysql-host=206.189.94.99 --mysql-db=test --range_size=100 \
+--mysql-host=127.0.0.1 --mysql-db=test --range_size=100 \
 --table_size=100000 --tables=2 --threads=1 --events=0 --time=60 \
 --rand-type=uniform /usr/share/sysbench/oltp.lua prepare
 
