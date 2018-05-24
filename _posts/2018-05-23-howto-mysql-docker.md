@@ -53,9 +53,11 @@ wget http://mysqltuner.pl/ -O mysqltuner.pl
 wget https://raw.githubusercontent.com/major/MySQLTuner-perl/master/basic_passwords.txt -O basic_passwords.txt
 wget https://raw.githubusercontent.com/major/MySQLTuner-perl/master/vulnerabilities.csv -O vulnerabilities.csv
 
-
+sudo perl /home/www-user/tmp/mysqltuner.pl --host 127.0.0.1 --user root --password simplepassword
 ```
 
+
+## first time run mysqltuner
 ```
  >>  MySQLTuner 1.7.9 - Major Hayden <major@mhtx.net>
  >>  Bug reports, feature requests, and downloads at http://mysqltuner.com/
@@ -187,7 +189,185 @@ Variables to adjust:
     innodb_buffer_pool_instances (=1)
 ```
 
-https://dba.stackexchange.com/questions/70036/good-configuration-for-2gb-my-cnf
-https://www.faqforge.com/linux/optimize-mysql-performance-with-mysqltuner/
-https://github.com/major/MySQLTuner-perl
-https://www.linode.com/docs/databases/mysql/how-to-optimize-mysql-performance-using-mysqltuner/
+## update settings
+```
+# 3GB maximum memory allocation
+max_connections = 200
+read_buffer_size = 4M
+read_rnd_buffer_size = 4M
+sort_buffer_size = 2M
+join_buffer_size = 2M
+innodb_additional_mem_pool_size = 2M
+
+query_cache_size=0
+query_cache_type=0
+query_cache_limit=8M
+tmp_table_size=16M
+max_heap_table_size=16M
+innodb_log_file_size=16M
+innodb_buffer_pool_instances=1
+```
+
+## run again after updating settings
+
+```
+ >>  MySQLTuner 1.7.9 - Major Hayden <major@mhtx.net>
+ >>  Bug reports, feature requests, and downloads at http://mysqltuner.com/
+ >>  Run with '--help' for additional options and output filtering
+
+[--] Skipped version check for MySQLTuner script
+[--] Performing tests on 127.0.0.1:3306
+[OK] Logged in using credentials passed on the command line
+[OK] Currently running supported MySQL version 5.6.40
+[OK] Operating on 64-bit architecture
+
+-------- Log file Recommendations ------------------------------------------------------------------
+[--] Log file: /var/lib/mysql/f831023f0c2d.err(0B)
+[!!] Log file /var/lib/mysql/f831023f0c2d.err doesn't exist
+[!!] Log file /var/lib/mysql/f831023f0c2d.err isn't readable.
+
+-------- Storage Engine Statistics -----------------------------------------------------------------
+[--] Status: +ARCHIVE +BLACKHOLE +CSV -FEDERATED +InnoDB +MEMORY +MRG_MYISAM +MyISAM +PERFORMANCE_SCHEMA
+[--] Data in InnoDB tables: 768K (Tables: 6)
+[OK] Total fragmented tables: 0
+
+-------- Security Recommendations ------------------------------------------------------------------
+[OK] There are no anonymous accounts for any database users
+[OK] All database users have passwords assigned
+[!!] User 'root@%' hasn't specific host restriction.
+[--] There are 612 basic passwords in the list.
+
+-------- CVE Security Recommendations --------------------------------------------------------------
+[--] Skipped due to --cvefile option undefined
+
+-------- Performance Metrics -----------------------------------------------------------------------
+[--] Up for: 1h 30m 38s (4K q [0.763 qps], 1K conn, TX: 681K, RX: 881K)
+[--] Reads / Writes: 99% / 1%
+[--] Binary logging is disabled
+[--] Physical Memory     : 3.9G
+[--] Max MySQL memory    : 3.0G
+[--] Other process memory: 282.9M
+[--] Total buffers: 162.0M global + 12.2M per thread (200 max threads)
+[--] P_S Max memory usage: 412M
+[--] Galera GCache Max memory usage: 0B
+[OK] Maximum reached memory usage: 598.8M (15.18% of installed RAM)
+[OK] Maximum possible memory usage: 3.0G (76.66% of installed RAM)
+[OK] Overall possible memory usage with other process is compatible with memory available
+[OK] Slow queries: 0% (0/4K)
+[OK] Highest usage of available connections: 1% (2/200)
+[OK] Aborted connections: 0.08%  (1/1294)
+[OK] Query cache is disabled by default due to mutex contention on multiprocessor machines.
+[OK] Sorts requiring temporary tables: 0% (0 temp sorts / 9 sorts)
+[OK] No joins without indexes
+[OK] Temporary tables created on disk: 12% (127 on disk / 1K total)
+[OK] Thread cache hit rate: 99% (2 created / 1K connections)
+[OK] Table cache hit rate: 90% (90 open / 99 opened)
+[OK] Open file limit used: 0% (46/1M)
+[OK] Table locks acquired immediately: 100% (1K immediate / 1K locks)
+
+-------- Performance schema ------------------------------------------------------------------------
+[--] Memory used by P_S: 412.3M
+[--] Sys schema is installed.
+
+-------- ThreadPool Metrics ------------------------------------------------------------------------
+[--] ThreadPool stat is disabled.
+
+-------- MyISAM Metrics ----------------------------------------------------------------------------
+[!!] Key buffer used: 18.3% (1M used / 8M cache)
+[OK] Key buffer size / total MyISAM indexes: 8.0M/2.5M
+[OK] Read Key buffer hit rate: 99.8% (432 cached / 1 reads)
+[OK] Write Key buffer hit rate: 100.0% (94 cached / 94 writes)
+
+-------- InnoDB Metrics ----------------------------------------------------------------------------
+[--] InnoDB is enabled.
+[--] InnoDB Thread Concurrency: 0
+[OK] InnoDB File per table is activated
+[OK] InnoDB buffer pool / data size: 128.0M/768.0K
+[OK] Ratio InnoDB log file size / InnoDB Buffer pool size: 16.0M * 2/128.0M should be equal 25%
+[OK] InnoDB buffer pool instances: 1
+[--] InnoDB Buffer Pool Chunk Size not used or defined in your version
+[!!] InnoDB Read buffer efficiency: 84.90% (1214 hits/ 1430 total)
+[!!] InnoDB Write Log efficiency: 66.67% (14 hits/ 21 total)
+[OK] InnoDB log waits: 0.00% (0 waits / 7 writes)
+
+-------- AriaDB Metrics ----------------------------------------------------------------------------
+[--] AriaDB is disabled.
+
+-------- TokuDB Metrics ----------------------------------------------------------------------------
+[--] TokuDB is disabled.
+
+-------- XtraDB Metrics ----------------------------------------------------------------------------
+[--] XtraDB is disabled.
+
+-------- RocksDB Metrics ---------------------------------------------------------------------------
+[--] RocksDB is disabled.
+
+-------- Spider Metrics ----------------------------------------------------------------------------
+[--] Spider is disabled.
+
+-------- Connect Metrics ---------------------------------------------------------------------------
+[--] Connect is disabled.
+
+-------- Galera Metrics ----------------------------------------------------------------------------
+[--] Galera is disabled.
+
+-------- Replication Metrics -----------------------------------------------------------------------
+[--] Galera Synchronous replication: NO
+[--] No replication slave(s) for this server.
+[--] Binlog format: STATEMENT
+[--] XA support enabled: ON
+[--] Semi synchronous replication Master: Not Activated
+[--] Semi synchronous replication Slave: Not Activated
+[--] This is a standalone server
+
+-------- Recommendations ---------------------------------------------------------------------------
+General recommendations:
+    Restrict Host for user@% to user@SpecificDNSorIp
+    MySQL started within last 24 hours - recommendations may be inaccurate
+```
+
+## Branchmark 
+get [sysbench](https://github.com/akopytov/sysbench). 
+```
+curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.deb.sh | sudo bash
+sudo apt -y install sysbench
+
+```
+
+
+
+ - https://dba.stackexchange.com/questions/70036/good-configuration-for-2gb-my-cnf
+ - https://www.faqforge.com/linux/optimize-mysql-performance-with-mysqltuner/
+ - https://github.com/major/MySQLTuner-perl
+ - https://www.linode.com/docs/databases/mysql/how-to-optimize-mysql-performance-using-mysqltuner/
+ - https://mysqlserverteam.com/mysql-with-docker-performance-characteristics/
+ - https://github.com/owski/docker-mysqltuner/blob/master/Dockerfile
+
+
+
+### get test help
+`docker run -it --rm dockercraft/sysbench oltp_common help`
+
+
+
+ ```
+// prepare test
+docker run -it --rm dockercraft/sysbench --test=oltp_write_only --table_size=100000 \
+--db-driver=mysql --mysql-db=test --mysql-user=root \
+--mysql-password=simplepassword --mysql-host=206.189.94.99 prepare
+
+// run test
+docker run -it --rm dockercraft/sysbench --test=oltp_write_only --table_size=100000 \
+--db-driver=mysql --mysql-db=test --mysql-user=root \
+--mysql-password=simplepassword --mysql-host=206.189.94.99 run
+
+// not work
+docker run -it --rm dockercraft/sysbench --db-driver=mysql --mysql-user=root \
+--mysql-password=simplepassword \
+--mysql-host=206.189.94.99 --mysql-db=test --range_size=100 \
+--table_size=100000 --tables=2 --threads=1 --events=0 --time=60 \
+--rand-type=uniform /usr/share/sysbench/oltp.lua prepare
+
+
+
+ ```
