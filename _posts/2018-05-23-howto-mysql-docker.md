@@ -326,6 +326,124 @@ General recommendations:
     MySQL started within last 24 hours - recommendations may be inaccurate
 ```
 
+
+## after 24 hours run again
+```
+ >>  MySQLTuner 1.7.9 - Major Hayden <major@mhtx.net>
+ >>  Bug reports, feature requests, and downloads at http://mysqltuner.com/
+ >>  Run with '--help' for additional options and output filtering
+
+[--] Skipped version check for MySQLTuner script
+[--] Performing tests on 127.0.0.1:3306
+[OK] Logged in using credentials passed on the command line
+[OK] Currently running supported MySQL version 5.6.40
+[OK] Operating on 64-bit architecture
+
+-------- Log file Recommendations ------------------------------------------------------------------
+[--] Log file: /var/lib/mysql/f831023f0c2d.err(0B)
+[!!] Log file /var/lib/mysql/f831023f0c2d.err doesn't exist
+[!!] Log file /var/lib/mysql/f831023f0c2d.err isn't readable.
+
+-------- Storage Engine Statistics -----------------------------------------------------------------
+[--] Status: +ARCHIVE +BLACKHOLE +CSV -FEDERATED +InnoDB +MEMORY +MRG_MYISAM +MyISAM +PERFORMANCE_SCHEMA
+[--] Data in InnoDB tables: 5M (Tables: 7)
+[OK] Total fragmented tables: 0
+
+-------- Security Recommendations ------------------------------------------------------------------
+[OK] There are no anonymous accounts for any database users
+[OK] All database users have passwords assigned
+[!!] User 'root@%' hasn't specific host restriction.
+[--] There are 612 basic passwords in the list.
+
+-------- CVE Security Recommendations --------------------------------------------------------------
+[--] Skipped due to --cvefile option undefined
+
+-------- Performance Metrics -----------------------------------------------------------------------
+[--] Up for: 1d 0h 5m 21s (273K q [3.155 qps], 4K conn, TX: 204M, RX: 12M)
+[--] Reads / Writes: 81% / 19%
+[--] Binary logging is disabled
+[--] Physical Memory     : 3.9G
+[--] Max MySQL memory    : 3.0G
+[--] Other process memory: 322.8M
+[--] Total buffers: 162.0M global + 12.2M per thread (200 max threads)
+[--] P_S Max memory usage: 412M
+[--] Galera GCache Max memory usage: 0B
+[OK] Maximum reached memory usage: 623.3M (15.80% of installed RAM)
+[OK] Maximum possible memory usage: 3.0G (76.66% of installed RAM)
+[OK] Overall possible memory usage with other process is compatible with memory available
+[OK] Slow queries: 0% (1/273K)
+[OK] Highest usage of available connections: 2% (4/200)
+[OK] Aborted connections: 1.98%  (91/4604)
+[OK] Query cache is disabled by default due to mutex contention on multiprocessor machines.
+[OK] Sorts requiring temporary tables: 0% (0 temp sorts / 24K sorts)
+[OK] No joins without indexes
+[OK] Temporary tables created on disk: 1% (310 on disk / 17K total)
+[OK] Thread cache hit rate: 99% (4 created / 4K connections)
+[OK] Table cache hit rate: 90% (92 open / 102 opened)
+[OK] Open file limit used: 0% (46/1M)
+[OK] Table locks acquired immediately: 100% (219K immediate / 219K locks)
+
+-------- Performance schema ------------------------------------------------------------------------
+[--] Memory used by P_S: 412.3M
+[--] Sys schema is installed.
+
+-------- ThreadPool Metrics ------------------------------------------------------------------------
+[--] ThreadPool stat is disabled.
+
+-------- MyISAM Metrics ----------------------------------------------------------------------------
+[!!] Key buffer used: 18.3% (1M used / 8M cache)
+[OK] Key buffer size / total MyISAM indexes: 8.0M/2.5M
+[OK] Read Key buffer hit rate: 99.9% (815 cached / 1 reads)
+[OK] Write Key buffer hit rate: 100.0% (94 cached / 94 writes)
+
+-------- InnoDB Metrics ----------------------------------------------------------------------------
+[--] InnoDB is enabled.
+[--] InnoDB Thread Concurrency: 0
+[OK] InnoDB File per table is activated
+[OK] InnoDB buffer pool / data size: 128.0M/5.5M
+[OK] Ratio InnoDB log file size / InnoDB Buffer pool size: 16.0M * 2/128.0M should be equal 25%
+[OK] InnoDB buffer pool instances: 1
+[--] InnoDB Buffer Pool Chunk Size not used or defined in your version
+[OK] InnoDB Read buffer efficiency: 99.99% (2084060 hits/ 2084290 total)
+[!!] InnoDB Write Log efficiency: 63.32% (18143 hits/ 28653 total)
+[OK] InnoDB log waits: 0.00% (0 waits / 10510 writes)
+
+-------- AriaDB Metrics ----------------------------------------------------------------------------
+[--] AriaDB is disabled.
+
+-------- TokuDB Metrics ----------------------------------------------------------------------------
+[--] TokuDB is disabled.
+
+-------- XtraDB Metrics ----------------------------------------------------------------------------
+[--] XtraDB is disabled.
+
+-------- RocksDB Metrics ---------------------------------------------------------------------------
+[--] RocksDB is disabled.
+
+-------- Spider Metrics ----------------------------------------------------------------------------
+[--] Spider is disabled.
+
+-------- Connect Metrics ---------------------------------------------------------------------------
+[--] Connect is disabled.
+
+-------- Galera Metrics ----------------------------------------------------------------------------
+[--] Galera is disabled.
+
+-------- Replication Metrics -----------------------------------------------------------------------
+[--] Galera Synchronous replication: NO
+[--] No replication slave(s) for this server.
+[--] Binlog format: STATEMENT
+[--] XA support enabled: ON
+[--] Semi synchronous replication Master: Not Activated
+[--] Semi synchronous replication Slave: Not Activated
+[--] This is a standalone server
+
+-------- Recommendations ---------------------------------------------------------------------------
+General recommendations:
+    Restrict Host for user@% to user@SpecificDNSorIp
+```
+
+
 ## Branchmark 
 get [sysbench](https://github.com/akopytov/sysbench). 
 ```

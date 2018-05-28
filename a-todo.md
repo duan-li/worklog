@@ -7,11 +7,15 @@ title: A ToDo
 - [x] commit all setting log to git repo
 - [x] install mysql service
 - [x] make mysql working
-- [ ] mysql mysqltuner check again
-- [ ] mysql perf test
-- [ ] e/i mysql db into digitalO
-- [ ] docker nnginx and php on digitalO
+- [x] mysql mysqltuner check again
+- [x] e/i mysql db into digitalO
+- [ ] commit correct setting for mysql and nginx-php
+- [ ] put setting docker nginx and php on digitalO from aws host
 - [ ] move website on digitalO
+
+## Open new digitalO server
+- [ ] sysbrench perf test
+- [ ] mysql perf test
 
 
 ## Docker image
