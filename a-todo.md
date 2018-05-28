@@ -3,6 +3,12 @@ layout: page
 title: A ToDo
 ---
 
+
+## Doc to read
+- [ ] laravel doc
+- [ ] docker doc
+
+
 ## AWS migration
 - [x] commit all setting log to git repo
 - [x] install mysql service
@@ -18,7 +24,15 @@ title: A ToDo
 - [ ] mysql perf test
 
 
+
+
+
+
+# Archive List
+--- 
+
 ## Docker image
  - [x] mysql-client
  - [x] [mysqltuner](https://github.com/owski/docker-mysqltuner/blob/master/Dockerfile)
  - [x] [sysbench](https://github.com/tjakobsson/sysbench/blob/master/Dockerfile)
+

@@ -4,6 +4,14 @@ title: Laravel project standards
 date: 2018-05-08 15:23 +0000
 ---
 
+## `\` for php function 
+```
+\isset($var);
+
+```
+ - [PHP - Global space](http://www.php.net/manual/en/language.namespaces.global.php)
+
+
 ## No `\Exception`
 Should use customized exception class like 
 ```php
