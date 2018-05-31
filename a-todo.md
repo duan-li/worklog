@@ -15,7 +15,7 @@ title: A ToDo
 - [x] make mysql working
 - [x] mysql mysqltuner check again
 - [x] e/i mysql db into digitalO
-- [ ] commit correct setting for mysql and nginx-php
+- [x] commit correct setting for mysql and nginx-php
 - [ ] put setting docker nginx and php on digitalO from aws host
 - [ ] move website on digitalO
 
