@@ -29,3 +29,6 @@ WHERE
   AND TABLE_SCHEMA = 'your_database_name';
 
 ```
+
+**check duplicate column**
+`SELECT column_name, COUNT(*) c FROM tables GROUP BY column_name HAVING c > 1`
