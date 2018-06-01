@@ -34,6 +34,8 @@ website((websites)) -- manage --> attachments((attachments))
 
 ## Highlight
 * `view()` generate html and store to memcache
+* console command regenereatd admin password
+
 
 
 
