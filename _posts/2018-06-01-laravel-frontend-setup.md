@@ -19,12 +19,24 @@ Install npm components
 npm install
 ```
 
-some time maybe 
+add `/node_modules` to `.gitignore` file
+
+
+Run npm
 ```
-npm install laravel-elixir --save-dev
+// Run all Mix tasks...
+npm run dev
+
+// Run all Mix tasks and minify output...
+npm run production
 ```
 
-add `/node_modules` to `.gitignore` file
+or watch any file changed
+```
+npm run watch
+```
+
+
 
 
 
