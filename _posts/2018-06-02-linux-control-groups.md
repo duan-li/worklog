@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux Control Groups
-date: 2018-06-03 8:58 +0000
+date: 2018-06-02 8:58 +0000
 ---
 
 

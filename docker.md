@@ -52,4 +52,4 @@ docker push $DOCKER_ID_USER/hub_image_repo:tag_name
 # Docker kernel with Go
 
  - [Namespace]({% post_url 2018-05-21-linux-namespace %})
- - [Control Group]({% post_url 2018-06-03-linux-control-groups %})
+ - [Control Group]({% post_url 2018-06-02-linux-control-groups %})
