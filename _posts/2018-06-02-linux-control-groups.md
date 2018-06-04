@@ -140,7 +140,6 @@ $ docker run -itd -m 128m --rm --name="tools" dockercraft/mysql-client
 $ cd /sys/fs/cgroup/memory/docker/3a4680003809860500984dfcafa9c690bb944314864e6da28f5a947864da6784/
 $ cat memory.limit_in_bytes
 134217728
-
 ```
 
 
