@@ -37,7 +37,50 @@ npm run watch
 ```
 
 
+Install bower
+```
+npm install -g bower
+```
 
+add .bowerrc file into project root
+```
+{
+  "directory": "resources/bower-resources"
+}
+```
+
+
+
+add file `bower.json`
+```
+{
+  "name": "assert",
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "bootstrap": "~4.1.1",
+    "gentelella": "~1.4.0"
+  },
+  "resolutions": {
+    "jquery": "^2.2.0"
+  },
+  "private": true
+}
+
+
+```
+
+
+Run
+```
+bower install
+```
+
+make sure .gitignore file contain
+```
+/node_modules
+/public
+resources/bower-resources/
+```
 
 
 
