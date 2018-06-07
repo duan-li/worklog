@@ -22,3 +22,4 @@ phpunit --coverage-clover <file>
 Ref
 * https://github.com/framgia/laravel-test-guideline/blob/master/en/Introduction.md
 * https://coveralls.io/pricing
+* https://coderwall.com/p/mxtqiw/add-code-coverage-report-to-laravel-project
