@@ -23,3 +23,5 @@ docker run -it -v /Users/Duan/Code/lc/database/migrations:/lc phpmd phpmd /lc/20
 
 * xdebug
 * xhprof
+
+https://scrutinizer-ci.com/pricing
