@@ -41,6 +41,6 @@ website((websites)) -- manage --> attachments((attachments))
 
 # Decition
 Not possible unless php fully supply markdown
-- [ ]check if possiable let front end js to handle markdown coverting.
+- [ ] check if possiable let front end js to handle markdown coverting.
 
 

@@ -25,3 +25,12 @@ order_id | amount | status
 2 | 100 | completed
 
 
+# view
+View can be used only
+* two entities have too many links between them.
+* report
+
+View can not be used if
+* there is query apply to view.
+
+View must has model, and modle must be read only.

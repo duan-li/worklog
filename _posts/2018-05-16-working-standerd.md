@@ -10,6 +10,7 @@ date: 2018-05-16 11:20 +0000
 4. Code standerd
 5. Database pattern
 6. Test case pattern
+7. test case coverage
 7. Code review
 8. CI
 9. CD
