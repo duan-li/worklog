@@ -131,5 +131,12 @@ $employer->belongsToMany(Staff::class)
 $staff->belongsToManu(Employer::class)
 ```
 
+```mermaid
+graph LR
+U[User] -- one to one --> N[Name]
+```
 
-
+```php
+$user->hasOne(Name::class)
+$name->hasOne(User::class)
+```
