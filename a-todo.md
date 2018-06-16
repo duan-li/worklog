@@ -24,9 +24,10 @@ title: A ToDo
 - [ ] mysql perf test
 
 ## Gocker
-- [ ] godep 
-- [ ] test case
-- [ ] CI travis impliment 
+- [x] godep 
+- [x] test case
+- [x] CI travis impliment 
+- [ ] godoc https://godoc.org/github.com/sirupsen/logrus 
 
 
 
