@@ -27,7 +27,7 @@ title: A ToDo
 - [x] godep 
 - [x] test case
 - [x] CI travis impliment 
-- [ ] godoc https://godoc.org/github.com/sirupsen/logrus 
+- [ ] godoc [godoc](https://blog.golang.org/godoc-documenting-go-code) and [example](https://godoc.org/github.com/sirupsen/logrus)
 
 
 
