@@ -28,6 +28,7 @@ title: A ToDo
 - [x] test case
 - [x] CI travis impliment 
 - [ ] godoc [godoc](https://blog.golang.org/godoc-documenting-go-code) and [example](https://godoc.org/github.com/sirupsen/logrus)
+- [ ] style [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments) [Effective Go](https://golang.org/doc/effective_go.html)
 
 
 
