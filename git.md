@@ -50,13 +50,16 @@ or
 `git branch -d <name>`
 
 > check out branch
-`git checkout <branch-name>`
+`git checkout <branch-name>` `git checkout -b <branch-name>`
 
 > merge branch into current branch
 `git merge from-branch`
 
 > push branch with username and password 
 `git push https://username:password@myrepository.biz/file.git --all`
+
+> push branch to origin
+`git push -u origin <branch-name>`
 
 ## Tag
 > List all tags
