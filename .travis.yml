@@ -13,7 +13,7 @@ before_install:
   
 
 install:
-  - docker run -it --rm -v "${PWD}:/${REPODIR}" dockercraft/bundler /bin/sh -c "cd ${REPODIR};bundler install --jobs=4;/usr/bin/jekyll build"
+  - docker run -it -e ALGOLIA_API_KEY="${ALGOLIA_API_KEY}" -e ALGOLIA_INDEX_NAME=${ALGOLIA_INDEX_NAME} -v "${PWD}:/${REPODIR}" dockercraft/bundler /bin/sh -c "cd ${REPODIR};bundler install --jobs=4;/usr/bin/jekyll build;/usr/bin/jekyll algolia"
 
 jobs:
   include:
