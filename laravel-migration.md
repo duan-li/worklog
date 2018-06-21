@@ -103,3 +103,40 @@ DB::statement('DROP VIEW IF EXISTS `product_retailer`;');
     ],
 ]);
 ```
+
+
+# Model
+
+## Relationship
+
+
+```mermaid
+graph LR
+A[Master] -- one to many --> B[Slave]
+```
+
+```php
+$master->hasMany(Slave::class);
+$slave->belongsTo(Master::class);
+```
+
+```mermaid
+graph LR
+E[Employer] --> L((employer_staff))
+S[Staff] --> L((employer_staff))
+```
+
+```php
+$employer->belongsToMany(Staff::class)
+$staff->belongsToManu(Employer::class)
+```
+
+```mermaid
+graph LR
+U[User] -- one to one --> N[Name]
+```
+
+```php
+$user->hasOne(Name::class)
+$name->hasOne(User::class)
+```

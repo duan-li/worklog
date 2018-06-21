@@ -50,3 +50,7 @@ For controller, Accessibility test doesn't know or care how function/program wor
 
 ## Decorating Laravel Repositories
 https://matthewdaly.co.uk/blog/2017/03/01/decorating-laravel-repositories/
+
+
+## Class files group by
+group by type, then, group by project.

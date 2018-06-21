@@ -49,7 +49,18 @@ docker push $DOCKER_ID_USER/hub_image_repo:tag_name
 `docker-compose up`
 
 
+## Dockerfile
+
+### `CMD` vs `ENTRYPOINT`
+>The main purpose of a CMD is to provide defaults for an executing container. These defaults can include an executable, or they can omit the executable, in which case you must specify an ENTRYPOINT instruction as well.
+
+* `CMD` providers default execute file after container started.
+
+
+
+
 # Docker kernel with Go
 
  - [Namespace]({% post_url 2018-05-21-linux-namespace %})
- - [Control Group]({% post_url 2018-06-02-linux-control-groups %})
+ - [Control Group]({% post_url 2018-05-21-linux-control-groups %})
+ - [AUFS]({% post_url 2018-06-10-union-file-system %})

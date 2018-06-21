@@ -284,3 +284,18 @@ $request->shouldReceive('get')->andReturn($requestFile);
 
 
 ```
+
+
+## app() helper
+
+**test code**
+```php
+
+$this->app->bind(ClassName::class, function () {
+    return Mockery::mock()
+            ->shouldReceive('setMethod')->with('x')->once()
+            ->shouldReceive('getMethod')->once()->andReturn('y')
+            ->getMock();
+});
+
+```

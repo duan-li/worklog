@@ -3,6 +3,11 @@ layout: page
 title: Jekyll
 ---
 
+# Run in docker
+```
+docker run -it --rm -v ~/blog:/blog dockercraft/bundler
+```
+
 # Installation
 **Initial** 
 ```
