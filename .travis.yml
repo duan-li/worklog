@@ -1,3 +1,7 @@
+language: ruby
+rvm:
+  - 2.4
+
 sudo: required
 
 branches:
@@ -5,22 +9,16 @@ branches:
  - master
  - draft
 
-services:
-  - docker
-
-before_install:
-  - docker pull dockercraft/bundler
-  
-
 install:
-  - docker run -it -e ALGOLIA_API_KEY="${ALGOLIA_API_KEY}" -e ALGOLIA_INDEX_NAME=${ALGOLIA_INDEX_NAME} -v "${PWD}:/${REPODIR}" dockercraft/bundler /bin/sh -c "cd ${REPODIR};bundler install --jobs=4;/usr/bin/jekyll build;/usr/bin/jekyll algolia"
+  - bundle install --jobs=4
+  - bundle exec jekyll build
 
 jobs:
   include:
     - stage: deploy
       if: branch = master
       script:
-        - docker run -it --rm -e ALGOLIA_API_KEY="${ALGOLIA_API_KEY}" -e ALGOLIA_INDEX_NAME=${ALGOLIA_INDEX_NAME} -v "${PWD}:/${REPODIR}" dockercraft/bundler /bin/sh -c "cd ${REPODIR};bundler install --jobs=4;/usr/bin/jekyll algolia"
+        - bundle exec jekyll algolia
         - echo "algolia done"
     - stage: test
       if: branch = draft
