@@ -4,6 +4,11 @@ title: go test case
 date: 2018-06-16 12:29 +0000
 ---
 
+# Command
+* `go test ./...`: run all test cases in correct directory
+* `go test -cover`: display test case coverage
+* `go test -run Name`: run specific golang test case
+
 # Test Types
 * `*testing.T`: Type T - Testing
 * `*testing.B`: Type B - Benchmarks
@@ -83,6 +88,24 @@ func TestMain(m *testing.M) {
 }
 
 ```
+
+# Tools
+
+## gotests
+> Generate Go tests from your source code.
+
+`go get github.com/cweill/gotests/...`
+
+run 
+`../../bin/gotests -exported ./`
+
+
+## gover
+> Gather all your *.coverprofile files to send to coveralls.io!
+
+`go get github.com/modocache/gover`
+
+
 - Ref
  - https://splice.com/blog/lesser-known-features-go-test/
  - https://golang.org/pkg/testing/

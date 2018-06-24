@@ -15,6 +15,7 @@ date: 2018-05-11 10:28 +0000
 No compiled js or css file commit to repo. (reduce size of repo)
 Those js or css only compile in CD process.
 
+
 ## Resources and Services
  - Test case 
  - varCI: PR and issue management
@@ -22,3 +23,9 @@ Those js or css only compile in CD process.
  - coveralls.io code test case coverage
  - sonarqube
  - [buddy ci/cd](https://buddy.works/guides/first-steps-with-laravel-and-continuous-delivery), [Example like laravel](https://buddy.works/guides/first-steps-with-laravel-and-continuous-delivery)
+
+
+
+# Tools
+Codecov and Coverage。 ... Codebeat
+

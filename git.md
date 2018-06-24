@@ -19,6 +19,9 @@ title: GIT
 > Check changes for single file
 `git diff <file>`
 
+> Check staged file different
+`git diff --staged`
+
 > Add all files, a single file or a dir
 `git add */<file>/<dir>`
 or
