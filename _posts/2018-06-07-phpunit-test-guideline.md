@@ -18,8 +18,11 @@ phpunit --coverage-html <dir>
 // Generate code coverage report in Clover XML format.
 phpunit --coverage-clover <file>
 ```
+Or using phpdbg, phpdbg can avoid Xdebug.
+
 
 Ref
 * https://github.com/framgia/laravel-test-guideline/blob/master/en/Introduction.md
 * https://coveralls.io/pricing
 * https://coderwall.com/p/mxtqiw/add-code-coverage-report-to-laravel-project
+* https://hackernoon.com/generating-code-coverage-with-phpunite-and-phpdbg-4d20347ffb45
