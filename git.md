@@ -64,6 +64,11 @@ or
 > push branch to origin
 `git push -u origin <branch-name>`
 
+> get branch first commit
+`git log master..<branch-name> --oneline | tail -1`
+
+> get branch last commit
+`LC-4174-suncorp-map-users-to-ids --oneline | head -1`
 ## Tag
 > List all tags
 `git tag`
