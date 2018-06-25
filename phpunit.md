@@ -22,7 +22,11 @@ title: PHPUNIT
 ## Object
 `assertInstanceOf`
 
+# Date time
 
+```php
+Carbon::setTestNow(Carbon::create(2018, 6, 21, 11, 39, 04));
+```
 
 # Laravel
 

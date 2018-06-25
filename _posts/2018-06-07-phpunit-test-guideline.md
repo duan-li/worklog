@@ -5,6 +5,13 @@ date: 2018-06-07 11:32 +0000
 ---
 
 
+# Pattern
+
+use `DatabaseTransactions`. 
+
+
+# Test case coverage
+
 {% katex %}
 (Code Coverage) = \frac{(Number of Lines of Code Called By Your Tests)}{(Total Number of Relevant Lines of Code)} * 100\%
 {% endkatex %}
