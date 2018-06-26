@@ -16,7 +16,7 @@ title: A ToDo
 - [x] mysql mysqltuner check again
 - [x] e/i mysql db into digitalO
 - [x] commit correct setting for mysql and nginx-php
-- [ ] put setting docker nginx and php on digitalO from aws host
+- [x] put setting docker nginx and php on digitalO from aws host
 - [ ] move website on digitalO
 
 ## Open new digitalO server
@@ -31,6 +31,11 @@ title: A ToDo
 - [ ] style [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments) [Effective Go](https://golang.org/doc/effective_go.html)
 
 
+## Laravel package
+- [ ] example https://github.com/laravel/horizon/blob/1.0/composer.json
+
+## Idea
+- [ ] php extension to use linux container 
 
 
 
