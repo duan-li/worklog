@@ -12,7 +12,9 @@ date: 2018-05-16 11:20 +0000
 5. Database pattern
 6. Test case pattern
 7. test case coverage - CI
-8. Code review - CI
+8. Code review - CI 
+  * review pull request
+  * 
 9. Deployment 
 10. Bug report
 

@@ -8,6 +8,7 @@ title: A ToDo
 - [ ] laravel doc
 - [ ] docker doc
 - [ ] Dispatchable, InteractsWithQueue, Queueable, SerializesModels diff
+- [ ] understand about pull-request. 
 
 
 ## AWS migration
