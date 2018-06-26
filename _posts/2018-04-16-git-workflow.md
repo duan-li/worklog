@@ -7,12 +7,12 @@ date: 2018-04-16 11:53 +1000
 
 # Branch
 ## Branch type
- - Feature
- - Hot Fixes
- - Master
- - Release
- - Staging
- - Maintenance
+ - Feature (feature)
+ - Hot Fixes (hot-fix)
+ - Master (master)
+ - Release (release)
+ - Staging (staging)
+ - Maintenance (Maintenance)
 
 Any new branch you start, either hot fix or feature, you should always branch off from master.
 You do the magic and once you have finished, you merge master again in your brach to keep it up to date
@@ -65,10 +65,17 @@ graph TB
 
 ## Release branch
 
+### Multiple releases
 Branch name is `release-<release-number>`. `release-number` will be `platform-version-frameword-version-<any-number>`. 
 	
+### Single release with tag
 
 
+## Staging
+
+
+
+## Maintenance
 
 
 

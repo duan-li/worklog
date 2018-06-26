@@ -7,6 +7,7 @@ title: A ToDo
 ## Doc to read
 - [ ] laravel doc
 - [ ] docker doc
+- [ ] Dispatchable, InteractsWithQueue, Queueable, SerializesModels diff
 
 
 ## AWS migration
@@ -36,6 +37,10 @@ title: A ToDo
 
 ## Idea
 - [ ] php extension to use linux container 
+- [ ] code search engine, turning entire project's code reusable.
+- [ ] software license api by using block chain
+- [ ] no password auth (login) app by using block chain
+
 
 
 
