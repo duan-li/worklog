@@ -44,7 +44,10 @@ or
 
 ## Branch
 > List all branchs
-`git branch`
+`git branch -a`
+
+> list remote branch
+`git branch -r`
 
 > Create new branch
 `git branch <name>`
@@ -69,6 +72,8 @@ or
 
 > get branch last commit
 `LC-4174-suncorp-map-users-to-ids --oneline | head -1`
+
+
 ## Tag
 > List all tags
 `git tag`
@@ -116,6 +121,19 @@ or
 > Push to remote branch
 `git push origin master`
 
+
+## Pull request (Github)
+Update `.git/config`
+```
+[remote "origin"]
+	url = git@bitbucket.org:loyaltycorp/rewards.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+```
+
+run `git fetch origin`
+
+See [this](https://gist.github.com/piscisaureus/3342247)
 
 ## Other
 ### Repo size

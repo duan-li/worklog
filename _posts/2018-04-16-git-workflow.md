@@ -76,9 +76,14 @@ Branch name is `release-<release-number>`. `release-number` will be `platform-ve
 
 
 ## Maintenance
+There is sub branch `inspection`, 
+* do `gitinspector`
+* do test case coverage
 
 
 
+# GIT repo inspection
+use [ejwa/gitinspector](https://github.com/ejwa/gitinspector).
 
 
 Ref 
