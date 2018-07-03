@@ -9,6 +9,22 @@ date: 2018-06-16 12:29 +0000
 * `go test -cover`: display test case coverage
 * `go test -run Name`: run specific golang test case
 
+## test all package
+```
+# https://github.com/opencontainers/runc/blob/master/Makefile
+_allpackages = $(shell $(GO) list ./... | grep -v vendor)
+allpackages = $(if $(__allpackages),,$(eval __allpackages := $$(_allpackages)))$(__allpackages)
+go test -timeout 3m -v $(allpackages)
+```
+
+```
+# https://github.com/dockercraft/libcontainer/blob/master/Makefile
+GO_PACKAGES = $(shell find . -not \( -wholename ./vendor -prune -o -wholename ./.git -prune \) -name '*.go' -print0 | xargs -0n1 dirname | sort -u)
+
+go test -cover -test.short -v $(GO_PACKAGES)
+```
+
+
 # Test Types
 * `*testing.T`: Type T - Testing
 * `*testing.B`: Type B - Benchmarks
