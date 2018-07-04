@@ -14,3 +14,8 @@ date: 2018-07-03 07:17 +0000
 
 Apply to HR
 * https://zhuanlan.zhihu.com/p/26620419
+
+NLP process
+* https://blog.csdn.net/zhajio/article/details/79990140
+* https://weibo.com/p/2304188af239bd0102wtu4?mod=zwenzhang
+* https://www.leiphone.com/news/201705/6B4Bi97UEDgOjR1Z.html
