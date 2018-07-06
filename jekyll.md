@@ -18,7 +18,6 @@ gem install jekyll bundler
 **Create new website**
 ```
 jekyll new my-awesome-site
-
 ```
 
 ## For an exist webiste
