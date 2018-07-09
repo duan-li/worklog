@@ -9,6 +9,7 @@ date: 2018-07-07 06:16 +0000
 * has easy document
 * test case coverage
 * codebeta/scrutinizer
+* community bbs, blog, and project
 
 
 ref
