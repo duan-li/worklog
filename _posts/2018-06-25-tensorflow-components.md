@@ -15,3 +15,4 @@ Ref
 * https://juejin.im/post/5b223b13f265da59645afdb4
 * https://juejin.im/entry/595b7426f265da6c4c4fd6da
 * http://35.161.153.223:6003
+* [TensorFlow play game](https://www.jianshu.com/p/0a04426ee3ad)
