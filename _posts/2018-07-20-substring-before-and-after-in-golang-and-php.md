@@ -77,3 +77,8 @@ func after(value string, a string) string {
 }
 
 ```
+
+
+Ref:
+* http://www.wordinn.com/solution/108/php-getting-part-string-after-and-given-sub-string-or-character
+* https://www.dotnetperls.com/between-before-after-go
