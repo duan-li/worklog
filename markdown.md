@@ -266,3 +266,9 @@ Any word wrapped with two tildes (like `~~this~~` ~~this~~) will appear crossed 
 
 ## Emoji
 To see a list of every image we support, check out the [Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet/).
+
+# Resources
+* https://mdp.tylingsoft.com/#fnref1
+* https://support.typora.io/Draw-Diagrams-With-Markdown/
+* http://flowchart.js.org/
+---
