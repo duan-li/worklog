@@ -28,6 +28,7 @@ jobs:
       script:
         - echo "DONE"
 
+before_deploy: "echo '-----------------> start to deploy'"
 
 deploy:
   provider: firebase
@@ -37,6 +38,7 @@ deploy:
   on:
     branch: features/firebase-hosting
 
+after_deploy: "echo '-----------------> finish deploy'"
 
 notifications:
   email:
