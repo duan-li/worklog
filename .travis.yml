@@ -21,14 +21,12 @@ jobs:
       script:
         - echo "-----------------> algolia"
         - bundle exec jekyll algolia
-        - echo "-----------------> prepare for firebase hosting"
-        - mv _site site
     - stage: test
       if: branch = draft
       script:
         - echo "DONE"
 
-before_deploy: "echo '-----------------> start to deploy' && ls -l"
+before_deploy: "echo '-----------------> start to deploy' && rm -R public && mv _site public && ls -l"
 
 deploy:
   provider: firebase
