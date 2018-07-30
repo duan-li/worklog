@@ -1,13 +1,14 @@
 {
-	"hosting": {
-		"public": "site",
-		"ignore": [
-			"firebase.json",
-			".*",
-			".*/**",
-			"**/.*",
-			"_*/**"
-			"**/node_modules/**"
-		]
-	}
+  "hosting": {
+    "public": "site",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "firebase.json",
+	  ".*",
+	  ".*/**",
+	  "_*/**"
+    ]
+  }
 }
