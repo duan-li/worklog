@@ -28,9 +28,10 @@ jobs:
 
 before_deploy: 
   - echo '-----------------> prepare to deploy'
+  - ls public
   - rm -R public
   - mv _site public
-  - ls -l
+  - ls public
 
 deploy:
   provider: firebase
