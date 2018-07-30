@@ -22,7 +22,7 @@ jobs:
         - echo "-----------------> algolia"
         - bundle exec jekyll algolia
         - echo "-----------------> prepare for firebase hosting"
-        - mv _site public
+        - mv _site site
     - stage: test
       if: branch = draft
       script:
@@ -32,7 +32,7 @@ jobs:
 deploy:
   provider: firebase
   token:
-    secure: "YOUR ENCRYPTED token"
+    secure: "OurWiTQ64D1UU/4shIqnVq6et1WmgFFetnqqn+n03hZ6cAUiWKad0l4DLfLTghO6q8SGNqgy/rQXSQBeKNnFM4RuVVdUtqpU3rs6TkMbLPuak9sYnAfsrm2IKji4WXW5N151rlDoPQxUR7bzJVWZJGMsnPjGBu+19Pp4sFPjX1Zm7g7vMMNAPXT8EbJoR3+8dQXEXtYwZgOyAsc2Yssezyic8l5YMXSqqVU1maJS57+A+wsP3iOwxv3usYiExZq2y7ppFJarFOgfT9ED8xhe3+xBnDEAZ5dVOMo/gNKOXEgDllYG7S7QbsChjHZswqoSbLTn1eUUVjkd7vqbpDt79+n7vYIQI1hPMPlZ7541arhlNN2ELOMCtwsNWKgarRYErpSPzLg8cFKKGOpeSaA4hsIbVup9zm93l49o/8HdDFWAIU7bIXX0pepZRwbiedWrs9DnmgEgNgmJB0vIW9cAZMkvFOipddHBCuSc96GyjOIwTvafWgfif6vLcVSqU1uZhgdrJ25FQ0M7SlmHCzLASFmxjAN7qcK2+wJioq0UWo6D7pfk9l6LNrK9xLM7OowGROD1DNtfOR121qxr1I8ZM3ts7S99hi4bUN6zgfqumTCgmNNCzy+d2dGnWHszKepl3rf4sGUBLlkcCooG/VVygIqVbZ5Gl2TudIxgCaK05so="
   project: "liduan-net"
   on:
     branch: features/firebase-hosting
