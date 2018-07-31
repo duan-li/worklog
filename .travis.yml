@@ -1,6 +1,7 @@
 language: ruby
 rvm:
   - 2.4
+cache: bundle
 
 sudo: required
 
@@ -10,7 +11,7 @@ branches:
  - draft
 
 install:
-  - bundle install --jobs=8
+  - bundle install --jobs=4
   - bundle exec jekyll build
 
 jobs:
