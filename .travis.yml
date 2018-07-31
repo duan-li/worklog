@@ -10,7 +10,7 @@ branches:
  - draft
 
 install:
-  - bundle install --jobs=4
+  - bundle install --jobs=8
   - bundle exec jekyll build
 
 jobs:
