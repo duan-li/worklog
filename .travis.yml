@@ -13,6 +13,7 @@ before_install:
   - echo '-----------------> setup timezone'
   - echo 'Australia/Melbourne' | sudo tee /etc/timezone
   - sudo dpkg-reconfigure --frontend noninteractive tzdata
+  - sudo ntpdate ntp.ubuntu.com
   - date
 
 install:
