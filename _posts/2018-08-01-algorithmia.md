@@ -8,4 +8,5 @@ Algorithmia is a serverless algorition hosting and marketplace. You can deploy y
 
 
 [^1]: [Algorithmia](http://Algorithmia.com)
+
 ---
