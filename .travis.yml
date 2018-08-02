@@ -9,7 +9,7 @@ branches:
  - master
  - draft
 
-before_script:
+before_install:
   - echo '-----------------> setup timezone'
   - echo 'Australia/Melbourne' | sudo tee /etc/timezone
   - sudo dpkg-reconfigure --frontend noninteractive tzdata
