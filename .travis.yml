@@ -2,13 +2,18 @@ language: ruby
 rvm:
   - 2.4
 cache: bundle
-
 sudo: required
 
 branches:
  only:
  - master
  - draft
+
+before_script:
+  - echo '-----------------> setup timezone'
+  - echo 'Australia/Melbourne' | sudo tee /etc/timezone
+  - sudo dpkg-reconfigure --frontend noninteractive tzdata
+  - date
 
 install:
   - bundle install --jobs=4
