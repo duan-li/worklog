@@ -11,4 +11,14 @@ A collection of many awesomen code, tools, project and application[^1].
 [`avelino/awesome-go`](https://github.com/avelino/awesome-go) is a repo collection of go language.
 
 
+
+## PHP
+* [Very simple filesystem ](https://github.com/michael-donat/php-vfs)
+* [PHP Excel Lib](https://github.com/PHPOffice/PhpSpreadsheet)
+
+
+## Nlp
+* [fxsjy/jieba](https://github.com/fxsjy/jieba)
+
+
 ---
