@@ -20,3 +20,34 @@ Article
 
 About Arg
 * http://2wildkids.com/2016/10/04/%E5%B8%B8%E7%94%A8%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95/
+
+
+## Recommdation system elements
+
+
+### Object
+User, product, item, thay are all objects.
+
+
+### Character
+Attribute of object.
+
+
+### Behaviour
+Can be an action, like purche, click, behaviour links two or more objects. behaviour has weight. 
+
+ * Customer `view` proudct.  
+ * Customer `buy` proudct. 
+Behaviour `view` has less weight than `buy`.
+
+
+
+
+
+### Collection
+A group objects with same classification.
+
+
+
+
+
