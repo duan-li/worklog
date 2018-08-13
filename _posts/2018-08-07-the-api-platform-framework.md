@@ -12,4 +12,6 @@ Build a fully-featured hypermedia or GraphQL API in minutes. Leverage its awesom
 [^1]: [api-platform.com](https://api-platform.com)
 
 
+https://apiary.io/
+
 ---
