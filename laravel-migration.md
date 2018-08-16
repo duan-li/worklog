@@ -8,14 +8,22 @@ title: Laravel Migration
 ## Check table
 
 ```php
-if (!Schema::hasTable('ams_retail_partners')) {
+if (!Schema::hasTable('table_name')) {
 	// Opt tables
 }
 ```
 
+## Check table column
+```php
+if (Schema::hasColumn('table_name', 'column_name')) {
+
+}
+```
+
+
 ## Create table
 ```php
-Schema::create('provider_settings', function (Blueprint $table) {
+Schema::create('table_name', function (Blueprint $table) {
     $table->increments('id');
 
     $table->integer('provider_id')->unsigned();
