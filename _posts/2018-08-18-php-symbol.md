@@ -42,7 +42,7 @@ What does this symbol mean in PHP? [^1]
 * `.` String Operators
 * `,` Function Arguments and Variable Declarations
 * `$$` Variable Variables
-*   Execution Operator
+*  `` ` `` Execution Operator
 * `<?=` Short Open Tags
 * `[]` Arrays (short syntax since PHP 5.4)
 * `<?` Opening and Closing tags
