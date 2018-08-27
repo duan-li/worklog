@@ -26,6 +26,8 @@ EU (London) | eu-west-2
 EU (Paris) | eu-west-3
 South America (São Paulo) | sa-east-1
 
-https://docs.aws.amazon.com/cli/latest/userguide/installing.html
+## AWS CLi
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)
+* [AWS Regions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html)
 
 
