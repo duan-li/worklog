@@ -29,7 +29,7 @@ South America (São Paulo) | sa-east-1
 ## AWS CLi
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 * [AWS Regions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html)
-
+* [Python AWS client](https://boto3.readthedocs.io/en/latest/reference/services/lambda.html)
 
 
 ### Lambda
@@ -110,6 +110,10 @@ Working with packages[^3]
 ```python
 
 ```
+
+**Invoke It Manually**
+https://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-custom-android-example-upload-deployment-pkg.html
+
 
 [^3]: [Creating a Deployment Package (Python)](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html)
 
