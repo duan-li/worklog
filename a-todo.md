@@ -3,6 +3,12 @@ layout: page
 title: A ToDo
 ---
 
+## AWS Lambda
+- [ ] include package
+- [ ] queue opt
+- [ ] delay check concurrency
+
+
 
 ## Doc to read
 - [ ] laravel doc
