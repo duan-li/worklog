@@ -4,7 +4,8 @@ title: A ToDo
 ---
 
 ## AWS Lambda
-- [ ] include package
+- [x] include package
+- [x] CI/CD
 - [ ] queue opt
 - [ ] delay check concurrency
 

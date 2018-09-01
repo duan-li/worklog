@@ -105,17 +105,29 @@ else
 fi
 ```
 
-Working with packages[^3]
+Working with packages[^3]. There is a example for Lambda deployment with Python package[^4]
 
-```python
+```bash
+virtualenv env # default pyton 3.6
+source env/bin/activate
+pip install -r requirements.txt
 
+cp -rf <your-source-code.py> dist
+cp -rf env/lib/python3.6/site-packages/* dist
+cd dist
+zip -r deployment_package.zip .
+# aws cli upload
 ```
+
+
 
 **Invoke It Manually**
 https://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-custom-android-example-upload-deployment-pkg.html
 
 
 [^3]: [Creating a Deployment Package (Python)](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html)
+
+[^4]: [Hassle-Free Python Lambda Deployment](https://joarleymoraes.com/hassle-free-python-lambda-deployment/)
 
 
 ---
