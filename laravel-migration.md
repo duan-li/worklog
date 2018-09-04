@@ -73,13 +73,13 @@ Schema::table('table', function(Blueprint $table) {
 
 ## Rename table
 ```php
-Schema::rename('talbe_name', 'new_talbe_name');
+Schema::rename('table_name', 'new_table_name');
 ```
 
 ## Drop table
 ```php
 Schema::dropIfExists('table_name');
- // DROP TABLE IF EXISTS `search_estore_tags_index`;
+ // DROP TABLE IF EXISTS `table_name`;
 ```
 
 # View
@@ -90,7 +90,7 @@ DB::statement("
         CREATE 
             OR REPLACE 
             SQL SECURITY INVOKER
-        VIEW `search_index_giftcards` AS
+        VIEW `view_name` AS
 
         SELECT * 
         FROM `table`
@@ -99,7 +99,7 @@ DB::statement("
 ```
 ## Drop view
 ```php
-DB::statement('DROP VIEW IF EXISTS `product_retailer`;');
+DB::statement('DROP VIEW IF EXISTS `view_name`;');
 ```
 
 # Table row

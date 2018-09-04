@@ -303,3 +303,36 @@ $this->app->bind(ClassName::class, function () {
 });
 
 ```
+
+
+## Filesystem (AwsS3Adapter)
+```php
+use Aws\S3\S3Client;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Filesystem;
+```
+
+```php
+$filename = 'filename';
+$content = 'content';
+$client = new S3Client([
+    'credentials' => [
+        'key'    => 'aws-key',
+        'secret' => 'aws-secret'
+    ],
+    'region' => 'aws-region',
+    'version' => 'latest|version',
+]);
+
+$adapter = new AwsS3Adapter($client, 'aws-s3-bucket');
+
+$filesystem = new Filesystem($adapter);
+
+return $filesystem->write($filename, $content, [
+    'Metadata' => [
+        'mode' => 0666 + 0100000,
+        'gid' => 1000,
+        'uid' => 1000
+    ]
+]);
+```
