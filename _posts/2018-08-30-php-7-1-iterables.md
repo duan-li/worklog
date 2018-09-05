@@ -26,5 +26,11 @@ function foo(): iterable {
 ```
 
 
+> PHP allows you to specify the type of a function/method parameter or return value. These return values can be any legal PHP type, which includes any class or interface type, various scalars, and some fancy pseudo-types like `callable` and `iterable`. [^2]
+
+[^2]: [PHP: Never type hint on arrays](https://steemit.com/php/@crell/php-never-type-hint-on-arrays)
+
+
+
 
 ---

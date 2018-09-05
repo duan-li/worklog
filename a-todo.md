@@ -3,6 +3,15 @@ layout: page
 title: A ToDo
 ---
 
+
+## Blog
+- [ ] sns link
+- [ ] fork me
+- [ ] add gist code
+- [ ] add wordpress post
+- [ ] make search working
+
+
 ## AWS Lambda
 - [x] include package
 - [x] CI/CD
