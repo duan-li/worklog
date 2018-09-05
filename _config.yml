@@ -22,7 +22,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/"
 url: "https://liduan.net"
 twitter_username: inputx
-github_username:  inputx
+github_username:  duan-li
 
 paginate: 10
 
@@ -53,7 +53,7 @@ tagline:          'Tech'
 
 author:
   name:           'inputx'
-  url:            https://github.com/inputx
+  url:            https://github.com/duan-li
 
 # Custom vars
 version:          2.1.0
