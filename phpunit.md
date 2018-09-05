@@ -336,3 +336,18 @@ return $filesystem->write($filename, $content, [
     ]
 ]);
 ```
+
+## Test private method
+Using `ReflectionClass` to test a private or protect method in a class[^1].
+
+[^1]: [Testing Private and Protected Methods](https://laracasts.com/discuss/channels/testing/testing-private-and-protected-methods?page=1)
+
+```php
+$reflection = new \ReflectionClass(get_class($object));
+$method = $reflection->getMethod($methodName);
+$method->setAccessible(true);
+$method->invoke($object, $args);
+```
+
+
+---
