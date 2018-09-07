@@ -1,6 +1,8 @@
 language: ruby
 rvm:
   - 2.4
+gemfile: Gemfile
+
 cache:
   bundler: true
   directories:
