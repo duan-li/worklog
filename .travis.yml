@@ -2,12 +2,7 @@ language: ruby
 rvm:
   - 2.4
 gemfile: Gemfile
-
-cache:
-  bundler: true
-  directories:
-   - /home/travis/.bundle/
-
+cache: bundler
 sudo: required
 
 branches:
@@ -16,11 +11,8 @@ branches:
  - draft
 
 install:
-  - ls ~ -la
   - bundle install --jobs=4
   - bundle exec jekyll build
-  - pwd
-  - ls ~ -la
 
 jobs:
   include:
