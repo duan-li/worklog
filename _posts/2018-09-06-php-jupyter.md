@@ -13,6 +13,7 @@ date: 2018-09-06 09:53 +0000
 ### Install php-zmq
 
 Install `php-zmq` extention.[^1]
+
 [^1]: [zeromq doc](http://zeromq.org/bindings:php)
 
 ```
@@ -34,6 +35,7 @@ extension=zmq.so
 
 ### Install 
 Download file[^2]
+
 [^2]: [Jupyter-PHP-Installer](https://litipk.github.io/Jupyter-PHP-Installer/)
 
 ```
