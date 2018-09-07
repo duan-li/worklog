@@ -2,8 +2,9 @@ language: ruby
 rvm:
   - 2.4
 cache:
-    directories:
-     - /home/travis/.bundle/
+  bundler: true
+  directories:
+   - /home/travis/.bundle/
 sudo: required
 
 branches:
