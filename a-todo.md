@@ -10,6 +10,7 @@ title: A ToDo
 - [ ] add gist code
 - [ ] add wordpress post
 - [ ] make search working
+- [ ] template [hydeout](https://github.com/fongandrew/hydeout)
 
 
 ## AWS Lambda

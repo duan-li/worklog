@@ -350,4 +350,28 @@ $method->invoke($object, $args);
 ```
 
 
+## Test event and listener
+In `EventServiceProvider` 
+```php
+EventClass::class => [
+    Listener1Class::class,
+    Listener2Class::class,
+    Listener3Class::class,
+],
+```
+
+Test case
+```php
+$event = new EventClass();
+
+$this->registerListenersInApp([
+    Listener1Class::class,
+    Listener2Class::class,
+    Listener3Class::class
+]);
+
+event($event);
+```
+
+
 ---
