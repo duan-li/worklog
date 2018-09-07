@@ -16,10 +16,11 @@ branches:
  - draft
 
 install:
+  - ls ~ -la
   - bundle install --jobs=4
   - bundle exec jekyll build
   - pwd
-  - ls
+  - ls ~ -la
 
 jobs:
   include:
