@@ -12,12 +12,13 @@ const search = instantsearch({
 
 const hitTemplate = function(hit) {
   let date = '';
+  let baseurl = '{{ site.baseurl }}';
   if (hit.date) {
     date = moment.unix(hit.date).format('MMM D, YYYY');
   }
-
-  let url = `{{ site.baseurl }}${hit.url}#${hit.anchor}`;
-
+  console.log('baseurl:'+baseurl);
+  let url = `${hit.url}`;
+  console.log('url:'+url);
   const title = hit._highlightResult.title.value;
 
   let breadcrumbs = '';
