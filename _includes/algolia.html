@@ -16,9 +16,7 @@ const hitTemplate = function(hit) {
   if (hit.date) {
     date = moment.unix(hit.date).format('MMM D, YYYY');
   }
-  console.log('baseurl:'+baseurl);
   let url = `${hit.url}`;
-  console.log('url:'+url);
   const title = hit._highlightResult.title.value;
 
   let breadcrumbs = '';
@@ -28,7 +26,12 @@ const hitTemplate = function(hit) {
     }).join(' > ')
   }
 
-  const content = hit._highlightResult.html.value;
+  if(typeof hit._highlightResult.html.value !== "undefined") {
+    const content = hit._highlightResult.html.value;
+  } else {
+    const content = "";
+  }
+  
 
   return `
     <div class="post-item">
