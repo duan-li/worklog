@@ -28,8 +28,10 @@ const hitTemplate = function(hit) {
 
   let content = "";
   let htmlObj = hit._highlightResult.html;
-  if(typeof htmlObj === 'undefined' && htmlObj.hasOwnProperty('value')) {
-    content = htmlObj.value;
+  if(typeof htmlObj === 'undefined') {
+    if(htmlObj.hasOwnProperty('value')) {
+      content = htmlObj.value;
+    }
   }
   
 
