@@ -26,8 +26,9 @@ const hitTemplate = function(hit) {
     }).join(' > ')
   }
 
-  if(typeof hit._highlightResult.html.value !== "undefined") {
-    const content = hit._highlightResult.html.value;
+  let htmlObj = hit._highlightResult.html;
+  if(typeof(htmlObj.value) !== "undefined") {
+    const content = htmlObj.value;
   } else {
     const content = "";
   }
