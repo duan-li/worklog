@@ -26,11 +26,10 @@ const hitTemplate = function(hit) {
     }).join(' > ')
   }
 
+  let content = "";
   let htmlObj = hit._highlightResult.html;
-  if(typeof(htmlObj.value) !== "undefined") {
-    const content = htmlObj.value;
-  } else {
-    const content = "";
+  if(htmlObj.hasOwnProperty('value')) {
+    content = htmlObj.value;
   }
   
 
