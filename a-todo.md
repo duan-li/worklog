@@ -9,7 +9,7 @@ title: A ToDo
 - [ ] fork me
 - [ ] add gist code
 - [ ] add wordpress post
-- [ ] make search working
+- [x] make search working
 - [ ] template [hydeout](https://github.com/fongandrew/hydeout)
 
 
