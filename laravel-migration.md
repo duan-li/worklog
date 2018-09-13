@@ -26,8 +26,8 @@ if (Schema::hasColumn('table_name', 'column_name')) {
 Schema::create('table_name', function (Blueprint $table) {
     $table->increments('id');
 
-    $table->integer('provider_id')->unsigned();
-    $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
+    $table->integer('foreign_id')->unsigned();
+    $table->foreign('foreign_id')->references('id')->on('foreign_table')->onDelete('cascade');
 
     $table->string('key');
     $table->text('value')->nullable(true);
