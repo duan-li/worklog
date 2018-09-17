@@ -17,6 +17,10 @@ A collection of many awesomen code, tools, project and application[^1].
 * [PHP Excel Lib](https://github.com/PHPOffice/PhpSpreadsheet)
 
 
+## Laravel
+* [25 Popular Applications Built With Laravel](https://vegibit.com/25-popular-applications-built-with-laravel/)
+
+
 ## Nlp
 * [fxsjy/jieba](https://github.com/fxsjy/jieba)
 

@@ -3,6 +3,18 @@ layout: page
 title: A ToDo
 ---
 
+## Movement
+- [ ] PHP koans
+- [ ] Laravel Koans: 
+- update lumen example CICD
+  - [ ] PHPMD rules [^1]
+  - [ ] PHPCS rules [^2]
+  - [ ] test case coverage
+- standard document
+
+[^1]: [PHPMD config](https://phpmd.org/rules/codesize.html)
+[^2]: [PHPCS config](http://edorian.github.io/php-coding-standard-generator/#phpcs)
+
 
 ## Blog
 - [ ] sns link
