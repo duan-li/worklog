@@ -15,6 +15,10 @@ A collection of many awesomen code, tools, project and application[^1].
 ## PHP
 * [Very simple filesystem ](https://github.com/michael-donat/php-vfs)
 * [PHP Excel Lib](https://github.com/PHPOffice/PhpSpreadsheet)
+* [SOLID Design Principles in PHP](https://github.com/wataridori/solid-php-example) [^2]
+
+[^2]: [SOLID Design Principles Explained](https://stackify.com/solid-design-principles/)
+
 
 
 ## Laravel
