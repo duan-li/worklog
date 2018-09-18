@@ -23,10 +23,18 @@ A collection of many awesomen code, tools, project and application[^1].
 
 ## Laravel
 * [25 Popular Applications Built With Laravel](https://vegibit.com/25-popular-applications-built-with-laravel/)
-
+* [laravel-best-practices](https://github.com/alexeymezenin/laravel-best-practices#do-not-get-data-from-the-env-file-directly)
+* [Laravel Repository Pattern](https://vegibit.com/laravel-repository-pattern/)
+* [Laravel : The Right Way (Best Practices)](https://medium.com/@adebsalert/laravel-the-right-way-best-practices-2346cd6c5d89)
+* [laravel best practices](http://www.laravelbestpractices.com)
+* [What are the Laravel best practices?](https://www.quora.com/What-are-the-Laravel-best-practices)
 
 ## Nlp
 * [fxsjy/jieba](https://github.com/fxsjy/jieba)
+
+
+## Micro services
+* [Pattern: Service Mesh](http://philcalcado.com/2017/08/03/pattern_service_mesh.html)
 
 
 ---
