@@ -11,9 +11,17 @@ title: A ToDo
   - [ ] PHPCS rules [^2]
   - [ ] test case coverage
 - standard document
+  - [ ] database [^3]
+  - [ ] git flow
+  - coding
+    - [ ] coding standard (PSR-2 + customize detail)
+    - [ ] test case (coverage level, acceptence and unit)
+    - [ ] build-in CICD code review 
+
 
 [^1]: [PHPMD config](https://phpmd.org/rules/codesize.html)
 [^2]: [PHPCS config](http://edorian.github.io/php-coding-standard-generator/#phpcs)
+[^3]: [a part of things here](http://www.laravelbestpractices.com/#from_the_source)
 
 
 ## Blog
@@ -84,4 +92,7 @@ title: A ToDo
 ## Open new digitalO server
 - [ ] sysbrench perf test
 - [ ] mysql perf test
+
+
+---
 
