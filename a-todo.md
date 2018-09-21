@@ -5,7 +5,7 @@ title: A ToDo
 
 ## Movement
 - [ ] PHP koans
-- [ ] Laravel Koans: 
+- [ ] Laravel Koans (based from laravel document): 
 - update lumen example CICD
   - [ ] PHPMD rules [^1]
   - [ ] PHPCS rules [^2]

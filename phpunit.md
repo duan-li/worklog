@@ -14,7 +14,7 @@ title: PHPUNIT
 `assertDatabaseHas`, `assertDatabaseMissing`
 
 ## Exception
-`expectException`
+`expectException`, `doesntExpectEvents`
 
 ## Event
 `expectsEvents`, `expectsJobs`
