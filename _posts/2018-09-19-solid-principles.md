@@ -18,4 +18,10 @@ DIP | Dependency Injection Principle | One should depend upon abstractions, not 
 
 
 
+**Resources**
+* [PHP SOLID example](https://github.com/wataridori/solid-php-example)
+* [The SOLID Principles](https://code.tutsplus.com/series/the-solid-principles--cms-634)
+* [SOLID(blog posts)](https://sergeyzhuk.me/tag/solid/)
+* [What is an example of the Liskov Substitution Principle?](https://stackoverflow.com/questions/56860/what-is-an-example-of-the-liskov-substitution-principle/8279878)
+
 --- 
