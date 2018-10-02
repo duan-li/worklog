@@ -18,6 +18,7 @@ A collection of many awesomen code, tools, project and application[^1].
 * [SOLID Design Principles in PHP](https://github.com/wataridori/solid-php-example) [^2]
 * [Design Patterns PHP](https://github.com/domnikl/DesignPatternsPHP)
 
+
 [^2]: [SOLID Design Principles Explained](https://stackify.com/solid-design-principles/)
 
 
@@ -29,6 +30,14 @@ A collection of many awesomen code, tools, project and application[^1].
 * [Laravel : The Right Way (Best Practices)](https://medium.com/@adebsalert/laravel-the-right-way-best-practices-2346cd6c5d89)
 * [laravel best practices](http://www.laravelbestpractices.com)
 * [What are the Laravel best practices?](https://www.quora.com/What-are-the-Laravel-best-practices)
+* [Brief Overview Of Design Patterns Used In Laravel](https://www.dunebook.com/brief-overview-of-design-patterns-used-in-laravel/)
+* [20 Laravel Eloquent Tips and Tricks](https://laravel-news.com/eloquent-tips-tricks)
+
+
+## Package
+* [Prepare your Laravel apps incredibly fast, with commands, services, facades and boilerplates.](https://builder.grafite.ca) [^3]
+
+[^3]: [Build a powerful Laravel 5 app with Grafite](https://medium.com/employbl/build-a-powerful-laravel-5-app-with-grafite-b218a4e7bab)
 
 ## Nlp
 * [fxsjy/jieba](https://github.com/fxsjy/jieba)
