@@ -65,6 +65,7 @@ algolia:
   application_id: 'JW7LLYK6XP'
   search_only_api_key: '5115d4cc0546975260c40df6afab87a0'
   index_name: 'git_worklog'
+  nodes_to_index: 'p,blockquote,li,div.paragraph,a'
   files_to_exclude:
     - index.html
     - search.html
