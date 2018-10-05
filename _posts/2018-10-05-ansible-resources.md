@@ -16,6 +16,6 @@ Examples:
 * [Ansible Code Conventions](https://openedx.atlassian.net/wiki/spaces/OpenOPS/pages/26837527/Ansible+Code+Conventions)
 * [IOS dev playbook](https://github.com/lexrus/ios-dev-playbook)
 * [Ansible tutorial](https://wsgzao.github.io/post/ansible/) [V2ex page](https://www.v2ex.com/t/454982)
-
+* [Ansible tutorial](https://blog.devopszen.com/the-ansible?v2)
 
 ---
