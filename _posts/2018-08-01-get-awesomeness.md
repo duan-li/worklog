@@ -34,6 +34,14 @@ A collection of many awesomen code, tools, project and application[^1].
 * [20 Laravel Eloquent Tips and Tricks](https://laravel-news.com/eloquent-tips-tricks)
 
 
+## Symfony
+* [An open-source web platform for the new President of France](https://symfony.com/blog/an-open-source-web-platform-for-the-new-president-of-france)
+  * [Website](https://en-marche.fr/)
+  * [GitHub Repo](https://github.com/EnMarche/en-marche.fr)
+
+
+
+
 ## Package
 * [Prepare your Laravel apps incredibly fast, with commands, services, facades and boilerplates.](https://builder.grafite.ca) [^3]
 
