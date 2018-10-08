@@ -18,4 +18,21 @@ Examples:
 * [Ansible tutorial](https://wsgzao.github.io/post/ansible/) [V2ex page](https://www.v2ex.com/t/454982)
 * [Ansible tutorial](https://blog.devopszen.com/the-ansible?v2)
 
+
+## Install
+```bash
+sudo pip install ansible
+```
+
+## Configuration
+
+* `/etc/ansible/ansible.cfg` Config file ([Example](https://github.com/ansible/ansible/blob/devel/examples/ansible.cfg)) 
+* `/etc/ansible/hosts` host list ([Example](https://github.com/ansible/ansible/blob/devel/examples/hosts))
+* `/etc/ansible/roles` role list
+* `/usr/share/ansible_plugins/` plugins
+
+
+
+
+
 ---

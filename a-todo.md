@@ -7,7 +7,7 @@ title: A ToDo
 - [ ] PHP koans
 - [ ] Laravel Koans (based from laravel document): 
 - update lumen example CICD
-  - [ ] PHPMD rules [^1]
+  - [x] PHPMD rules [^1]
   - [ ] PHPCS rules [^2]
   - [ ] test case coverage
 - standard document
