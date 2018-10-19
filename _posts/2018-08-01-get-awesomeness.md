@@ -24,6 +24,7 @@ A collection of many awesomen code, tools, project and application[^1].
 
 
 ## Laravel
+* [Laravel libraries and apps](https://laralibs.com/)
 * [25 Popular Applications Built With Laravel](https://vegibit.com/25-popular-applications-built-with-laravel/)
 * [laravel-best-practices](https://github.com/alexeymezenin/laravel-best-practices#do-not-get-data-from-the-env-file-directly)
 * [Laravel Repository Pattern](https://vegibit.com/laravel-repository-pattern/)
