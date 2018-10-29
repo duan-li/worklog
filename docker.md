@@ -45,6 +45,17 @@ docker tag local_image_name $DOCKER_ID_USER/hub_image_repo:tag_name
 docker push $DOCKER_ID_USER/hub_image_repo:tag_name
 ```
 
+**Save image as `tar` file**
+```
+docker save -o path_to/filename.tar image_name:tag_name
+```
+
+**Load image from `tar` file**
+```
+docker load -i path_to/filename.tar
+```
+
+
 ## Docker Compose
 `docker-compose up`
 
