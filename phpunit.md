@@ -22,6 +22,63 @@ title: PHPUNIT
 ## Object
 `assertInstanceOf`
 
+
+# Configuration 
+
+**phpunit.xml** [^1]
+
+[^1]: [Getting Composer and PHPUnit to autoload namespaces](https://gist.github.com/GaryRogers/0fb41d649fa75d58eb8f)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="unit">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+
+    </testsuites>
+
+</phpunit>
+```
+
+**Test case**
+```php
+class MakeTest extends \PHPUnit\Framework\TestCase
+{
+    public function testCheck()
+    {
+        static::assertTrue(true);
+    }
+}
+
+```
+
+**composer.json**
+```json
+{
+  "require": {
+    "php": ">=7.1.3",
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Code\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/"
+    ]
+  }
+}
+
+```
+
+
 # Date time
 
 ```php
@@ -338,9 +395,9 @@ return $filesystem->write($filename, $content, [
 ```
 
 ## Test private method
-Using `ReflectionClass` to test a private or protect method in a class[^1].
+Using `ReflectionClass` to test a private or protect method in a class[^2].
 
-[^1]: [Testing Private and Protected Methods](https://laracasts.com/discuss/channels/testing/testing-private-and-protected-methods?page=1)
+[^2]: [Testing Private and Protected Methods](https://laracasts.com/discuss/channels/testing/testing-private-and-protected-methods?page=1)
 
 ```php
 $reflection = new \ReflectionClass(get_class($object));
