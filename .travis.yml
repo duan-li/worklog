@@ -10,11 +10,7 @@ branches:
  - master
  - draft
 
-before_install:
-  - nvm install 8.12
-
 install:
-  - npm install -g firebase-tools
   - bundle install --jobs=4
   - bundle exec jekyll build
 
