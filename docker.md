@@ -45,10 +45,11 @@ docker tag local_image_name $DOCKER_ID_USER/hub_image_repo:tag_name
 docker push $DOCKER_ID_USER/hub_image_repo:tag_name
 ```
 
-**Save image as `tar` file**
+**Save image as `tar` file** [^1]
 ```
 docker save -o path_to/filename.tar image_name:tag_name
 ```
+[^1]: [How to copy Docker images from one host to another without using a repository](https://stackoverflow.com/questions/23935141/how-to-copy-docker-images-from-one-host-to-another-without-using-a-repository)
 
 **Load image from `tar` file**
 ```
@@ -75,3 +76,6 @@ docker load -i path_to/filename.tar
  - [Namespace]({% post_url 2018-05-21-linux-namespace %})
  - [Control Group]({% post_url 2018-05-21-linux-control-groups %})
  - [AUFS]({% post_url 2018-06-10-union-file-system %})
+
+ ---
+ 
