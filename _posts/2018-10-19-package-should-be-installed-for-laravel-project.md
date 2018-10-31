@@ -4,7 +4,8 @@ title: Package Should Be Installed For Laravel Project
 date: 2018-10-19 06:05 +0000
 ---
 
-
+Package libraries [^5]
+[^5]: [Larlibs](https://laralibs.com/top?page=3)
 * [laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 * [laravel-permission](https://github.com/spatie/laravel-permission)
 * [laravel-meta](https://github.com/kodeine/laravel-meta)
