@@ -45,9 +45,12 @@ plugins=(
 * `gss`: `git status -s`
 * `gst`: `git status`
 * `ga`: `git add`
-* `gaa: `git add --all`
-gapa	git add --patch
-
+* `gaa`: `git add --all`
+* `gapa`: `git add --patch`
+* `gcmsg`: `git commit -m`
+* `glg`: `git log --stat --max-count = 10`
+* `ggp`: `git push`
+* `gl`: `git pull`
 
 
 ### web-search [^4]
