@@ -23,6 +23,7 @@ jekyll new my-awesome-site
 ## For an exist webiste
 ```
 bundle install
+bundle install --path vendor/bundle
 ```
 
 
