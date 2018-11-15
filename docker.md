@@ -56,6 +56,12 @@ docker save -o path_to/filename.tar image_name:tag_name
 docker load -i path_to/filename.tar
 ```
 
+## Docker image
+### Based image
+- [How do I create a CentOS Docker image?](https://www.quora.com/How-do-I-create-a-CentOS-Docker-image)
+- [Create a base image](https://docs.docker.com/develop/develop-images/baseimages/)
+- [Creating Docker BaseImage from ISO](https://github.com/EricWang8230/Note/blob/master/docker/Creating-Docker-BaseImage-from-CentOS-ISO.md)
+- [Example CentOS based image](https://github.com/CentOS/sig-cloud-instance-images/tree/CentOS-7.2.1511/docker)
 
 ## Docker Compose
 `docker-compose up`
@@ -78,4 +84,8 @@ docker load -i path_to/filename.tar
  - [AUFS]({% post_url 2018-06-10-union-file-system %})
 
  ---
+
+- [GitLab Container Registry](https://docs.gitlab.com/ee/user/project/container_registry.html)
+- [GitLab Container Registry administration](https://docs.gitlab.com/ee/administration/container_registry.html)
+- [Container Registries You Might Have Missed](https://rancher.com/container-registries-might-missed/)
  
