@@ -99,6 +99,11 @@ docker load -i path_to/filename.tar
  - [Control Group]({% post_url 2018-05-21-linux-control-groups %})
  - [AUFS]({% post_url 2018-06-10-union-file-system %})
 
+ # Docker tools
+ - [dive](https://github.com/wagoodman/dive) : A tool for exploring a docker image, layer contents, and discovering ways to shrink your Docker image size.
+
+ 
+
  ---
 
 - [GitLab Container Registry](https://docs.gitlab.com/ee/user/project/container_registry.html)

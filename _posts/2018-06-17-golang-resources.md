@@ -11,7 +11,7 @@ date: 2018-06-17 12:29 +0000
 
 
 # Tools/Packages
-
+- [goreleaser](https://github.com/goreleaser/goreleaser) [zh](http://llever.com/goreleaser-zh/)
 
 # Framework
 * Gin micro-service framework 
