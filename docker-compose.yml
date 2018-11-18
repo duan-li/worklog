@@ -1,13 +1,20 @@
+###################################################################
+#Script Name    :docker-compose.yml
+#Description    :Using docker to manage jekyll
+#Args           :nil
+#Author         :Duan Li
+#Email          :inputx@goodays.com
+###################################################################
 version: '3.1'
 services:
-    blog:
-        image: dockercraft/bundler
-        container_name: worklog-bundle
-        entrypoint:
-            - bundler
-            - exec
-            - jekyll
-        working_dir: "/var/www"
-        volumes:
-            - .:/var/www
+  blog:
+    image: dockercraft/bundler
+    container_name: worklog-bundle
+    entrypoint:
+      - bundler
+      - exec
+      - jekyll
+    working_dir: "/var/www"
+    volumes:
+      - .:/var/www
         
