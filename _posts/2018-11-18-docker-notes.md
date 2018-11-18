@@ -69,4 +69,26 @@ Placeholder | Description
 .Mounts | Names of the volumes mounted in this container.
 .Networks | Names of the networks attached to this container.
 
+
+### docker run
+
+* -it
+* -d
+* --rm
+
+
+### docker exec
+
+#### exec vs run vs start
+* start: start one or more stopped containers
+* exec: run a command in a running container
+* run create a container from image
+
+
+### docker log
+
+
+
+
+
 ---
