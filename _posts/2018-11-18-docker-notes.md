@@ -75,6 +75,9 @@ Placeholder | Description
 * -it
 * -d
 * --rm
+* --memory
+* --cpu-shares
+* --cpu-quota
 
 
 ### docker exec
@@ -85,7 +88,7 @@ Placeholder | Description
 * run create a container from image
 
 
-### docker log
+### docker logs
 
 
 
