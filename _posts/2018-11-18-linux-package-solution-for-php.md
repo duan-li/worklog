@@ -7,6 +7,8 @@ date: 2018-11-18 21:48 +0000
 
 * [wapmorgan/php-rpm-packager](https://github.com/wapmorgan/php-rpm-packager) 
 * [liip/packaging](https://github.com/liip/packaging)
+* [langemeijer/phpstorm-deb](https://github.com/langemeijer/phpstorm-deb)
 
 
 ---
+
