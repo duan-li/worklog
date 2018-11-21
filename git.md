@@ -78,11 +78,24 @@ or
 > List all tags
 `git tag`
 
+> List all remote tags [^1]
+`git ls-remote --tags ./.`
+
+[^1]: [How to see remote tags?
+](https://stackoverflow.com/questions/25984310/how-to-see-remote-tags)
+
+> List all remote tags start with `v` [^2]
+`git ls-remote --tags origin v\*`
+
+[^2]: [git-ls-remote](https://git-scm.com/docs/git-ls-remote.html)
+
 > Create Tag
 `git tag -a v1.4 -m "my version 1.4"`
 
 > Remvoe tag
 `git tag -d <name>`
+
+
 
 
 
@@ -194,3 +207,6 @@ git push --force
 
 http://jonas.nitro.dk/tig/manual.html
 https://devhints.io/tig
+
+
+---
