@@ -19,14 +19,15 @@ docker run -it --rm -v /website:/website -p 9005:9005 ubuntu bash
 ```
 apt-get update -y
 
-apt-get install npm -y
+apt-get install npm ruby git ruby-dev -y
 
-npm install -g firebase-tools
 ```
 
 ### firebase
 Run firebase [^1]
 ```
+npm install -g firebase-tools
+
 cd /website
 
 firebase login:ci
@@ -38,9 +39,8 @@ firebase init
 #### Install [^2]
 
 ```
-apt-get install ruby git ruby-dev -y
-gem install travis -v 1.8.9 --no-rdoc --no-ri
-
+gem install travis --no-rdoc --no-ri
+travis login --pro
 travis encrypt "key string" --add
 ```
 
