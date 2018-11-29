@@ -44,7 +44,12 @@ travis login --pro
 travis encrypt "key string" --add
 ```
 
-config [^3]
+# Config [^3]
+
+* [Google Drive API > REST](https://developers.google.com/drive/api/v3/quickstart/php)
+* [google developer console](https://console.developers.google.com)
+
+
 
 [^1]: [firebase doc](https://firebase.google.com/docs/cli/?authuser=0)
 [^2]: [travis command line](https://github.com/travis-ci/travis.rb#ubuntu)
