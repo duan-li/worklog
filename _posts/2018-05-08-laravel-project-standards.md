@@ -54,3 +54,6 @@ https://matthewdaly.co.uk/blog/2017/03/01/decorating-laravel-repositories/
 
 ## Class files group by
 group by type, then, group by project.
+
+## examples
+* [6 Reasons Why Doctrine is Alive and Kicking](https://www.tomasvotruba.cz/blog/2018/07/09/6-reasons-why-doctrine-is-alive-and-kicking/#1-bump-php-7-1-without-waiting-for-major-release)
