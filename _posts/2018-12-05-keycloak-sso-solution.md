@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Keycloak SSO solution
-date: 2018-12-05 22:12 +0000
+date: 2018-12-06 9:12 +0000
 ---
 
 * [Keycloak](https://www.keycloak.org/) [CN](https://www.jianshu.com/p/c9b1ecd28813)
