@@ -12,7 +12,7 @@ branches:
 
 install:
   - bundle install --jobs=4
-  - bundle exec jekyll build
+  - bundle exec jekyll build --future
 
 jobs:
   include:
