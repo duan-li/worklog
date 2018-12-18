@@ -28,7 +28,7 @@ params:
   - .env
 ```
 
-In `*.suite.yml` files
+In `*.suite.yml` files [^2]
 ```yml
 actor: AcceptanceTester
 modules:
@@ -51,6 +51,8 @@ modules:
   - \Helper\Acceptance
 
 ```
+
+[^2]: [Db](https://codeception.com/docs/modules/Db)
 
 In test cest.
 
