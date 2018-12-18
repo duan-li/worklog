@@ -4,11 +4,13 @@ title: Codeception test DB with .env file
 date: 2018-12-19 10:08 +0000
 ---
 
-In file `codeception.yml` add
+In file `codeception.yml` add [^1]
 ```yml
 params:
 	- .env
 ```
+
+[^1]: [Environment configuration in Codeception with dotenv](https://barryvanveen.nl/blog/36-environment-configuration-in-codeception-with-dotenv)
 
 like 
 ```yml
