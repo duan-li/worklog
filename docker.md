@@ -57,7 +57,7 @@ docker load -i path_to/filename.tar
 ```
 
 **Build image from scratch** [^2]
-[^2]: [Creating minimal CentOS docker image from scratch](https://gist.github.com/silveraid/e6bdf78441c731a30a66fc6adca6f4b5)
+
 
 ```bash
 # Create a folder for our new root structure
@@ -86,6 +86,8 @@ $ rm -f $centos_root/etc/resolv.conf
 ```bash
 tar -C $centos_root -c . | docker import - centos
 ```
+
+[^2]: [Creating minimal CentOS docker image from scratch](https://gist.github.com/silveraid/e6bdf78441c731a30a66fc6adca6f4b5)
 
 ## Docker image
 ### Based image
