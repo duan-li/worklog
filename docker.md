@@ -56,6 +56,37 @@ docker save -o path_to/filename.tar image_name:tag_name
 docker load -i path_to/filename.tar
 ```
 
+**Build image from scratch** [^2]
+[^2]: [Creating minimal CentOS docker image from scratch](https://gist.github.com/silveraid/e6bdf78441c731a30a66fc6adca6f4b5)
+
+```bash
+# Create a folder for our new root structure
+$ export centos_root='/centos_image/rootfs'
+$ mkdir -p $centos_root
+# initialize rpm database
+$ rpm --root $centos_root --initdb
+# download and install the centos-release package, it contains our repository sources
+$ yum reinstall --downloadonly --downloaddir . centos-release
+$ rpm --nodeps --root $centos_root -ivh centos-release*.rpm
+$ rpm --root $centos_root --import  $centos_root/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+# install yum without docs and install only the english language files during the process
+$ yum -y --installroot=$centos_root --setopt=tsflags='nodocs' --setopt=override_install_langs=en_US.utf8 install yum
+# configure yum to avoid installing of docs and other language files than english generally
+$ sed -i "/distroverpkg=centos-release/a override_install_langs=en_US.utf8\ntsflags=nodocs" $centos_root/etc/yum.conf
+# chroot to the environment and install some additional tools
+$ cp /etc/resolv.conf $centos_root/etc
+$ chroot $centos_root /bin/bash <<EOF
+yum install -y procps-ng iputils
+yum clean all
+EOF
+$ rm -f $centos_root/etc/resolv.conf
+
+```
+
+```bash
+tar -C $centos_root -c . | docker import - centos
+```
+
 ## Docker image
 ### Based image
 - [How do I create a CentOS Docker image?](https://www.quora.com/How-do-I-create-a-CentOS-Docker-image)
