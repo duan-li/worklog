@@ -84,6 +84,8 @@ $ rm -f $centos_root/etc/resolv.conf
 ```
 
 ```bash
+# -C dir
+# -c create
 tar -C $centos_root -c . | docker import - centos
 ```
 
