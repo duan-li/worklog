@@ -97,6 +97,7 @@ tar -C $centos_root -c . | docker import - centos
 - [Create a base image](https://docs.docker.com/develop/develop-images/baseimages/)
 - [Creating Docker BaseImage from ISO](https://github.com/EricWang8230/Note/blob/master/docker/Creating-Docker-BaseImage-from-CentOS-ISO.md)
 - [Example CentOS based image](https://github.com/CentOS/sig-cloud-instance-images/tree/CentOS-7.2.1511/docker)
+- [Build a CentOS 7 docker image.](https://gist.github.com/keithchambers/dcd137ef6b8a610923ff)
 
 ## Docker security
 - [5 Best Practices to Container Image Security](https://www.twistlock.com/2017/08/31/container-image-security-best-practices/)
