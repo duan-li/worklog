@@ -40,6 +40,9 @@ tar -xzvf file.tar.gz
 tar -xzvf file.tar.gz -C /dir
 ```
 
+### `.tar.gz` to `.tar`
+
+`gzip -d file.tar.gz`
 
 ## Flags
 

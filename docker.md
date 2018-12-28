@@ -92,6 +92,15 @@ tar -C $centos_root -c . | docker import - centos
 [^2]: [Creating minimal CentOS docker image from scratch](https://gist.github.com/silveraid/e6bdf78441c731a30a66fc6adca6f4b5)
 
 ## Docker image
+
+**Image to `.tar`**
+
+`docker save -o file.tar imagename`
+
+**`tar` to Image**
+
+`docker load -i file.tar`
+
 ### Based image
 - [How do I create a CentOS Docker image?](https://www.quora.com/How-do-I-create-a-CentOS-Docker-image)
 - [Create a base image](https://docs.docker.com/develop/develop-images/baseimages/)
