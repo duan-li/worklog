@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GIT SSH key
-date: 2019-01-02 21:31 +0000
+date: 2019-01-03 08:31 +0000
 ---
 
 **Generate key [^1]**
@@ -22,5 +22,13 @@ ls
 [^2]: [SSH user keys for personal use](https://confluence.atlassian.com/bitbucketserver/ssh-user-keys-for-personal-use-776639793.html)
 
 [^3]: [How to Set Up SSH Keys on CentOS 7](https://linuxize.com/post/how-to-set-up-ssh-keys-on-centos-7/)
+
+
+** Access **
+
+```
+ssh-agent bash -c 'ssh-add /root/.ssh/id_rsa; git clone ssh://git@git.repo.com/project.git'
+
+```
 
 ---
