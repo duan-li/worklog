@@ -24,7 +24,7 @@ ls
 [^3]: [How to Set Up SSH Keys on CentOS 7](https://linuxize.com/post/how-to-set-up-ssh-keys-on-centos-7/)
 
 
-** Access **
+**Access**
 
 ```
 ssh-agent bash -c 'ssh-add /root/.ssh/id_rsa; git clone ssh://git@git.repo.com/project.git'
