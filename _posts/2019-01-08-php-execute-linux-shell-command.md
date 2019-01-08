@@ -6,7 +6,7 @@ date: 2019-01-08 14:08 +0000
 
 - `exec` : returns the last line of the output by default, but can provide all output as an array specifed as the second parameter.
 - `shell_exec` : returns all of the output stream as a string. [^1]
-- `system()` : displays output directly without using echo or print. 
+- `system()` : displays output directly without using echo or print. [^2]
 - `passthru()` : when the output from the Unix command is binary data [^3]
 
 [^1]: [PHP shell_exec vs exec](https://stackoverflow.com/questions/7093860/php-shell-exec-vs-exec)
