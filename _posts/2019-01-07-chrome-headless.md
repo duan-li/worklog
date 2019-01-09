@@ -29,7 +29,7 @@ chrome --headless http://localhost:8080/banana/key --run-all-compositor-stages-b
 ```
 
 ### linux
-```
+```bash
 chromium-browser --headless --dump-dom --disable-gpu --virtual-time-budget=9000000 --run-all-compositor-stages-before-draw https://shop.coles.com.au/a/a-vic-metro-burwood-east/product/nan-optipro--ha-gold-formula-stage-1
 ```
 
