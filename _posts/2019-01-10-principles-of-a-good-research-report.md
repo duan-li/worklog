@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Principles of a Good Research Report
-date: 2019-01-10 21:42 +0000
+date: 2019-01-11 13:42 +0000
 ---
 
 12 principles [^1] :
