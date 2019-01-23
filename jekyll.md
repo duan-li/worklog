@@ -150,3 +150,72 @@ _site
 .bundle/*
 ```
 
+# Theme develop
+
+## Create theme [^1]
+
+[^1]: [Creating your own Jekyll Theme Gem](https://medium.com/@jameshamann/creating-your-own-jekyll-theme-gem-1f8180a0e4b8)
+
+```
+jekyll new-theme sample-theme
+cd sample-theme
+```
+
+## Config theme
+On `sample-theme.gemspec` file
+
+```
+Gem::Specification.new do |spec|
+  spec.name          = "sample-theme"
+  spec.version       = "0.1.0"
+  spec.authors       = [""]
+  spec.email         = [""]
+spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
+  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.license       = "MIT"
+spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{^(assets|_layouts|_includes|_sass|LICENSE|README)}i) }
+spec.add_runtime_dependency "jekyll", "~> 3.6"
+spec.add_development_dependency "bundler", "~> 1.12"
+  spec.add_development_dependency "rake", "~> 10.0"
+end
+```
+
+## Build theme
+
+```
+gem build sample-theme.gemspec
+```
+
+
+## Setup jekyll site
+On your jekyll site, update `Gemfile`
+
+```
+gem "sample-theme", :path => "/var/theme"
+```
+
+## Install theme
+```
+bundle install
+bundle install --path vendor/bundle
+```
+
+## config theme
+```
+# _config.yml
+
+theme: sample-theme
+
+```
+
+## Build and run site
+
+```
+build exec jekyll build
+build exec jekyll serve
+```
+
+
+
+---
+
