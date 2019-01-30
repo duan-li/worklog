@@ -33,4 +33,148 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 
 
+## 2. Example
+
+### Condition
+
+```
+// this is wrong
+if ($a == 1 or $b == 1) {
+
+}
+
+// this is correct
+if ($a == 1 || $b == 1) {
+
+}
+```
+
+```
+// this is wrong
+if ($a == 1 and $b == 1) {
+
+}
+
+// this is correct
+if ($a == 1 && $b == 1) {
+
+}
+```
+
+
+```
+// this is wrong
+if ($a == 1)
+	doing($a)
+else 
+	dontDo($a)
+
+// this is correct
+if ($a == 1) {
+	doing($a)
+} else {
+	dontDo($a)
+}
+
+```
+
+
+
+```
+// this is wrong
+function getX($condition) {
+	
+	if ($condition) {
+		$a = 1;
+	} else {
+		$a = 2;
+	}
+	return $a;
+}
+
+// this is correct
+function getX($condition) {
+	
+	if ($condition) {
+		return 1;
+	}
+	return 2;
+}
+
+
+```
+
+
+### Comment
+```
+/**
+ * Comment block format 
+ * 
+ */
+
+// inline comment format
+
+# this is wrong comment format, do not use it.
+
+```
+
+### Array
+
+#### New array
+```
+// create a new array.
+$a = []; 
+
+// old way, don't use it anymore
+$a = array();
+
+```
+
+```
+// this is wrong
+$a = [0 => 'a', 1 => 'b', 2 => 'c'];
+
+// this is correct
+$a = ['a', 'b', 'c'];
+```
+
+
+### Loop
+
+#### `foreach` loop
+
+```
+// this is wrong
+foreach ($list as $item)
+	doing($item)
+
+// this is correct
+foreach ($list as $item) {
+	doing($item)
+}
+
+```
+
+### String
+
+```
+// do not use it anymore
+
+$str1 = "this is";
+$str2 = "woing ";
+
+$string = $str1 . $str2;
+
+// better to do this
+$str1 = 'correct';
+$string = sprintf("this is %s", $str1);
+```
+
+
+```
+$a = 'string';
+
+$b = "this is $a";
+```
+
 ---
