@@ -216,6 +216,16 @@ build exec jekyll serve
 ```
 
 
+# Config
+
+## Show excerpts on post list.
+
+```
+show_excerpts: ture
+```
+
+Add `<!--more-->` post.
+
 
 ---
 
