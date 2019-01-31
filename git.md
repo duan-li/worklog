@@ -73,6 +73,17 @@ or
 > get branch last commit
 `LC-4174-suncorp-map-users-to-ids --oneline | head -1`
 
+> archive branch [^3]
+```
+git tag archive/<branchname> <branchname>
+git branch -d <branchname>
+```
+
+[^3]: [How can I archive git branches?](https://stackoverflow.com/questions/1307114/how-can-i-archive-git-branches)
+
+> unarchive branch
+`git checkout -b <branchname> archive/<branchname>`
+
 
 ## Tag
 > List all tags
