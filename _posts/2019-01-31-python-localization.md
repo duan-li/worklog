@@ -50,10 +50,20 @@ export PYTHONPATH=$PYTHONPATH:/project/vendor
 `python3 vendor/bin/django-admin`
 
 
+### `requirements.txt` [^3]
+
+
+```
+pip freeze > requirements.txt
+pip install -r requirements.txt
+```
+
 
 
 [^1]: [Install a Python package into a different directory using pip?](https://stackoverflow.com/questions/2915471/install-a-python-package-into-a-different-directory-using-pip)
 
 [^2]: [pip install options “no-cache-dir” and “target” don't work well together?](https://stackoverflow.com/questions/52267470/pip-install-options-no-cache-dir-and-target-dont-work-well-together)
+
+[^3]: [pip 19.0.1 documentation » User Guide](https://pip.pypa.io/en/stable/user_guide/)
 
 ---
