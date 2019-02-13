@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The best practices for docker
-date: 2019-02-13 21:40 +0000
+date: 2019-02-14 08:40 +0000
 ---
 
 
