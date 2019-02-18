@@ -92,6 +92,7 @@ function getX($condition) {
 	return $a;
 }
 
+**Return early**
 // this is correct
 function getX($condition) {
 	
