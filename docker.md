@@ -24,6 +24,12 @@ docker start -ai container-name
 docker rm container-name
 ```
 
+**Remove image with all tags** [^a]
+`docker images | grep <image-name> | tr -s ' ' | cut -d ' ' -f 2 | xargs -I {} docker rmi <repo-name>/<image-name>:{}`
+	
+[^a]: [Delete docker image with all tags](https://medium.com/@itseranga/delete-docker-image-with-all-tags-c631f6049530)
+
+
 ## Push local image to Hub
 **Set environment variable**
 ```
