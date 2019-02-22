@@ -113,6 +113,9 @@ tar -C $centos_root -c . | docker import - centos
 - [Creating Docker BaseImage from ISO](https://github.com/EricWang8230/Note/blob/master/docker/Creating-Docker-BaseImage-from-CentOS-ISO.md)
 - [Example CentOS based image](https://github.com/CentOS/sig-cloud-instance-images/tree/CentOS-7.2.1511/docker)
 - [Build a CentOS 7 docker image.](https://gist.github.com/keithchambers/dcd137ef6b8a610923ff)
+- [Alpine linux docker image docs](https://docs.docker.com/samples/library/alpine/)
+- [Apline docker image git repo](https://github.com/gliderlabs/docker-alpine/)
+- [Apline release archive files](http://dl-cdn.alpinelinux.org/alpine/v3.8/releases/x86_64/)
 
 ## Docker security
 - [5 Best Practices to Container Image Security](https://www.twistlock.com/2017/08/31/container-image-security-best-practices/)
