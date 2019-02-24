@@ -81,6 +81,8 @@ Server: Docker Engine - Community
 
 ```
 usermod -a -G docker user-name
+chown root:docker docker
+chmod 771 -R /var/lib/docker
 ```
 
 ### Install `docker-compose`
