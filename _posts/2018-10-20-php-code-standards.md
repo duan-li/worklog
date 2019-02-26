@@ -37,7 +37,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ### Condition
 
-```
+```php
 // this is wrong
 if ($a == 1 or $b == 1) {
 
@@ -49,7 +49,7 @@ if ($a == 1 || $b == 1) {
 }
 ```
 
-```
+```php
 // this is wrong
 if ($a == 1 and $b == 1) {
 
@@ -62,7 +62,7 @@ if ($a == 1 && $b == 1) {
 ```
 
 
-```
+```php
 // this is wrong
 if ($a == 1)
 	doing($a)
@@ -78,9 +78,35 @@ if ($a == 1) {
 
 ```
 
+#### `and` and `or`
 
+```php
+// this is wrong
+if($a == 1 and $b == 1) {
+
+}
+
+if($a == 1 or $b == 1) {
+	
+}
 
 ```
+
+```php
+// this is correct
+if($a == 1 && $b == 1) {
+
+}
+
+if($a == 1 || $b == 1) {
+	
+}
+
+```
+
+#### Early return 
+
+```php
 // this is wrong
 function getX($condition) {
 	
@@ -91,8 +117,11 @@ function getX($condition) {
 	}
 	return $a;
 }
+```
 
 **Return early**
+
+```php
 // this is correct
 function getX($condition) {
 	
@@ -122,7 +151,7 @@ function getX($condition) {
 ### Array
 
 #### New array
-```
+```php
 // create a new array.
 $a = []; 
 
@@ -131,7 +160,7 @@ $a = array();
 
 ```
 
-```
+```php
 // this is wrong
 $a = [0 => 'a', 1 => 'b', 2 => 'c'];
 
@@ -144,7 +173,7 @@ $a = ['a', 'b', 'c'];
 
 #### `foreach` loop
 
-```
+```php
 // this is wrong
 foreach ($list as $item)
 	doing($item)
@@ -158,7 +187,7 @@ foreach ($list as $item) {
 
 ### String
 
-```
+```php
 // do not use it anymore
 
 $str1 = "this is";
@@ -172,7 +201,7 @@ $string = sprintf("this is %s", $str1);
 ```
 
 
-```
+```php
 $a = 'string';
 
 $b = "this is $a";
