@@ -41,6 +41,19 @@ echo $A_VAR
 
 
 
+## File and directory
+Getting the contents of a directory using shell script. [^1]
+
+```bash
+for entry in "$search_dir"/*
+do
+  echo "$entry"
+done
+
+```
+
+[^1]: [How to get the list of files in a directory in a shell script?](https://stackoverflow.com/questions/2437452/how-to-get-the-list-of-files-in-a-directory-in-a-shell-script)
 
 
+---
 
