@@ -192,8 +192,19 @@ tar -C $centos_root -c . | docker import - centos
  | `rkt.cmd.help` | `org.label-schema.rkt.cmd.help = "rkt enter $CONTAINER --app=/bin/help"` | How to output help from the image under the rkt runtime. The container MUST print this information to stdout and then exit. |
  | `rkt.params` | `org.label-schema.rkt.params = "NO_THREADS=integer number of threads to launch"` | Applicable environment variables for the rkt runtime. Multiple environment variables can be specified by separating with commas. |
 
- ---
+
+# Docker Development API
+
+- [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/)
+
+
+
+
+# Docker Image Registry
 
 - [GitLab Container Registry](https://docs.gitlab.com/ee/user/project/container_registry.html)
 - [GitLab Container Registry administration](https://docs.gitlab.com/ee/administration/container_registry.html)
 - [Container Registries You Might Have Missed](https://rancher.com/container-registries-might-missed/)
+
+
+ ---
