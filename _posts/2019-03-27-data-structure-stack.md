@@ -13,6 +13,7 @@ date: 2019-03-27 13:21 +0000
 ## Stack 
 - [Basic of stack with a good example](https://segmentfault.com/a/1190000010626152)
 - [More about above good example](https://blog.csdn.net/sgbfblog/article/details/8001651)
+- [Another more about that good example](https://blog.csdn.net/PacosonSWJTU/article/details/49225529)
 - [Stack with code and applicaiton](https://blog.csdn.net/wobushixiaobailian/article/details/80148552)
 - [In PHP](https://segmentfault.com/a/1190000015304745)
 
