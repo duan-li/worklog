@@ -42,6 +42,13 @@ or
 > Serach keyword from commit message
 `git log --grep=<keyword>`
 
+> Show last commit hash
+`git rev-parse --verify HEAD` or `git rev-parse HEAD`
+
+> Show last commit hash (short)
+`git rev-parse --short HEAD`
+
+
 ## Branch
 > List all branchs
 `git branch -a`
