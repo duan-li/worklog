@@ -91,6 +91,17 @@ git branch -d <branchname>
 > unarchive branch
 `git checkout -b <branchname> archive/<branchname>`
 
+## Commit empty directory
+
+Create a `.gitignore` file in directory.
+
+```
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+```
+
 
 ## Tag
 > List all tags
