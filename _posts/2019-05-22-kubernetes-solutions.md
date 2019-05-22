@@ -4,8 +4,6 @@ title: Kubernetes Solutions
 date: 2019-05-22 11:11 +0000
 ---
 
-
-
 ## Managing Deployments Using Kubernetes Engine
 
 ### Introduction to deployments
