@@ -674,6 +674,270 @@ standard (default)   kubernetes.io/gce-pd   1h
 
 
 
+### Create Persistent Volume Claims
+In this section, you will create persistentvolumeclaims for your application.
+
+Create data-wp-repd-mariadb-0 PVC with standard StorageClass.
+```
+kubectl apply -f - <<EOF
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data-wp-repd-mariadb-0
+  namespace: default
+  labels:
+    app: mariadb
+    component: master
+    release: wp-repd
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 8Gi
+  storageClassName: standard
+EOF
+```
+
+Create `wp-repd-wordpress` PVC with `repd-west1-a-b-c` StorageClass.
+
+```
+kubectl apply -f - <<EOF
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: wp-repd-wordpress
+  namespace: default
+  labels:
+    app: wp-repd-wordpress
+    chart: wordpress-5.7.1
+    heritage: Tiller
+    release: wp-repd
+spec:
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 200Gi
+  storageClassName: repd-west1-a-b-c
+EOF
+
+
+
+```
+
+
+
+List the available `persistentvolumeclaims` with:
+```
+kubectl get persistentvolumeclaims
+```
+
+Example Output:
+```
+NAME                     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+data-wp-repd-mariadb-0   Bound    pvc-8a10ed04-56ca-11e9-a020-42010a8a003d   8Gi        ROX            standard           21m
+wp-repd-wordpress        Bound    pvc-ad5ddb0b-56ca-11e9-9af5-42010a8a0047   200Gi      ROX            repd-west1-a-b-c   20m
+```
+
+
+Deploy WordPress
+Now that we have our StorageClass configured, Kubernetes automatically attaches the persistent disk to an appropriate node in one of the available zones.
+
+1. Deploy the WordPress chart that is configured to use the StorageClass that you created earlier:
+
+```
+helm install --name wp-repd \
+  --set smtpHost= --set smtpPort= --set smtpUser= \
+  --set smtpPassword= --set smtpUsername= --set smtpProtocol= \
+  --set persistence.storageClass=repd-west1-a-b-c \
+  --set persistence.existingClaim=wp-repd-wordpress \
+  --set persistence.accessMode=ReadOnlyMany \
+  stable/wordpress
+```
+
+Output:
+
+```
+NAME:   wp-repd
+LAST DEPLOYED: Fri May 24 09:14:55 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/ConfigMap
+NAME                   DATA  AGE
+wp-repd-mariadb        1     1s
+wp-repd-mariadb-tests  1     1s
+
+==> v1/Deployment
+NAME               READY  UP-TO-DATE  AVAILABLE  AGE
+wp-repd-wordpress  0/1    1           0          1s
+
+==> v1/Pod(related)
+NAME                               READY  STATUS             RESTARTS  AGE
+wp-repd-mariadb-0                  0/1    ContainerCreating  0         1s
+wp-repd-wordpress-7889b789f-l2skn  0/1    ContainerCreating  0         1s
+
+==> v1/Secret
+NAME               TYPE    DATA  AGE
+wp-repd-mariadb    Opaque  2     1s
+wp-repd-wordpress  Opaque  1     1s
+
+==> v1/Service
+NAME               TYPE          CLUSTER-IP     EXTERNAL-IP  PORT(S)                     AGE
+wp-repd-mariadb    ClusterIP     10.23.249.165  <none>       3306/TCP                    1s
+wp-repd-wordpress  LoadBalancer  10.23.240.5    <pending>    80:32453/TCP,443:30153/TCP  1s
+
+==> v1beta1/StatefulSet
+NAME             READY  AGE
+wp-repd-mariadb  0/1    1s
+
+
+NOTES:
+1. Get the WordPress URL:
+
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        Watch the status with: 'kubectl get svc --namespace default -w wp-repd-wordpress'
+  export SERVICE_IP=$(kubectl get svc --namespace default wp-repd-wordpress --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+  echo "WordPress URL: http://$SERVICE_IP/"
+  echo "WordPress Admin URL: http://$SERVICE_IP/admin"
+
+2. Login with the following credentials to see your blog
+
+  echo Username: user
+  echo Password: $(kubectl get secret --namespace default wp-repd-wordpress -o jsonpath="{.data.wordpress-password}" | base64 --decode)
+```
+
+
+2. List out available wordpress pods:
+
+```
+kubectl get pods
+```
+
+Example Output:
+
+```
+NAME                                 READY     STATUS    RESTARTS   AGE
+wp-repd-mariadb-79444cd49b-lx8jq     1/1       Running   0          35m
+wp-repd-wordpress-7654c85b66-gz6nd   1/1       Running   0          35m  
+```
+
+
+3. Run the following command which waits for the service load balancer's external IP address to be created:
+```
+while [[ -z $SERVICE_IP ]]; do SERVICE_IP=$(kubectl get svc wp-repd-wordpress -o jsonpath='{.status.loadBalancer.ingress[].ip}'); echo "Waiting for service external IP..."; sleep 2; done; echo http://$SERVICE_IP/admin
+
+```
+
+4. Verify that the persistent disk was created:
+```
+
+while [[ -z $PV ]]; do PV=$(kubectl get pvc wp-repd-wordpress -o jsonpath='{.spec.volumeName}'); echo "Waiting for PV..."; sleep 2; done
+
+kubectl describe pv $PV
+```
+
+
+
+### Simulating a zone failure
+Next you will simulate a zone failure and watch Kubernetes move your workload to the other zone and attach the regional disk to the new node.
+
+1. Obtain the current node of the WordPress pod:
+
+```
+NODE=$(kubectl get pods -l app=wp-repd-wordpress -o jsonpath='{.items..spec.nodeName}')
+
+ZONE=$(kubectl get node $NODE -o jsonpath="{.metadata.labels['failure-domain\.beta\.kubernetes\.io/zone']}")
+```
+
+```
+IG=$(gcloud compute instance-groups list --filter="name~gke-repd-default-pool zone:(${ZONE})" --format='value(name)')
+```
+
+```
+echo "Pod is currently on node ${NODE}"
+
+echo "Instance group to delete: ${IG} for zone: ${ZONE}"
+```
+
+
+Example Output:
+```
+Pod is currently on node gke-repd-default-pool-b8cf37cd-bc5q
+Instance group to delete: gke-repd-default-pool-b8cf37cd-grp for zone: us-west1-c
+```
+You can also verify it with:
+```
+kubectl get pods -l app=wp-repd-wordpress -o wide
+```
+Example Output:
+```
+NAME                                 READY     STATUS    RESTARTS   AGE       IP           NODE
+wp-repd-wordpress-7654c85b66-gz6nd   1/1       Running   0          1h        10.20.0.11   gke-repd-default-pool-b8cf37cd-bc5q
+
+```
+
+Take note of `Node` column. You are going to delete this node to simulate the zone failure.
+
+
+
+2. Now run the following to delete the instance group for the node where the WordPress pod is running, click **Y** to continue deleting:
+
+```
+gcloud compute instance-groups managed delete ${IG} --zone ${ZONE}
+```
+
+Kubernetes is now detecting the failure and migrates the pod to a node in another zone.
+
+3. Verify that both the WordPress pod and the persistent volume migrated to the node that is in the other zone:
+```
+kubectl get pods -l app=wp-repd-wordpress -o wide
+```
+Example Output:
+```
+NAME                                 READY     STATUS    RESTARTS   AGE       IP           NODE
+wp-repd-wordpress-7654c85b66-xqb78   1/1       Running   0          1m        10.20.1.14   gke-repd-default-pool-9da1b683-h70h
+```
+
+Make sure the node that is displayed is different from the node in the previous step.
+
+
+
+4. Once the new service has a Running status, open the WordPress admin page in your browser from the link displayed in the command output:
+```
+echo http://$SERVICE_IP/admin
+```
+You have attached a regional persistent disk to a node that is in a different zone.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
