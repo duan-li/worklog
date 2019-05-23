@@ -625,7 +625,7 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 Initialize Helm:
-````
+```
 kubectl create serviceaccount tiller --namespace kube-system
 
 kubectl create clusterrolebinding tiller-cluster-rule \
