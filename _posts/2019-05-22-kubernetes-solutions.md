@@ -549,10 +549,9 @@ You did it! You learned about blue-green deployments and how to deploy updates t
 
 In this lab you will learn how to configure a highly available application by deploying WordPress using regional persistent disks on Kubernetes Engine. Regional persistent disks provide synchronous replication between two zones, which keeps your application up and running in case there is an outage or failure in a single zone. Deploying a Kubernetes Engine Cluster with regional persistent disks will make your application more stable, secure, and reliable.
 
-![Using Kubernetes Engine to Deploy Apps with Regional Persistent Disks
- - overview](/assets/images/kubernetes-02/I6ZSnXZbwDN4OsOo1hoVEkhu4DMvwxygEuEPamH9y8c.png)
+![Using Kubernetes Engine to Deploy Apps with Regional Persistent Disks - overview](/assets/images/kubernetes-02/I6ZSnXZbwDN4OsOo1hoVEkhu4DMvwxygEuEPamH9y8c.png)
 
-What you'll do
+#### What you'll do
 * Create a regional Kubernetes Engine cluster.
 * Create a Kubernetes StorageClass resource that is configured for replicated zones.
 * Deploy WordPress with a regional disk that uses the StorageClass.
@@ -561,16 +560,51 @@ What you'll do
 
 
 
+#### Prerequisites
+This is an advanced lab. Before taking it, you should be familiar with at least the basics of Kubernetes and WordPress. Here are some Qwiklabs that can get you up to speed:
+
+* Kubernetes Engine: Qwik Start
+* Running WordPress on App Engine Flexible Environment
+* Hello Node Kubernetes
+
+Once you're prepared, scroll down to get your lab environment set up.
 
 
+### Creating the Regional Kubernetes Engine Cluster
+
+Open a new Cloud Shell session. You will first create a [regional Kubernetes Engine cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/multi-zone-and-regional-clusters) that spans three zones in the us-west1 region. First, fetch the server configuration for the us-west1 region and export environment variables by running:
+
+```
+CLUSTER_VERSION=$(gcloud container get-server-config --region us-west1 --format='value(validMasterVersions[0])')
+
+export CLOUDSDK_CONTAINER_USE_V1_API_CLIENT=false
+```
+
+Now create a standard Kubernetes Engine cluster (this will take a little while, ignore any warnings about `node auto repairs`):
 
 
+```
+gcloud container clusters create repd \
+  --cluster-version=${CLUSTER_VERSION} \
+  --machine-type=n1-standard-4 \
+  --region=us-west1 \
+  --num-nodes=1 \
+  --node-locations=us-west1-a,us-west1-b,us-west1-c
+```
+Example Output:
+```
+Creating cluster repd...done.
+Created [https://container.googleapis.com/v1beta1/projects/qwiklabs-gcp-e8f5f22705c770ab/zones/us-west1/clusters/repd].
+To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/us-west1/repd?project=qwiklabs-gcp-e8f5f22705c770ab
+kubeconfig entry generated for repd.
+NAME  LOCATION  MASTER_VERSION  MASTER_IP      MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
+repd  us-west1  1.12.6-gke.7    35.247.50.133  n1-standard-4  1.12.6-gke.7  3          RUNNING
 
+```
 
+You just created a regional cluster (located in us-west1) with one node in each zone (us-west1-a,us-west1-b,us-west1-c). Navigate to Compute Engine from the left-hand menu to view your instances:
 
-
-
-
+![Navigate to Compute Engine from the left-hand menu to view your instances](/Users/duan.li/Codes/GitHub/Weblog/worklog/asserts/images/kubernetes-02/Hn8drRkOA8wCc_YAePol99PXtNC4J21OIMvmuRlnkZM.png)
 
 
 
