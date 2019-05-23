@@ -536,12 +536,28 @@ You did it! You learned about blue-green deployments and how to deploy updates t
 
 
 
+## Build a Slack Bot with Node.js on Kubernetes
 
 
 
 
+## Using Kubernetes Engine to Deploy Apps with Regional Persistent Disks
 
 
+
+### Overview
+
+In this lab you will learn how to configure a highly available application by deploying WordPress using regional persistent disks on Kubernetes Engine. Regional persistent disks provide synchronous replication between two zones, which keeps your application up and running in case there is an outage or failure in a single zone. Deploying a Kubernetes Engine Cluster with regional persistent disks will make your application more stable, secure, and reliable.
+
+![Using Kubernetes Engine to Deploy Apps with Regional Persistent Disks
+ - overview](/assets/images/kubernetes-02/I6ZSnXZbwDN4OsOo1hoVEkhu4DMvwxygEuEPamH9y8c.png)
+
+What you'll do
+* Create a regional Kubernetes Engine cluster.
+* Create a Kubernetes StorageClass resource that is configured for replicated zones.
+* Deploy WordPress with a regional disk that uses the StorageClass.
+* Simulate a zone failure by deleting a node.
+* Verify that the WordPress app and data migrate successfully to another replicated zone.
 
 
 
