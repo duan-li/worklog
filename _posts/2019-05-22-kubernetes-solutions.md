@@ -604,12 +604,72 @@ repd  us-west1  1.12.6-gke.7    35.247.50.133  n1-standard-4  1.12.6-gke.7  3   
 
 You just created a regional cluster (located in us-west1) with one node in each zone (us-west1-a,us-west1-b,us-west1-c). Navigate to Compute Engine from the left-hand menu to view your instances:
 
-![Navigate to Compute Engine from the left-hand menu to view your instances](/Users/duan.li/Codes/GitHub/Weblog/worklog/asserts/images/kubernetes-02/Hn8drRkOA8wCc_YAePol99PXtNC4J21OIMvmuRlnkZM.png)
+![Navigate to Compute Engine from the left-hand menu to view your instances](/assets/images/kubernetes-02/Hn8drRkOA8wCc_YAePol99PXtNC4J21OIMvmuRlnkZM.png)
 
 
+### Deploying the App with a Regional Disk
+Now that you have your Kubernetes cluster running, you'll do the following three things:
 
+* Install [Helm](https://helm.sh/) (a toolset for managing Kubernetes packages)
+* Create the [Kubernetes StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/) that is used by the regional persistent disk
+* Deploy WordPres
 
+#### Install and initialize Helm to install the chart package
 
+The chart package, which is installed with Helm, contains everything you need to run WordPress.
+
+1. Install Helm locally in your Cloud Shell instance by running:
+```
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+Initialize Helm:
+````
+kubectl create serviceaccount tiller --namespace kube-system
+
+kubectl create clusterrolebinding tiller-cluster-rule \
+  --clusterrole=cluster-admin \
+  --serviceaccount=kube-system:tiller
+helm init --service-account=tiller
+until (helm version --tiller-connection-timeout=1 >/dev/null 2>&1); do echo "Waiting for tiller install..."; sleep 2; done && echo "Helm install complete"
+````
+Helm is now installed in your cluster.
+
+#### Create the StorageClass
+Next you'll create the StorageClass used by the chart to define the zones of the regional disk. The zones listed in the StorageClass will match the zones of the Kubernetes Engine cluster.
+
+Create a StorageClass for the regional disk by running:
+```
+kubectl apply -f - <<EOF
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: repd-west1-a-b-c
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-standard
+  replication-type: regional-pd
+  zones: us-west1-a, us-west1-b, us-west1-c
+EOF
+```
+Example Output:
+```
+storageclass "repd-west1-a-b-c" created
+```
+You now have a StorageClass that is capable of provisioning PersistentVolumes that are replicated across the us-west1-a, us-west1-b and us-west1-c zones.
+
+List the available `storageclass` with:
+```
+kubectl get storageclass
+```
+Example Output:
+```
+NAME                 PROVISIONER            AGE
+repd-west1-a-b-c       kubernetes.io/gce-pd   26s
+standard (default)   kubernetes.io/gce-pd   1h
+
+```
 
 
 
