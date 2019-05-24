@@ -633,7 +633,7 @@ kubectl create clusterrolebinding tiller-cluster-rule \
   --serviceaccount=kube-system:tiller
 helm init --service-account=tiller
 until (helm version --tiller-connection-timeout=1 >/dev/null 2>&1); do echo "Waiting for tiller install..."; sleep 2; done && echo "Helm install complete"
-````
+```
 Helm is now installed in your cluster.
 
 #### Create the StorageClass
