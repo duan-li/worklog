@@ -1547,68 +1547,254 @@ You have attached a regional persistent disk to a node that is in a different zo
 
 
 
+## NGINX Ingress Controller on Google Kubernetes Engine
+
+### Set a zone
+Before creating a Kubernetes cluster, we'll have to set a default computing zone for our GCP project. Run the following command to see a [list of GCP zones](https://cloud.google.com/compute/docs/regions-zones/):
+```
+gcloud compute zones list
+```
+Now run the following command to set your zone (in this case to us-central1-a):
+```
+gcloud config set compute/zone us-central1-a
+```
+
+
+
+
+### Create a Kubernetes cluster
+Now that our zone is configured, let's deploy a Kubernetes Engine cluster. Run the following command to create a cluster named nginx-tutorial that's made up of two nodes (or worker machines):
+```
+gcloud container clusters create nginx-tutorial --num-nodes 2
+```
+It will take a few minutes for this command to complete. Continue when you get a similar output in Cloud Shell:
+
+
+![Oreate a Kubernetes cluster](/assets/images/kubernetes-02/sGVbE9DJ7cqbEpEZPJhAZ94i+66rLtiNheu22Kru0sk.png)
+
+
+
+### Install Helm
+Now that we have our Kubernetes cluster up and running, let's install [Helm](https://helm.sh/). Helm is a tool that streamlines Kubernetes application installation and management. You can think of it like apt, yum, or homebrew for Kubernetes. Using helm charts is recommended, since they are maintained and typically kept up-to-date by the Kubernetes community. Helm has two parts: a client (helm) and a server (tiller):
+
+* **Tiller** runs inside your Kubernetes cluster and manages releases (installations) of your Helm Charts.
+* **Helm** runs on your laptop, CI/CD, or in this case, the Cloud Shell.
+
+Helm comes preconfigured with an installer script that automatically grabs the latest version of the Helm client and installs it locally. Fetch the script by running the following command:
+
+
+```
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+```
+
+Next, run the following commands to get the Helm client installed:
+```
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+Now initialize helm:
+```
+helm init
+```
+
+Great! You now have the latest copy of the Helm client installed and ready for use in your Cloud Shell environment.
 
 
 
 
 
+### Installing Tiller
+Starting with Kubernetes v1.8+, [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) is enabled by default. Prior to installing tiller you need to ensure that you have the correct ServiceAccount and ClusterRoleBinding configured for the tiller service. This allows tiller to be able to install services in the default namespace.
+
+Run the following commands to install the server-side tiller to the Kubernetes cluster with RBAC enabled:
+
+```
+kubectl create serviceaccount --namespace kube-system tiller
+
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
+kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'  
+```
+
+
+Now initialize Helm with your newly-created service account:
+```
+helm init --service-account tiller --upgrade
+```
+
+You can also confirm that tiller is running by checking for the tiller-deploy Deployment in the kube-system namespace. Run the following command to do so:
+```
+kubectl get deployments -n kube-system
+```
+
+The output should have a tiller-deploy Deployment as shown below:
+```
+NAME                    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+event-exporter-v0.1.7   1         1         1            1           13m
+heapster-v1.4.3         1         1         1            1           13m
+kube-dns                2         2         2            2           13m
+kube-dns-autoscaler     1         1         1            1           13m
+kubernetes-dashboard    1         1         1            1           13m
+l7-default-backend      1         1         1            1           13m
+tiller-deploy           1         1         1            1           4m
+
+```
+
+### Deploy an application in Kubernetes Engine
+Now that you have Helm configured, let's deploy a simple web-based application from the Google Cloud Repository. This application will be used as the backend for the Ingress.
+
+From the Cloud Shell, run the following command:
+```
+kubectl run hello-app --image=gcr.io/google-samples/hello-app:1.0 --port=8080
+```
+Your output should resemble the following:
+```
+deployment "hello-app" created
+```
+Now expose the hello-app Deployment as a Service by running the following command:
+```
+kubectl expose deployment hello-app
+```
+Your output should resemble the following:
+```
+service "hello-app" exposed
+```
+
+### Deploying the NGINX Ingress Controller via Helm
+
+The Kubernetes platform gives administrators flexibility when it comes to Ingress Controllers—you can integrate your own rather than having to work with your provider's built-in offering. The NGINX controller must be exposed for external access. This is done using Service `type: LoadBalancer` on the NGINX controller service. On Kubernetes Engine, this creates a Google Cloud Network (TCP/IP) Load Balancer with NGINX controller Service as a backend. Google Cloud also creates the appropriate firewall rules within the Service's VPC to allow web HTTP(S) traffic to the load balancer frontend IP address.
 
 
 
+#### NGINX Ingress Controller on Kubernetes Engine
+The following flowchart is a visual representation of how an NGINX controller runs on a Kubernetes Engine cluster:
+
+![NGINX Ingress Controller on Kubernetes Engine](/assets/images/kubernetes-02/E1bWzR59KZ8Yjlwzj9Jm5M138L1Jwn_ydY9cZdD2A4U.png)
+
+#### Deploy NGINX Ingress Controller
+
+Now that you have the bigger picture in mind, let's go ahead and deploy the NGINX Ingress Controller. Run the following command to do so:
+
+```
+helm install --name nginx-ingress stable/nginx-ingress --set rbac.create=true
+```
+In the output under RESOURCES, you should see a similar output:
+
+```
+==> v1/Service
+NAME                           TYPE          CLUSTER-IP     EXTERNAL-IP  PORT(S)                     AGE
+nginx-ingress-controller       LoadBalancer  10.15.252.129  <pending>    80:31110/TCP,443:31771/TCP  1s
+nginx-ingress-default-backend  ClusterIP     10.15.242.145  <none>       80/TCP                      1s
+```
+
+Note the second service, `nginx-ingress-default-backend`. The default backend is a Service which handles all URL paths and hosts the NGINX controller. The default backend exposes two URLs:
+
+* `/healthz` that returns 200
+* `/` that returns 404
+
+
+Wait a few moments while the GCP L4 Load Balancer gets deployed. Confirm that the `nginx-ingress-controller` Service has been deployed and that you have an external IP address associated with the service by running the following command:
+```
+kubectl get service nginx-ingress-controller
+```
+
+You receive a similar output:
+```
+NAME                       TYPE           CLUSTER-IP     EXTERNAL-IP      
+nginx-ingress-controller   LoadBalancer   10.7.248.226   35.226.162.176 
+```
 
 
 
+### Configure Ingress Resource to use NGINX Ingress Controller
+An Ingress Resource object is a collection of L7 rules for routing inbound traffic to Kubernetes Services. Multiple rules can be defined in one Ingress Resource or they can be split up into multiple Ingress Resource manifests. The Ingress Resource also determines which controller to utilize to serve traffic. This can be set with an annotation, `kubernetes.io/ingress.class`, in the metadata section of the Ingress Resource. For the NGINX controller, you will use the nginx value as shown below:
+
+```
+annotations: kubernetes.io/ingress.class: nginx
+```
+
+On Kubernetes Engine, if no annotation is defined under the metadata section, the Ingress Resource uses the GCP GCLB L7 load balancer to serve traffic. This method can also be forced by setting the annotation's value to gce, like below:
+
+
+```
+annotations: kubernetes.io/ingress.class: gce
+```
+
+
+Let's create a simple Ingress Resource YAML file which uses the NGINX Ingress Controller and has one path rule defined by typing the following commands:
+
+```
+touch ingress-resource.yaml
+nano ingress-resource.yaml
+```
+
+Add the following content in `ingress-resource.yaml` file:
+
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-resource
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: hello-app
+          servicePort: 8080
+```
 
 
 
+then press Ctrl-X, then press Y, then press Enter to save the file.
+
+The `kind`: Ingress dictates it is an Ingress Resource object. This Ingress Resource defines an inbound L7 rule for path /hello to service hello-app on port 8080.
+
+Run the following command to apply those rules to our Kubernetes application:
+
+```
+kubectl apply -f ingress-resource.yaml
+```
+
+Verify that Ingress Resource has been created:
+```
+kubectl get ingress ingress-resource
+```
+
+> **Note:** The IP address for the Ingress Resource will not be defined right away. Wait a few moments for the `ADDRESS` field to get populated.
 
 
 
+#### Test Ingress and default backend
+
+You should now be able to access the web application by going to the `EXTERNAL-IP/hello` address of the **NGINX ingress controller** (found by running `kubectl get service nginx-ingress-controller`).
+
+Open a new tab and go to the following, replacing the `external-ip-of-ingress-controller` with the external IP address of the NGINX ingress controller:
+
+```
+http://external-ip-of-ingress-controller/hello
+```
 
 
+Your page should look similar to the following:
+
+![Test Ingress and default backend](/assets/images/kubernetes-02/g0CnJ1CI1ulfu5d1I4bv1zJixcDQnLCftuGhsR16md8.png)
 
 
+To check if the default-backend service is working properly, access any path (other than the path /hello defined in the Ingress Resource) and ensure you receive a 404 message. For example:
 
+```
+http://external-ip-of-ingress-controller/test
+```
 
+Your page should look similar to the following:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![To check if the default-backend service is working properly](/assets/images/kubernetes-02/bWQkuTElAJFki9ehNQFiB6pi9za8l9Q9xwvyu3wxmy4.png)
 
 
 
