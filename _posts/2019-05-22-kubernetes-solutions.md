@@ -2733,6 +2733,809 @@ If you explore any of the failed instances you will see that the reason for the 
 
 
 
+## Awwvision: Cloud Vision API from a Kubernetes Cluster
+
+
+### Overview
+The Awwvision lab uses [Kubernetes](https://kubernetes.io/) and [Cloud Vision API](https://cloud.google.com/vision/) to demonstrate how to use the Vision API to classify (label) images from Reddit's [/r/aww](https://reddit.com/r/aww) subreddit and display the labelled results in a web app.
+
+Awwvision has three components:
+
+1. A simple [Redis](http://redis.io/) instance.
+2. A web app that displays the labels and associated images.
+3. A worker that handles scraping Reddit for images and classifying them using the Vision API. [Cloud Pub/Sub](https://cloud.google.com/pubsub/) is used to coordinate tasks between multiple worker instances.
+
+
+### Create a Kubernetes Engine cluster
+In this lab you will use [gcloud](https://cloud.google.com/sdk/gcloud), Google Cloud Platform's command-line tool, to set up a [Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) cluster. You can specify as many nodes as you want, but you need at least one. The cloud platform scope is used to allow access to the Pub/Sub and Vision APIs.
+
+In Cloud Shell, run the following to create a cluster in the us-central1-f zone:
+
+
+```
+gcloud config set compute/zone us-central1-f
+```
+
+Then start up the cluster by running:
+```
+gcloud container clusters create awwvision \
+    --num-nodes 2 \
+    --scopes cloud-platform
+```
+
+Run the following to use the container's credentials:
+```
+gcloud container clusters get-credentials awwvision
+```
+Verify that everything is working using the kubectl command-line tool:
+```
+kubectl cluster-info
+```
+
+
+### Get the Sample
+Now add sample data to your project by running:
+```
+git clone https://github.com/GoogleCloudPlatform/cloud-vision
+```
+
+
+### Deploy the sample
+In Cloud Shell, change to the python/awwvision directory in the cloned cloud-vision repo:
+```
+cd cloud-vision/python/awwvision
+```
+Once in the awwvision directory, run make all to build and deploy everything:
+```
+make all
+```
+As part of the process, Docker images will be built and uploaded to the [Google Container Registry](https://cloud.google.com/container-registry/docs/) private container registry. In addition, yaml files will be generated from templates, filled in with information specific to your project, and used to deploy the redis, webapp, and worker Kubernetes resources for the lab.
+
+
+
+### Check the Kubernetes resources on the cluster
+
+After you've deployed, check that the Kubernetes resources are up and running.
+
+First, list the [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) by running:
+
+```
+kubectl get pods
+```
+
+You should see something like the following, though your pod names will be different. Make sure all of your pods have a Running before executing the next command.
+
+
+```
+NAME                     READY     STATUS    RESTARTS   AGE
+awwvision-webapp-vwmr1   1/1       Running   0          1m
+awwvision-worker-oz6xn   1/1       Running   0          1m
+awwvision-worker-qc0b0   1/1       Running   0          1m
+awwvision-worker-xpe53   1/1       Running   0          1m
+redis-master-rpap8       1/1       Running   0          2m
+```
+
+
+Next, list the [deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) by running:
+```
+kubectl get deployments -o wide
+
+```
+
+You can see the number of replicas specified for each, and the images used.
+```
+NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE       CONTAINERS         IMAGES                                SELECTOR
+awwvision-webapp   1         1         1            1           1m        awwvision-webapp   gcr.io/your-project/awwvision-webapp   app=awwvision,role=frontend
+awwvision-worker   3         3         3            3           1m        awwvision-worker   gcr.io/your-project/awwvision-worker   app=awwvision,role=worker
+redis-master       1         1         1            1           1m        redis-master       redis                                 app=redis,role=master
+```
+
+Once deployed, get the external IP address of the webapp [service](https://kubernetes.io/docs/concepts/services-networking/service/) by running:
+```
+kubectl get svc awwvision-webapp
+```
+
+It may take a few minutes for the assigned external IP to be listed in the output. You should see something like the following, though your IPs will be different.
+```
+NAME               CLUSTER_IP      EXTERNAL_IP    PORT(S)   SELECTOR                      AGE
+awwvision-webapp   10.163.250.49   23.236.61.91   80/TCP    app=awwvision,role=frontend   13m
+
+```
+
+### Visit your new web app and start its crawler
+
+
+Copy and paste the external IP of the awwvision-webapp service into a new browser to open the webapp, then click Start the Crawler button.
+
+Next, click go back and you should start to see images from the [/r/aww](https://reddit.com/r/aww) subreddit classified by the labels provided by the Vision API. You will see some of the images classified multiple times, when multiple labels are detected for them. (You can reload in a bit, in case you brought up the page before the crawler was finished).
+
+
+
+
+## Running a MongoDB Database in Kubernetes with StatefulSets
+
+### Overview
+Kubernetes is an open source container orchestration tool that handles the complexities of running containerized applications. You can run Kubernetes applications with Kubernetes Engine—a GCP computing service that offers many different customizations and integrations. In this lab, you will get some practical experience with Kubernetes by learning how to set up a MongoDB database with a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/). Running a stateful application (a database) on a stateless service (container) may sound contradictory. However, after getting hands-on practice with this lab you will quickly see how that's not the case. In fact, by using a few open-source tools you will see how Kubernetes and stateless services can go hand-in-hand.
+
+**What you'll learn**
+In this lab, you will learn the following:
+
+* How to deploy a Kubernetes cluster, a headless service, and a StatefulSet.
+* How to connect a Kubernetes cluster to a MongoDB replica set.
+* How to scale MongoDB replica set instances up and down.
+* How to clean up your environment and shutdown the above services.
+
+
+### Set a Compute Zone
+Throughout this lab, we will be using the [gcloud command line tool](https://cloud.google.com/sdk/gcloud/) to provision our services. Before we can create our Kubernetes cluster, we will need to set a compute zone so that the virtual machines in our cluster are all created in the same region. We can do this using the gcloud config set command—run the following in your cloud shell to set your zone to `us-central1-f`:
+```
+gcloud config set compute/zone us-central1-f
+```
+
+? Note: More information about regions and zones is available [here](https://cloud.google.com/compute/docs/zones).
+
+
+
+
+### Create a new Cluster
+Now that our zone is set, we will create a new cluster of containers. Run the following command to instantiate a cluster named hello-world:
+```
+gcloud container clusters create hello-world
+```
+This command creates a new cluster with three nodes, or virtual machines (the default). You can configure this command with additional flags to change the number of nodes, the default permissions, and other variables. See the [documentation](https://cloud.google.com/sdk/gcloud/reference/container/clusters/create) for more details.
+
+Launching the cluster may take a few minutes. Once it's up, you should receive a similar output:
+```
+NAME         Location       MATER_VERSION   MASTER_IP       ...
+hello-world  us-central1-f  1.9.7-gke.3     35.184.131.251  ...
+```
+
+
+### Setting up
+Now that we have our cluster up and running, it's time to integrate it with MongoDB. We will be using a [replica set](https://docs.mongodb.com/manual/replication/) so that our data is highly available and redundant—a must for running production applications. To get set up, we need to do the following:
+
+* Download the MongoDB [replica set/sidecar](https://github.com/thesandlord/mongo-k8s-sidecar.git) (or utility container in our cluster).
+* Instantiate a [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/).
+* Instantiate a [headless service](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
+* Instantiate a [StatefulSet](http://kubernetes.io/docs/concepts/abstractions/controllers/statefulsets/).
+Run the following command to clone the MongoDB/Kubernetes replica set from the Github repository:
+
+
+```
+git clone https://github.com/thesandlord/mongo-k8s-sidecar.git
+```
+
+
+Once it's cloned, navigate to the `StatefulSet` directory with the following command:
+```
+cd ./mongo-k8s-sidecar/example/StatefulSet/
+```
+
+Once you have verified that the files have been downloaded and that you're in the right directory, let's go ahead and create a Kubernetes `StorageClass`.
+
+
+#### Create the StorageClass
+A `StorageClass` tells Kubernetes what kind of storage you want to use for database nodes. On the Google Cloud Platform, you have a couple of [storage choices](https://cloud.google.com/compute/docs/disks/): SSDs and hard disks.
+
+
+If you take a look inside the `StatefulSet` directory (you can do this by running the ls command), you will see SSD and HDD configuration files for both Azure and GCP. Run the following command to take a look at the `googlecloud_ssd.yaml` file:
+```
+cat googlecloud_ssd.yaml
+```
+
+Output:
+```
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: fast
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-ssd
+```
+
+
+
+This configuration creates a new StorageClass called "fast" that is backed by SSD volumes. Run the following command to deploy the StorageClass:
+```
+kubectl apply -f googlecloud_ssd.yaml
+```
+Now that our StorageClass is configured, our `StatefulSet` can now request a volume that will automatically be created.
+
+### Deploying the Headless Service and StatefulSet
+
+
+#### Find and inspect the files
+Before we dive into what headless service and `StatefulSets` are, let's open up the configuration file (`mongo-statefulset.yaml`) where they are both housed in.
+```
+cat mongo-statefulset.yaml
+```
+
+You should receive the following output (without the pointers to the Headless Service and StatefulSet content):
+```
+apiVersion: v1   <-----------   Headless Service configuration
+kind: Service
+metadata:
+  name: mongo
+  labels:
+    name: mongo
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+  clusterIP: None
+  selector:
+    role: mongo
+---
+apiVersion: apps/v1beta1    <------- StatefulSet configuration
+kind: StatefulSet
+metadata:
+  name: mongo
+spec:
+  serviceName: "mongo"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        role: mongo
+        environment: test
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: mongo
+          image: mongo
+          command:
+            - mongod
+            - "--replSet"
+            - rs0
+            - "--smallfiles"
+            - "--noprealloc"
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+        - name: mongo-sidecar
+          image: cvallance/mongo-k8s-sidecar
+          env:
+            - name: MONGO_SIDECAR_POD_LABELS
+              value: "role=mongo,environment=test"
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-persistent-storage
+      annotations:
+        volume.beta.kubernetes.io/storage-class: "fast"
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 100Gi
+```
+
+
+**Headless service: overview**
+The first section of mongo-statefulset.yaml refers to a headless service. In Kubernetes terms, a service describes policies or rules for accessing specific pods. In brief, a headless service is one that doesn't prescribe load balancing. When combined with StatefulSets, this will give us individual DNSs to access our pods, and in turn a way to connect to all of our MongoDB nodes individually. In the yaml file, you can make sure that the service is headless by verifying that the clusterIP field is set to None.
+
+**StatefulSet: overview**
+The StatefulSet configuration is the second section of mongo-statefulset.yaml. This is the bread and butter of the application: it's the workload that runs MongoDB and what orchestrates your Kubernetes resources. Referencing the yaml file, we see that the first section describes the StatefulSet object. Then, we move into the Metadata section, where labels and the number of replicas are specified.
+
+Next comes the pod spec. The terminationGracePeriodSeconds is used to gracefully shutdown the pod when you scale down the number of replicas. Then the configurations for the two containers are shown. The first one runs MongoDB with command line flags that configure the replica set name. It also mounts the persistent storage volume to /data/db: the location where MongoDB saves its data. The second container runs the sidecar. This [sidecar container](https://github.com/cvallance/mongo-k8s-sidecar) will configure the MongoDB replica set automatically. As mentioned earlier, a "sidecar" is a helper container that helps the main container run its jobs and tasks.
+
+
+Finally, there is the `volumeClaimTemplates`. This is what talks to the StorageClass we created before to provision the volume. It provisions a 100 GB disk for each MongoDB replica.
+
+
+Deploy Headless Service and the StatefulSet
+Now that we have a basic understanding of what a headless service and StatefulSet are, let's go ahead and deploy them. Since the two are packaged in mongo-statefulset.yaml, we can run the following comand to run both of them:
+```
+kubectl apply -f mongo-statefulset.yaml
+```
+You should receive the following output:
+```
+service "mongo" created
+statefulset "mongo" created
+
+```
+
+### Connect to the MongoDB Replica Set
+Now that we have a cluster running and our replica set deployed, let's go ahead and connect to it.
+
+
+#### Wait for the MongoDB replica set to be fully deployed
+Kubernetes StatefulSets deploys each pod sequentially. It waits for the MongoDB replica set member to fully boot up and create the backing disk before starting the next member. Run the following command to view and confirm that all three members are up:
+
+
+```
+kubectl get statefulset
+```
+Output - all three members are up.
+```
+NAME      DESIRED   CURRENT   AGE
+mongo     3         3         3m
+```
+
+
+
+#### Initiating and Viewing the MongoDB replica set
+
+At this point, you should have three pods created in your cluster. These correspond to the three nodes in your MongoDB replica set. Run this command to view:
+```
+kubectl get pods
+```
+
+
+(Output):
+```
+NAME        READY     STATUS    RESTARTS   AGE
+mongo-0     2/2       Running   0          3m
+mongo-1     2/2       Running   0          3m
+mongo-2     2/2       Running   0          3m
+```
+
+
+Wait for all three members to be created before moving on.
+
+Connect to the first replica set member:
+```
+kubectl exec -ti mongo-0 mongo
+```
+You now have a REPL environment connected to the MongoDB .
+
+Let's instantiate the replica set with a default configuration by running the rs.initiate() command:
+```
+rs.initiate()
+```
+Print the replica set configuration; run the rs.conf() command:
+```
+rs.conf()
+
+```
+
+This outputs the details for the current member of replica set rs0. In this lab you see only one member. To get details of all members you need to expose the replica set through additional services like [nodeport](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) or [load balancer](https://cloud.google.com/compute/docs/load-balancing/http/).
+
+
+```
+rs0:OTHER> rs.conf()
+{
+        "_id" : "rs0",
+        "version" : 1,
+        "protocolVersion" : NumberLong(1),
+        "writeConcernMajorityJournalDefault" : true,
+        "members" : [
+                {
+                        "_id" : 0,
+                        "host" : "localhost:27017",
+                        "arbiterOnly" : false,
+                        "buildIndexes" : true,
+                        "hidden" : false,
+                        "priority" : 1,
+                        "tags" : {
+                        },
+                        "slaveDelay" : NumberLong(0),
+                        "votes" : 1
+                }
+        ],
+        "settings" : {
+                "chainingAllowed" : true,
+                "heartbeatIntervalMillis" : 2000,
+                "heartbeatTimeoutSecs" : 10,
+                "electionTimeoutMillis" : 10000,
+                "catchUpTimeoutMillis" : -1,
+                "catchUpTakeoverDelayMillis" : 30000,
+                "getLastErrorModes" : {
+                },
+                "getLastErrorDefaults" : {
+                        "w" : 1,
+                        "wtimeout" : 0
+                },
+                "replicaSetId" : ObjectId("5c526b6501fa2d29fc65c48c")
+        }
+}
+```
+
+Type "exit" and press enter to quit the `REPL`.
+
+
+### Scaling the MongoDB replica set
+
+A big advantage of Kubernetes and StatefulSets is that you can scale the number of MongoDB Replicas up and down with a single command!
+
+To scale up the number of replica set members from 3 to 5, run this command:
+```
+kubectl scale --replicas=5 statefulset mongo
+```
+
+
+In a few minutes, there will be 5 MongoDB pods. Run this command to view them:
+```
+kubectl get pods
+```
+
+
+To scale down the number of replica set members from 5 back to 3, run this command:
+```
+kubectl scale --replicas=3 statefulset mongo
+```
+
+In a few seconds, there are 3 MongoDB pods. Run this command to view:
+```
+kubectl get pods
+```
+Your output should look like this:
+```
+NAME      READY     STATUS    RESTARTS   AGE
+mongo-0   2/2       Running   0          41m
+mongo-1   2/2       Running   0          39m
+mongo-2   2/2       Running   0          37m
+```
+
+
+
+### Using the MongoDB replica set
+Each pod in a StatefulSet backed by a Headless Service will have a stable DNS name. The template follows this format: <pod-name>.<service-name>
+
+This means the DNS names for the MongoDB replica set are:
+```
+mongo-0.mongo
+mongo-1.mongo
+mongo-2.mongo
+```
+You can use these names directly in the connection string URI of your app.
+
+Using a database is outside the scope of this lab, however for this case, the [connection string URI](http://docs.mongodb.com/manual/reference/connection-string) would be:
+```
+"mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/dbname_?"
+
+```
+
+
+### Clean up
+Because you are working in Qwiklabs, when you end the lab all your resources and your project will be cleaned up and discarded on your behalf. But we want to show you how to clean up resources yourself to save on cost and to be a good cloud citizen when you are in your own environment.
+
+To clean up the deployed resources, run the following commands to delete the StatefulSet, Headless Service, and the provisioned volumes.
+
+Delete the StatefulSet:
+```
+kubectl delete statefulset mongo
+```
+Delete the service:
+```
+kubectl delete svc mongo
+```
+Delete the volumes:
+```
+kubectl delete pvc -l role=mongo
+```
+Finally, you can delete the test cluster:
+```
+gcloud container clusters delete "hello-world"
+```
+Press Y then Enter to continue deleting the test cluster.
+
+
+
+
+## Kubeflow End to End
+
+
+## Deploy a Web App on GKE with HTTPS Redirect using Lets Encrypt
+
+### Introduction
+GKE does not provide a managed HTTPS offering, so it can be a bit daunting trying to take on the task of obtaining a valid TLS certificate without prior experience. You will need to find a Certificate Authority (CA) to provide a browser-trusted certificate and you need a way to manage those certificates.
+
+With [Let's Encrypt](https://letsencrypt.org/about/), you have access to a free, automated, and open certificate authority (CA), run for the public's benefit. Let's Encrypt provides a browser-trusted certificate for your web services. In combination with [cert-manager](https://github.com/jetstack/cert-manager/), a Kubernetes add-on, the management and issuance of TLS certificates from Let's Encrypt will be completely automated.
+
+Since GKE also lacks built-in HTTP to HTTPs redirect for Google Cloud Load Balancers (GCLB), an NGINX ingress will be deployed to handle HTTP to HTTPs redirect.
+
+
+#### What you will build
+In this lab, you're going to deploy a containerized web app in a GKE cluster with HTTPS using a browser-trusted TLS certificate and NGINX to route all HTTP traffic to HTTPS. Google Cloud Endpoints is used for its ability to dynamically provision DNS entries under cloud.goog DNS domain.
+
+#### What you'll learn
+In this lab you'll learn how to do the following:
+
+* Deploy a containerized web app
+* Set up an NGINX ingress for HTTP to HTTPS redirect
+* Install a cert-manager into a cluster to automate getting TLS/SSL certificates
+* Deploy/modify an ingress with TLS enabled
+
+
+#### What you'll need
+* A recent version of [Chrome](https://www.google.com/chrome/) is recommended
+* Basic knowledge of Linux CLI and [gcloud](https://cloud.google.com/sdk/gcloud/)
+This lab is focused on GKE deployment and management. Non-relevant concepts and code blocks are glossed over and are provided for you to simply copy and paste.
+
+
+### Download the source code
+In Cloud Shell, download the source code for the lab:
+```
+wget https://storage.googleapis.com/vwebb-codelabs/gke-tls-qwik/gke-tls-lab.tar.gz
+```
+Unpack the file to your local system and navigate to the source code directory:
+```
+tar zxfv gke-tls-lab.tar.gz
+
+cd gke-tls-lab
+```
+
+### Configure Cloud Endpoints
+#### Allocate a Static IP
+First, allocate a static IP in the GCP region our cluster resides using the following command:
+
+
+```
+gcloud compute addresses create endpoints-ip --region us-central1
+```
+
+
+Verify an address is allocated:
+```
+gcloud compute addresses list
+```
+The IP address in the output is the allocated IP address. Record this IP address as you will use it throughout the lab.
+
+
+#### Launch the Cloud Shell code editor
+In this lab you'll view and edit files. You can use the shell editors that are installed on Cloud Shell, such as nano or vim, or use the Cloud Shell code editor. This lab uses the Cloud Shell code editor.
+
+Launch the Cloud Shell code editor by clicking the pencil icon:
+
+
+#### Update openapi.yaml.
+In the left pane in the code editor, navigate to gke-tls-lab/openapi.yaml.
+
+Replace [MY-STATIC-IP] with the allocated IP address.
+
+In the code, replace all instances of [MY-PROJECT] with your GCP Project ID and save openapi.yaml.
+
+
+#### Deploy the Cloud Endpoints
+Run the following command to deploy to Cloud Endpoints:
+```
+gcloud endpoints services deploy openapi.yaml
+```
+
+### Create a Kubernetes Engine Cluster
+In the command line, create a cluster by running the following command:
+```
+gcloud container clusters create cl-cluster --zone us-central1-f
+```
+It may take a few minutes to complete.
+
+
+#### Authentication credentials for the cluster
+You need authentication credentials to interact with the cluster.
+
+Get authentication credentials:
+```
+gcloud container clusters get-credentials cl-cluster --zone us-central1-f
+```
+
+#### Set up Role-Based Access Control
+To be able to deploy to the cluster, you need the proper permissions.
+
+Assign yourself the cluster-admin role by running the following command:
+```
+kubectl create clusterrolebinding cluster-admin-binding \
+--clusterrole cluster-admin --user $(gcloud config get-value account)
+```
+
+
+
+
+### Install Helm
+Helm is a Kubernetes package-manager that helps you manage Kubernetes applications that we will use in the lab to install our NGINX ingress and Let's Encrypt.
+
+Download and install Helm client:
+
+```
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+
+chmod 700 get_helm.sh
+
+./get_helm.sh
+```
+
+Next, install the Helm server-side components (Tiller) on your GKE cluster by running the following command:
+```
+kubectl create serviceaccount -n kube-system tiller
+
+kubectl create clusterrolebinding tiller-binding \
+    --clusterrole=cluster-admin \
+    --serviceaccount kube-system:tiller
+
+helm init --service-account tiller
+```
+
+Now update Helm's chart repositories:
+```
+helm repo update
+```
+
+
+### Install NGINX Ingress
+
+You will deploy an NGINX ingress using Helm to handle our HTTP to HTTPS redirect when configure our web app for HTTPS to ensure the user always has a secure connection to our app.
+
+Install the NGINX ingress using Helm by running the following command. Replace [MY-STATIC-IP] with the allocated IP address you recorded in a previous section.
+```
+helm install stable/nginx-ingress --set controller.service.loadBalancerIP="[MY-STATIC-IP]",rbac.create=true
+
+helm install stable/nginx-ingress --set controller.service.loadBalancerIP="35.232.204.197",rbac.create=true
+```
+
+You can retrieve the allocated IP address by running:
+```
+gcloud compute addresses list
+```
+
+
+
+### Deploy "Hello World" App
+Now that the cluster is created, you can deploy the containerized "hello world" web app.
+
+#### Update configmap.yaml
+
+
+The file configmap.yaml contains the environment variable used by Cloud Endpoints.
+
+In the code editor, navigate to configmap.yaml and replace [MY-PROJECT] with your GCP Project ID.
+
+Save the file.
+
+
+
+#### Deploy web app to cluster
+Run the following commands to deploy:
+```
+kubectl apply -f configmap.yaml
+
+kubectl apply -f deployment.yaml
+```
+Now, we need to expose our deployment. We are going to expose our web app by first attaching a NodePort service by running the following command:
+```
+kubectl apply -f service.yaml
+```
+
+
+With our service created, we can now deploy an ingress to create a Google Cloud Load Balancer to reach our service externally. The ingress will include the following annotation:
+
+kubernetes.io/ingress.class: nginx
+
+This annotation will tell Kubernetes not to create a Google Cloud Load Balancer and to use our NGINX ingress controller instead.
+
+
+
+
+
+#### Update ingress.yaml
+In the code editor, navigate to ingress.yaml and replace all instances [MY-PROJECT] with your GCP Project ID.
+
+Save the file
+
+
+
+#### Apply the ingress and test
+In the command line, apply the ingress:
+```
+kubectl apply -f ingress.yaml
+```
+
+> Note: It might take 5-10 minutes for the ingress to be properly provisioned.
+
+
+
+Test the application. Open a new browser window and connect to the address below, replacing [MY-PROJECT] with your GCP Project ID:
+
+```
+http://api.endpoints.[MY-PROJECT].cloud.goog
+http://api.endpoints.qwiklabs-gcp-e78dda65259298d4.cloud.goog
+```
+
+You have successfully deployed the web app when you see the "Hello, world" message, version, and hostname displayed in the browser.
+
+Now to configure the web app for HTTPS!
+
+
+### Set Up HTTPS
+We will install cert-manager and configure Let's Encrypt as our certificate issuer to obtain a browser-trusted TLS certificates that can be used to secure our application with HTTPS, and configure our existing esp-ingress to handle only HTTPS requests.
+
+#### Set up Let's Encrypt
+We will use Helm to install cert-manager using the following command:
+
+```
+helm install --name cert-manager --version v0.3.2 \
+    --namespace kube-system stable/cert-manager
+```
+
+
+Run the following command to set your email address in a variable:
+```
+export EMAIL=ahmet@example.com
+```
+Now we will deploy Let's Encrypter issuer to issue TLS certificates. Deploy the Issuer manifest using the following command:
+```
+cat letsencrypt-issuer.yaml | sed -e "s/email: ''/email: $EMAIL/g" | kubectl apply -f-
+```
+
+
+#### Reconfigure ingress for HTTPS
+
+
+We will now configure our existing esp-ingress with TLS. This is done by deploying the ingress modified version of our ingress.yaml, which is ingress-tls.yaml.
+```
+The file, ingress-tls.yaml modifies the ingress with the following additional annotations and modifications to the spec key:
+
+annotations:
+
+...
+
+kubernetes.io/tls-acme: "true"
+
+certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+
+ingress.kubernetes.io/ssl-redirect: "true"
+
+spec:
+
+tls:
+
+- hosts:
+
+- api.endpoints.[MY-PROJECT].cloud.goog
+
+secretName: esp-tls
+
+The annotations will tell cert-manager to begin automating the process of acquiring the required TLS certificate from Let's Encrypt, and will tell our NGINX ingress to redirect all HTTP traffic to HTTPS. The spec will include a "tls" key containing our hosts and secretName.
+```
+
+##### Update ingress-tls.yaml
+Navigate to ingress-tls.yaml. Rename all instances of [MY-PROJECT] with your GCP Project ID and save the file.
+
+Apply the updates
+
+In the command line, apply the change to esp-ingress:
+```
+kubectl apply -f ingress-tls.yaml
+```
+Once again, you can check the status by running the following command:
+```
+kubectl describe ingress esp-ingress
+```
+You should see output similar to the following:
+```
+Events:
+  Type    Reason             Age                From                      Message
+  ----    ------             ----               ----                      -------
+  Normal  CREATE             10m                nginx-ingress-controller  Ingress default/esp-ingress
+  Normal  UPDATE             23s (x2 over 10m)  nginx-ingress-controller  Ingress default/esp-ingress
+```
+
+> Note: It might take a few minutes for the ingress to be properly provisioned.
+
+Test the application by connecting to the address below, replacing [MY-PROJECT] with your GCP Project ID:
+```
+http://api.endpoints.[MY-PROJECT].cloud.goog
+```
+Now, look at the address bar and you will notice that you are now utilizing a secure, encrypted HTTPS connection with a browser-trusted certificate!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
