@@ -3217,6 +3217,537 @@ Press Y then Enter to continue deleting the test cluster.
 
 ## Kubeflow End to End
 
+### Overview
+
+
+![Kubeflow overview](/assets/images/kubernetes-02/miOFwTwHi2LuG_DZ733QAipK+povCW99t+jGctSb+w0=.png)
+
+[Kubeflow](https://www.kubeflow.org/) is a machine learning toolkit for Kubernetes. The project is dedicated to making deployments of machine learning (ML) workflows on Kubernetes simple, portable, and scalable. The goal is to provide a straightforward way to deploy best-of-breed open-source systems for ML to diverse infrastructures.
+
+A Kubeflow deployment is:
+
+* **Portable** - Works on any Kubernetes cluster, whether it lives on Google Cloud Platform (GCP), on-premise, or across providers.
+* **Scalable** - Can utilize fluctuating resources and is only constrained by the number of resources allocated to the Kubernetes cluster.
+* **Composable** - Enhanced with service workers to work offline or on low-quality networks
+
+Kubeflow will let you organize loosely-coupled microservices as a single unit and deploy them to a variety of locations, whether that's a laptop or the cloud. This codelab will walk you through creating your own Kubeflow deployment.
+
+
+
+#### What you'll build
+In this lab you're going to build a web app that summarizes GitHub issues using a trained model. Upon completion, your infrastructure will contain:
+
+A Kubernetes Engine cluster with standard Kubeflow and Seldon Core installations.
+A training job that uses Tensorflow to generate a Keras model.
+A serving container that provides predictions.
+A UI that uses the trained model to provide summarizations for GitHub issues.
+
+
+#### What you'll learn
+* How to install [Kubeflow](https://github.com/kubeflow/kubeflow).
+* How to run training using the [Tensorflow](https://www.tensorflow.org/) job server to generate a [Keras](https://keras.io/) model.
+* How to serve a trained model with [Seldon Core](https://github.com/SeldonIO/seldon-core).
+* How to generate and use predictions from a trained model.
+
+#### What you'll need
+* A basic understanding of Kubernetes.
+* A [GitHub](https://github.com/) account.
+
+
+
+### Set up
+
+#### Enable Boost Mode
+
+In the Cloud Shell window, click on the **Settings** icon at the far right. Select **Enable Boost Mode** and then select "Restart Cloud Shell in Boost Mode". This will provision a larger instance for your Cloud Shell session, resulting in speedier Docker builds.
+
+
+![Enable Boost Mode](/assets/images/kubernetes-02/BwFUdWv8jmjSgKVebZE5SlEt_CSZ6jFPhAcMP1xgB2g=.png)
+
+
+
+Download the project files
+Set the correct version and an environment variable:
+```
+export KUBEFLOW_TAG=0.4.0-rc.2
+```
+
+Once your Cloud Shell has been provisioned, run the following commands to download and unpack an archive of the [Kubeflow examples repo](https://github.com/kubeflow/examples), which contains all of the official Kubeflow examples:
+```
+git clone https://github.com/kubeflow/examples.git
+cd examples
+git checkout v${KUBEFLOW_TAG}
+```
+
+
+#### Set your GitHub token
+This lab involves the use of many different files obtained from public repos on GitHub. To prevent rate-limiting, especially at events where a large number of anonymized requests are sent to the GitHub APIs, you will set up an access token with no permissions. This is simply to authorize you as an individual rather than anonymous user.
+
+Sign into your GitHub account in a new tab, then navigate to: https://github.com/settings/tokens.
+
+Click **Generate a new token**, select no permissions.
+
+Click on the **Copy** icon.
+
+Back in Cloud Shell, set the GITHUB_TOKEN environment variable, replacing `<token>` with your GitHub token:
+
+
+
+```
+export GITHUB_TOKEN=<token>
+export GITHUB_TOKEN=a10a849c8ef485571de2d9d429f6796f2e3fa3e9
+```
+
+
+#### Install pyyaml
+Ensure that [pyyaml](https://pyyaml.org/) is installed by running:
+```
+pip install --user pyyaml
+```
+
+
+#### Install ksonnet
+Set the correct version as an environment variable:
+```
+export KS_VER=0.13.1
+export KS_BIN=ks_${KS_VER}_linux_amd64
+```
+Download and unpack [ksonnet](https://ksonnet.io/docs/), then add it to your $PATH:
+```
+wget -O /tmp/${KS_BIN}.tar.gz https://github.com/ksonnet/ksonnet/releases/download/v${KS_VER}/${KS_BIN}.tar.gz
+mkdir -p ${HOME}/bin
+tar -xvf /tmp/${KS_BIN}.tar.gz -C ${HOME}/bin
+export PATH=$PATH:${HOME}/bin/${KS_BIN}
+```
+
+> Note: To familiarize yourself with ksonnet concepts, see [this diagram](https://github.com/ksonnet/ksonnet/blob/master/docs/concepts.md#environment).
+
+
+
+#### Install kfctl
+Download and unpack [kfctl](https://kubernetes.io/docs/reference/kubectl/overview/), the Kubernetes command-line tool, then add it to your $PATH:
+```
+wget -P /tmp https://github.com/kubeflow/kubeflow/archive/v${KUBEFLOW_TAG}.tar.gz
+mkdir -p ${HOME}/src
+tar -xvf /tmp/v${KUBEFLOW_TAG}.tar.gz -C ${HOME}/src
+cd ${HOME}/src/kubeflow-${KUBEFLOW_TAG}/scripts
+ln -s kfctl.sh kfctl
+export PATH=$PATH:${HOME}/src/kubeflow-${KUBEFLOW_TAG}/scripts
+cd ${HOME}
+```
+kubectl allows you to run commands against Kubernetes clusters, deploy applications, inspect and manage cluster resources, and view logs.
+
+
+#### Set your GCP project ID
+Store your Project ID as an environment variable:
+```
+export PROJECT_ID=<gcp_project_id>
+export PROJECT_ID=qwiklabs-gcp-86fddff50e06d8bf
+```
+Activate the latest scopes in Kubernetes Engine:
+```
+export ZONE=us-central1-a
+gcloud config set project ${PROJECT_ID}
+gcloud config set compute/zone ${ZONE}
+gcloud config set container/new_scopes_behavior true
+```
+
+#### Authorize Docker
+Allow Docker access to your project's Container Registry:
+```
+gcloud auth configure-docker
+```
+Enter in Y when promted to update the Docker configuration file.
+
+### Create a service account
+Create a service account with read/write access to storage buckets:
+```
+export SERVICE_ACCOUNT=user-gcp-sa
+export SERVICE_ACCOUNT_EMAIL=${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com
+gcloud iam service-accounts create ${SERVICE_ACCOUNT} \
+  --display-name "GCP Service Account for use with kubeflow examples"
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --member \
+  serviceAccount:${SERVICE_ACCOUNT_EMAIL} \
+  --role=roles/storage.admin
+```
+Generate a credentials file for upload to the cluster:
+```
+export KEY_FILE=${HOME}/secrets/${SERVICE_ACCOUNT_EMAIL}.json
+gcloud iam service-accounts keys create ${KEY_FILE} \
+  --iam-account ${SERVICE_ACCOUNT_EMAIL}
+```
+
+
+### Create a storage bucket
+Create a Cloud Storage bucket for storing your trained model and issue the mb (make bucket) command:
+```
+export BUCKET_NAME=kubeflow-${PROJECT_ID}
+gsutil mb -c regional -l us-central1 gs://${BUCKET_NAME}
+```
+Click Check my progress to verify the objective.
+
+
+### Create a cluster
+Create a managed Kubernetes cluster on Kubernetes Engine by running:
+```
+kfctl init kubeflow-qwiklab --platform gcp --project ${PROJECT_ID}
+```
+
+(Enabling services can take several minutes.)
+```
+cd kubeflow-qwiklab
+kfctl generate platform
+sed -i 's/n1-standard-8/n1-standard-4/g' gcp_config/cluster.jinja
+kfctl apply platform
+```
+
+Cluster creation will take a few minutes to complete.
+
+Ignore the error about setting CLIENT_ID. In the interest of time, you are skipping this step.
+
+To verify the connection, run the following command:
+
+```
+kubectl cluster-info
+```
+
+
+Verify that this IP address matches the IP address corresponding to the Endpoint in your [Google Cloud Platform Console](https://console.cloud.google.com/kubernetes/clusters/details/us-central1-a/kubeflow-qwiklab) by comparing the Kubernetes master IP is the same as the Master_IP address in the previous step.
+
+
+
+#### Upload service account credentials
+```
+kubectl create secret generic user-gcp-sa \
+  --from-file=user-gcp-sa.json="${KEY_FILE}"
+```
+
+
+### Install Kubeflow
+
+Next, install Kubeflow:
+```
+kfctl generate k8s
+kfctl apply k8s
+```
+
+Installing Kubeflow will take several minutes.
+
+ksonnet is a templating framework which allows you to utilize common object definitions and customize them to your environment. You'll begin by referencing Kubeflow templates and apply environment-specific parameters. Once manifests have been generated specifically for your cluster, they can be applied like any other Kubernetes object using `kubectl`.
+
+
+#### Add Seldon to the default installation
+
+Run the following to install Seldon:
+
+```
+cd ${HOME}/kubeflow-qwiklab/ks_app
+ks generate seldon seldon
+ks apply default -c seldon
+```
+
+
+Your cluster now contains a Kubernetes installation with [Seldon](https://www.seldon.io/), which has the following components:
+
+* Reverse HTTP proxy (Ambassador)
+* Central dashboard
+* Jupyterhub
+* TF job dashboard
+* TF job operator
+* Seldon cluster manager
+* Seldon cache
+
+
+
+You can view the components by running:
+```
+kubectl get pods
+```
+
+> **Note**: Image pulls can take a while. You can expect pods to remain in **ContainerCreating** status for a few minutes.
+
+You should see output similar to this:
+
+![ContainerCreating](/assets/images/kubernetes-02/hRupufAQd74HUuCBydLnJO60m6tb1s30PSOQscFPYgk=.png)
+
+
+### Train a model
+
+
+In this section, you will create a component that trains a model.
+
+Set the component parameters:
+
+```
+cd ${HOME}/kubeflow-qwiklab/ks_app
+ks generate tf-job-simple-v1beta1 tfjob --name tfjob-issue-summarization
+cp ${HOME}/examples/github_issue_summarization/ks_app/components/tfjob.jsonnet components/
+ks param set tfjob gcpSecretName "user-gcp-sa"
+ks param set tfjob gcpSecretFile "user-gcp-sa.json"
+ks param set tfjob image "gcr.io/kubeflow-examples/tf-job-issue-summarization:v20180629-v0.1-2-g98ed4b4-dirty-182929"
+ks param set tfjob input_data "gs://kubeflow-examples/github-issue-summarization-data/github_issues_sample.csv"
+ks param set tfjob input_data_gcs_bucket "kubeflow-examples"
+ks param set tfjob input_data_gcs_path "github-issue-summarization-data/github-issues.zip"
+ks param set tfjob num_epochs "7"
+ks param set tfjob output_model "/tmp/model.h5"
+ks param set tfjob output_model_gcs_bucket "${BUCKET_NAME}"
+ks param set tfjob output_model_gcs_path "github-issue-summarization-data"
+ks param set tfjob sample_size "100000"
+```
+
+The training component `tfjob` is now configured to use a pre-built container image.
+
+
+
+### Launch training
+
+Ensure that you are in the proper working directory by running the following command:
+```
+cd ${HOME}/kubeflow-qwiklab/ks_app
+```
+
+Apply the component manifests to the cluster:
+```
+ks apply default -c tfjob
+```
+
+
+#### View the running job
+View the resulting pods:
+```
+kubectl get pod -l tf_job_name=tfjob-issue-summarization
+```
+
+
+
+Your cluster state should look similar to this:
+
+![View the running job](/assets/images/kubernetes-02/jA7gEtqujRikggC_SESB0imTb9aNFKEKx54QQ8wqQWk=.png)
+
+
+It can take a few minutes to pull the image and start the container. Re-run the command until you see the status is Running.
+
+
+Once `tfjob-issue-summarization-master-0` is running, tail the logs:
+```
+kubectl logs -f tfjob-issue-summarization-master-0
+```
+
+Inside the pod, you will see the download of source data (github-issues.zip) before training begins. Continue tailing the logs until the pod exits on its own and you find yourself back at the command prompt.
+
+![Print the logs for a container in a pod or specified resource. If the pod has only one container, the container name is optional.](/assets/images/kubernetes-02/XQtcI+WQgUKsyPqhfYqENETgeOoJTMRjujDpubWF6RU=.png)
+
+
+To verify that training completed successfully, check to make sure all three model files were uploaded to your Cloud Storage bucket:
+```
+gsutil ls gs://${BUCKET_NAME}/github-issue-summarization-data
+```
+
+You should see something like this:
+```
+gs://kubeflow-qwiklabs-gcp-bfa3ed6267fb8997/github-issue-summarization-data/body_pp.dpkl
+gs://kubeflow-qwiklabs-gcp-bfa3ed6267fb8997/github-issue-summarization-data/seq2seq_model_tutorial.h5
+gs://kubeflow-qwiklabs-gcp-bfa3ed6267fb8997/github-issue-summarization-data/title_pp.dpkl
+
+```
+
+### Serve the trained model
+
+Next you will create a component that serves a trained model.
+
+Set component parameters:
+```
+export SERVING_IMAGE=gcr.io/kubeflow-examples/issue-summarization-model:v20180718-g98ed4b4-qwiklab
+```
+
+
+
+### Create the serving component
+
+
+The serving component is configured to run a pre-built image. Using a Seldon ksonnet template, generate the serving component.
+
+Navigate back to the ksonnet app directory for Kubeflow, and issue the following command:
+```
+cd ${HOME}/kubeflow-qwiklab/ks_app
+ks generate seldon-serve-simple-v1alpha2 issue-summarization-model \
+  --name=issue-summarization \
+  --image=${SERVING_IMAGE} \
+  --replicas=2
+```
+
+#### Launch serving
+Apply the component manifests to the cluster:
+```
+ks apply default -c issue-summarization-model
+```
+
+#### View the running pods
+You will see several new pods appear:
+```
+kubectl get pods -l seldon-deployment-id=issue-summarization
+```
+
+(Output)
+
+![several new pods appear](/assets/images/kubernetes-02/1rBCLsBIoPxl5nROsCqxpLZpV_Xm23P6aJB2Vsd_Ojo=.png)
+
+
+
+Your cluster state should look similar to this:
+
+
+![cluster state](/assets/images/kubernetes-02/xi28s9g3w4PxJUsGxOFjA7OyR_ez0UnbCg7v_m5YVEg=.png)
+
+
+Wait a minute or two and re-run the previous command. Once the pods are running, run the following command to view the logs for one of the serving containers to verify that it is running on port 9000:
+```
+kubectl logs \
+  $(kubectl get pods \
+    -lseldon-deployment-id=issue-summarization \
+    -o=jsonpath='{.items[0].metadata.name}') \
+  issue-summarization
+```
+You should see a similar output:
+```
+ * Running on http://0.0.0.0:9000/ (Press CTRL+C to quit)
+
+```
+
+
+### Add a UI
+In this section, you will create a component that provides browser access to the serving component.
+
+Set parameter values
+```
+cd ${HOME}/kubeflow-qwiklab/ks_app
+ks generate deployed-service ui \
+  --name issue-summarization-ui \
+  --image gcr.io/kubeflow-examples/issue-summarization-ui:v20180629-v0.1-2-g98ed4b4-dirty-182929
+
+cp ${HOME}/examples/github_issue_summarization/ks_app/components/ui.jsonnet components/
+
+ks param set ui githubToken ${GITHUB_TOKEN}
+ks param set ui modelUrl "http://issue-summarization.kubeflow.svc.cluster.local:8000/api/v0.1/predictions"
+
+```
+
+The UI component is now configured to use a pre-built container image which is made available in Container Registry (gcr.io).
+
+> Note: If you would prefer to generate your own image instead, continue with the (Optional) Create the UI Image step. Otherwise, continue with Launch the UI.
+
+
+#### (Optional) Create the UI image
+
+Image creation can take 5-10 minutes. This step is optional. Alternatively, skip directly to the Launch the UI section below.
+
+Switch to the docker directory and build the image for the UI:
+```
+cd ${HOME}/examples/github_issue_summarization/docker
+docker build -t gcr.io/${PROJECT_ID}/issue-summarization-ui:latest .
+```
+After the image has been successfully built, store it in Container Registry:
+```
+docker push gcr.io/${PROJECT_ID}/issue-summarization-ui:latest
+```
+
+
+Update the component parameter with a link that points to the custom image:
+```
+cd ${HOME}/kubeflow-qwiklab/ks_app
+ks param set ui image gcr.io/${PROJECT_ID}/issue-summarization-ui:latest
+
+```
+
+
+
+#### Launch the UI
+Apply the component manifests to the cluster:
+```
+ks apply default -c ui
+```
+You should see an additional pod with the status ContainerCreating:
+```
+kubectl get pods -l app=issue-summarization-ui
+```
+
+![Launch the UI](/assets/images/kubernetes-02/1rwtodXvJXqYLIK6B3R27iVPCsf0vP+m1CHl+_TfYlk=.png)
+
+
+#### View the UI
+To view the UI, open a port to the ambassador service:
+```
+kubectl port-forward svc/ambassador 8080:80
+```
+
+In Cloud Shell, click on the Web Preview button and select "Preview on port 8080."
+
+
+
+![Preview on port 8080](/assets/images/kubernetes-02/1rwtodXvJXqYLIK6B3R27iVPCsf0vP+m1CHl+_TfYlk=.png)
+
+This will open a new browser tab that shows the Kubeflow Central Dashboard. Add the text "issue-summarization/" to the end of the URL and press Enter (don't forget the trailing slash).
+
+You should see something like this:
+
+
+![Preview UI](/assets/images/kubernetes-02/Yp9BkXt2qrW+9ffDMYS12TiuQav0eWS8LNKNXPOE9QY=.png)
+
+Click the Populate Random Issue button to fill in the large text box with a random issue summary. Then click the Generate Title button to view the machine generated title produced by your trained model. Click the button a couple of times to give yourself some more data to look at in the next step.
+
+
+
+### View serving container logs
+
+In Cloud Shell, tail the logs of one of the serving containers to verify that it is receiving a request from the UI and providing a prediction in response:
+```
+kubectl logs -f \
+  $(kubectl get pods \
+    -lseldon-deployment-id=issue-summarization \
+    -o=jsonpath='{.items[0].metadata.name}') \
+  issue-summarization
+```
+Back in the UI, press the Generate Title button a few times to view the POST request in Cloud Shell. Since there are two serving containers, you might need to try a few times before you see the log entry.
+```
+google3528628_student@cloudshell:~/kubeflow-qwiklab/ks_app (qwiklabs-gcp-86fddff50e06d8bf)$ kubectl logs -f \
+>   $(kubectl get pods \
+>     -lseldon-deployment-id=issue-summarization \
+>     -o=jsonpath='{.items[0].metadata.name}') \
+>   issue-summarization
+Using TensorFlow backend.
+body_pp file body_pp.dpkl
+title_pp file title_pp.dpkl
+model file seq2seq_model_tutorial.h5
+2019-05-29 23:57:43.232121: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this
+ TensorFlow binary was not compiled to use: AVX2 FMA
+ * Running on http://0.0.0.0:9000/ (Press CTRL+C to quit)
+10.40.0.34 - - [30/May/2019 00:07:57] "POST /predict HTTP/1.1" 200 -
+10.40.1.25 - - [30/May/2019 00:08:35] "POST /predict HTTP/1.1" 200 -
+10.40.1.25 - - [30/May/2019 00:09:01] "POST /predict HTTP/1.1" 200 -
+```
+
+### Clean up
+Remove GitHub token
+Navigate to https://github.com/settings/tokens and remove the token you generated for this lab.
+
+#### Delete the Cluster
+In Cloud Shell, run the following command to delete the cluster:
+
+gcloud container clusters delete kubeflow-qwiklab --zone=us-central1-a
+
+Sample output:
+```
+The following clusters will be deleted.
+ - [kubeflow-qwiklab] in [us-central1-a]
+
+Do you want to continue (Y/n)?  Y
+
+Deleting cluster kubeflow-qwiklab...done.
+Deleted [https://container.googleapis.com/v1/projects/qwiklabs-gcp-419184863edcf031/zones/us-central1-a/clusters/kubeflow-qwiklab]
+
+```
+
+
 
 ## Deploy a Web App on GKE with HTTPS Redirect using Lets Encrypt
 
