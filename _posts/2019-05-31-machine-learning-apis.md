@@ -108,20 +108,52 @@ The API Dashboard details your project's usage of specific APIs, including traff
 From the API list, select Fitness API:
 
 
+![select Fitness API in Dashboard](/assets/images/ml-01/PTEVX832ov+aBDftFoiysCPGYIIzT+5ABfSvSxuk7ws=.gif)
+
+
+From this page you can view and request quotas, control access to resources and data, and view metrics. To see one of these features in action, select Quotas from the left-hand menu.
+
+This shows you how many queries this API allows per day, per user, and per second:
+
+
+![how many queries this API allows](/assets/images/ml-01/Nr04DY3tgWN6Wzmxu2lKHg4dpm8GjxxBXLgNOI+4xkM=.png)
+
+
+Now that you've gotten experience provisioning a non-GCP API, the rest of the hands-on practice will involve the Google Cloud Storage API. You will now learn about the architecture and basic functioning of APIs.
+
+
+### API Architecture
+APIs are a set of methods that allow programs to communicate with one another. To communicate effectively, programs need to adhere to a clear protocol that governs the transfer and interpretation of data.
+
+#### Client-server model
+The internet is the standard communication channel that APIs use to transmit requests and responses between programs. The [client-server model](https://en.wikipedia.org/wiki/Client%E2%80%93server_model) is the underlying architecture that web-based APIs use for exchanging information.
+
+The client is a computing device (e.g. a smartphone, laptop, etc.) that makes a request for some computing resource or data. The client's request needs to be formatted in the agreed upon protocol.
+
+The server has data and/or computing resources stored on it. Its job is to interpret and fulfill a client's request.
+
+The following is a visual representation of the client-server model:
+
+![client-server model](/assets/images/ml-01/NCUCvY6YCvhRw9iyhaZWY1XcoXU4X0F7iwhzSOyyo6E=.png)
 
 
 
 
+### HTTP protocol and request methods
 
+Since APIs use the web as a communication channel, many of them adhere to the HTTP protocol, which specifies rules and methods for data exchange between clients and servers over the internet. The HTTP protocol is not only used by APIs — it is the standard for web communication where data is sent and received over the internet.
 
+APIs that utilize the HTTP protocol use HTTP request methods (also known as "HTTP verbs") for transmitting client requests to servers. The most commonly used HTTP request methods are GET, POST, PUT, and DELETE.
 
+The GET request method is used by a client to fetch data from a server. If the requested resource is found on the server, it will then be sent back to the client.
 
+The PUT method replaces existing data or creates data if it does not exist. If you use PUT many times, it will have no effect — there will only be one copy of the dataset on the server.
 
+The POST method is used primarily to create new resources. Using POST many times will add data in multiple places on the server. It is recommended to use PUT to update resources and POST to create new resources.
 
+The DELETE method will remove data or resources specified by the client on a server.
 
-
-
-
+Although there are hundreds of APIs out there, all with their own unique purposes and specializations, it's important to realize that at the end of the day they all use the same protocol and underlying methods for client-server communication.
 
 
 ---
