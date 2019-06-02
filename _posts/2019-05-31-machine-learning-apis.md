@@ -100,7 +100,7 @@ The API library provides links to tutorials and documentation, terms of service,
 ### API Dashboard
 Inspect the Fitness API in the GCP Console's API Dashboard. Open the navigation menu and and select APIs & Services > Dashboard:
 
-![API Dashboard](/assets/images/ml-01/luTPsurvO5Bl_BZKKUmqRZAtBJavYoBvx+bsdov_t00=.png)
+![API Dashboard](/assets/images/ml-01/luTPsurvO5Bl_BZKKUmqRZAtBJavYoBvx+bsdov_t00=.gif)
 
 
 The API Dashboard details your project's usage of specific APIs, including traffic levels, error rates, and even latencies, which helps you quickly triage problems with applications that use Google services.
@@ -108,7 +108,7 @@ The API Dashboard details your project's usage of specific APIs, including traff
 From the API list, select Fitness API:
 
 
-![select Fitness API in Dashboard](/assets/images/ml-01/PTEVX832ov+aBDftFoiysCPGYIIzT+5ABfSvSxuk7ws=.gif)
+![select Fitness API in Dashboard](/assets/images/ml-01/PTEVX832ov+aBDftFoiysCPGYIIzT+5ABfSvSxuk7ws=.png)
 
 
 From this page you can view and request quotas, control access to resources and data, and view metrics. To see one of these features in action, select Quotas from the left-hand menu.
@@ -154,6 +154,185 @@ The POST method is used primarily to create new resources. Using POST many times
 The DELETE method will remove data or resources specified by the client on a server.
 
 Although there are hundreds of APIs out there, all with their own unique purposes and specializations, it's important to realize that at the end of the day they all use the same protocol and underlying methods for client-server communication.
+
+
+
+### Endpoints
+
+APIs use HTTP methods to interact with data or computing services hosted on a server. These methods are useless if there isn't a way to access specific resources with consistency. APIs utilize communication channels called endpoints so that clients can access the resources they need without complication or irregularity.
+
+Endpoints are access points to data or computing resources hosted on a server and they take the form of an [HTTP URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). Endpoints are added to an API's base URL (e.g. http://example.com) to create a path to a specific resource or container of resources. The following are some examples of endpoints:
+
+
+* http://example.com/storelocations
+* http://example.com/accounts
+* http://example.com/employees
+
+The following are also valid endpoints:
+
+* http://example.com/storelocations/sanfrancisco
+* http://example.com/storelocations/newdelhi
+* http://example.com/storelocations/london
+
+
+You can add query strings to endpoints (e.g. http://example.com/endpoint/?id=1) to pass in variables that may be needed to complete an API's request. Endpoints are referred to as the "nouns" that verbs (HTTP methods) act on, and APIs use this framework to fulfill requests.
+
+More specifically, a client sends a request composed of an HTTP method (verb) and an endpoint (noun) to receive specific data or to perform a particular action on the server. It's important to realize that the server is the one that fulfills a client's request by translating and performing a specific operation based on the method and endpoint provided.
+
+Since the backend is where all of the heavy lifting takes place, it could be said that an API that utilizes HTTP methods and endpoints lives on the server, acting as an implementer for client requests. This model loosely defines RESTful APIs, which are examined in more detail in the next section. For hands-on practice building endpoints for an API, please take the lab [Cloud Endpoints: Qwik Start](https://google.qwiklabs.com/catalog_lab/841).
+
+
+You can add query strings to endpoints (e.g. http://example.com/endpoint/?id=1) to pass in variables that may be needed to complete an API's request. Endpoints are referred to as the "nouns" that verbs (HTTP methods) act on, and APIs use this framework to fulfill requests.
+
+More specifically, a client sends a request composed of an HTTP method (verb) and an endpoint (noun) to receive specific data or to perform a particular action on the server. It's important to realize that the server is the one that fulfills a client's request by translating and performing a specific operation based on the method and endpoint provided.
+
+Since the backend is where all of the heavy lifting takes place, it could be said that an API that utilizes HTTP methods and endpoints lives on the server, acting as an implementer for client requests. This model loosely defines RESTful APIs, which are examined in more detail in the next section. For hands-on practice building endpoints for an API, please take the lab [Cloud Endpoints: Qwik Start](https://google.qwiklabs.com/catalog_lab/841).
+
+
+### RESTful APIs
+
+APIs that utilize the HTTP protocol, request methods, and endpoints are referred to as RESTful APIs. REST (Representational State Transfer) is an architectural style that prescribes standards for web-based communication. The Google [description of a RESTful system](https://developers.google.com/photos/library/guides/about-restful-apis):
+
+> ...resources are stored in a data store; a client sends a request that the server perform a particular action (such as creating, retrieving, updating, or deleting a resource), and the server performs the action and sends a response, often in the form of a representation of the specified resource.
+
+This resource-oriented design is a key principle of REST. [RESTful APIs are modelled](https://cloud.google.com/apis/design/resources#what_is_a_rest_api) as:
+
+> ...collections of individually-addressable resources... The resources and methods are known as nouns and verbs of APIs. With the HTTP protocol, the resource names naturally map to URLs, and methods naturally map to HTTP methods...
+
+These terms should sound familiar since you examined these building blocks in the previous sections. REST is the most widely used framework for APIs. In 2010, about 74% of public network APIs were HTTP REST APIs.
+
+Besides query strings, RESTful APIs can also use the following fields in their requests:
+
+* Headers: parameters that detail the HTTP request itself.
+* Body: data that a client wants to send to a server.
+
+The body is written in the JSON or XML data formatting language.
+
+### API Data Formats (JSON)
+
+RESTful APIs use either XML or JSON (JavaScript Object Notation) as file formats for data held in the body of an HTTP request method.
+
+JSON has surpassed XML in RESTful API use largely because JSON is lightweight, easier to read, and faster to parse. Next, a brief introduction to JSON syntax and structurewill be covered. For a more comprehensive reference, be sure to check out the W3C's [JSON syntax documentation](https://www.w3.org/TR/json-ld/).
+
+JSON supports the following data types:
+
+* Numbers: all types — no distinction between integers and floating point values.
+* Strings: text enclosed in quotes.
+* Booleans: True or False values.
+* Arrays: a list of elements grouped by similar type.
+* Null: an "empty" value.
+
+JSON data is composed of key-value pairs. These are linked pieces of data that are composed of a unique identifier (a key) that references piece(s) of data (value). The key must be of type string and the value can be any of the data types listed above.
+
+The following is an example of a simple key-value pair in JSON:
+
+```
+"Key1" : "Value 1"
+```
+
+Here are some more:
+```
+"Key2" : 64
+
+"Key3" : True
+
+"Key4" : ["this", "is", "an", "array"]
+```
+
+A JSON object uses curly braces { } to group data that's arranged in key-value pairs. The following is an example of an object that contains three key value pairs:
+
+
+```
+{
+	"Name": "Julie",
+	"Hometown": "Los Angeles, CA",
+	"Age": 28
+}
+```
+
+Commas separate the key-value pairs stored in an object.
+
+
+#### JSON Validator
+
+JSON files can contain any number of key-value pairs and/or objects. In professional development, it's not uncommon for some files to be hundreds, if not thousands, of lines long. As a developer, you know that one small error in formatting or syntax is enough to break your entire codebase.
+
+JSON validators like [jsonlint](https://jsonlint.com/) or, if you use Chrome as your primary browser, the [JSONView extension](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) quickly identify syntax and formatting issues in your JSON code and pinpoint ways to fix it.
+
+Get some practice with JSON validation. Open the [jsonlint](https://jsonlint.com/) validator in a new tab.
+
+
+Paste the following codeblock into the validator:
+
+```
+{
+	"Name": "Julie",
+	"Hometown": "Los Angeles, CA",
+	"Age": 28
+}
+```
+
+
+Then click Validate JSON. You should receive a green message that says Valid JSON in the results section.
+
+Now paste the following codeblock in the validator:
+
+```
+{
+	"Name": "Julie"
+	   "Hometown": "Los Angeles, CA",
+	"Age": 28
+}
+```
+
+Click Validate JSON.
+
+You will see that it has a missing comma and does not maintain proper indentation. The indentation gets corrected and the validator highlights where things went wrong:
+
+
+![Validate result](/assets/images/ml-01/muir1+FG+8Z0D180IaTOjjBKqxTe3A3ffikjWcvM8Pc=.png)
+
+
+The validator identified that there was a missing identifier (a comma) after the second line, which is what was anticipated. If you add a comma after the second line and click Validate JSON you should now receive the following output:
+
+![Validate result](/assets/images/ml-01/2XZFWsqNdbKvYexVDOCdKVth8VHSX3dXfTFVPYJTxAk=.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ---
