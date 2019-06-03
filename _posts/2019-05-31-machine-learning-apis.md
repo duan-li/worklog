@@ -898,6 +898,40 @@ For entities that have a wikipedia page, the API provides metadata including the
 Looking at this image it's relatively easy for us to pick out the important entities, but if we had a library of thousands of images this would be much more difficult. OCR, translation, and natural language processing can help to extract meaning from large datasets of images.
 
 
+## Classify Text into Categories with the Natural Language API
+
+
+### Confirm that the Cloud Natural Language API is enabled
+
+Click the menu icon in the top left of the screen.
+
+
+Select APIs & services > Dashboard.
+
+
+![APIs & services > Dashboard](/assets/images/ml-01/WQJmwscI63oS33XFMAfnfi8KoO8ewLpDH4A8ZsLKufM=.png)
+
+
+Click Enable APIs and services.
+
+
+![Enable APIs and services](/assets/images/ml-01/Yo+Xa10XwmyZ1SXn_sTup71Oor3HahGd9UnbdYcAdec=.png)
+
+Then, search for "language" in the search box. Click Google Cloud Natural Language API:
+
+
+![Google Cloud Natural Language API](/assets/images/ml-01/6tMzQwhF9Y5_vMFeXnjO0MXBfY53vLg5eEkQQw84N3U=.png)
+
+
+If the API is not enabled, you'll see the Enable button. Click Enable to enable the Cloud Natural Language API:
+
+![enable Google Cloud Natural Language API](/assets/images/ml-01/cmh3NCBZEY+HBoHPUPlsn8EnyqiO6WCJNWj4fKsFQkg=.png)
+
+### Create an API Key
+Since you're using curl to send a request to the Natural Language API, you need to generate an API key to pass in the request URL.
+
+To create an API key, in your Console, click Navigation menu > APIs & services > Credentials:
+
 
 
 
