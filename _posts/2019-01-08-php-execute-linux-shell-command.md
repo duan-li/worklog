@@ -8,6 +8,14 @@ date: 2019-01-08 14:08 +0000
 - `shell_exec` : returns all of the output stream as a string. [^1]
 - `system()` : displays output directly without using echo or print. [^2]
 - `passthru()` : when the output from the Unix command is binary data [^3]
+- `proc_open()`: proc_open — Execute a command and open file pointers for input/output [^4]
+
+The error data is output from the target program's STDERR stream. You can get access to the error data through the normal returned string from shell_exec() by appending `2>&1` to the command, which will redirect STDERR to STDOUT, the stream that you are currently seeing. [^5]
+
+```
+var_dump(shell_exec("ffmpeg -i /var/www/html/sitedomain/httpdocs/tmp/ebev1177.mp4 2>&1"));
+```
+
 
 [^1]: [PHP shell_exec vs exec](https://stackoverflow.com/questions/7093860/php-shell-exec-vs-exec)
 
@@ -15,4 +23,7 @@ date: 2019-01-08 14:08 +0000
 
 [^3]: [function.passthru.php](http://php.net/manual/en/function.passthru.php)
 
+[^4]: [proc_open](https://php.net/proc-open)
+
+[^5]: [PHP - How to get Shell errors echoed out to screen](https://stackoverflow.com/questions/15086572/php-how-to-get-shell-errors-echoed-out-to-screen)
 ---
