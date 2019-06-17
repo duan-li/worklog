@@ -45,4 +45,5 @@ fclose($pipes[2]);
 [^4]: [proc_open](https://php.net/proc-open)
 
 [^5]: [PHP - How to get Shell errors echoed out to screen](https://stackoverflow.com/questions/15086572/php-how-to-get-shell-errors-echoed-out-to-screen)
+
 ---
