@@ -12,10 +12,29 @@ date: 2019-01-08 14:08 +0000
 
 The error data is output from the target program's STDERR stream. You can get access to the error data through the normal returned string from shell_exec() by appending `2>&1` to the command, which will redirect STDERR to STDOUT, the stream that you are currently seeing. [^5]
 
-```
+```php
 var_dump(shell_exec("ffmpeg -i /var/www/html/sitedomain/httpdocs/tmp/ebev1177.mp4 2>&1"));
 ```
 
+```php
+$cwd='/tmp';
+$descriptorspec = array(
+//	0 => array("pipe", "r"),
+	1 => array("pipe", "w"),
+	2 => array("pipe", "w") );
+
+$process = proc_open("php1 -v", $descriptorspec, $pipes, $cwd);
+echo "stdout\n";
+
+$stdout = stream_get_contents($pipes[1]);
+var_dump($stdout); 
+fclose($pipes[1]);
+
+echo "stderr\n";
+$stderr = stream_get_contents($pipes[2]);
+var_dump($stderr);
+fclose($pipes[2]);
+```
 
 [^1]: [PHP shell_exec vs exec](https://stackoverflow.com/questions/7093860/php-shell-exec-vs-exec)
 
