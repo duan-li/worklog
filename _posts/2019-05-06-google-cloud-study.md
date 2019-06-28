@@ -1,9 +1,22 @@
 ---
 layout: post
 title: Google cloud study
-date: 2019-05-06 22:31 +0000
+date: 2019-05-07 08:31 +0000
 ---
+http://bit.ly/2Wvk5Au class note
 
+https://sites.google.com/qwiklabs.com/cloudheronext19/qwiklabs/cloud-study-jams-2019
+1s-sydney-6565
+
+
+https://www.coursera.org/promo/GoogleCloud?utm_source=googlecloud&utm_medium=institutions&utm_campaign=Global_Digital_Conference
+
+
+https://mol.org/
+GCP platform
+
+
+Google cloud console
 ### Basic
 ```bash
 # list the active account name with this command:

@@ -1188,6 +1188,8 @@ To perform more queries on your data, explore the [BigQuery documentation](https
 
 
 
+## Detect Labels, Faces, and Landmarks in Images with the Cloud Vision API
+
 
 
 
