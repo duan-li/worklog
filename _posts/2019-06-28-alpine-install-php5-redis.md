@@ -4,7 +4,7 @@ title: alpine install php5 redis
 date: 2019-06-28 04:32 +0000
 ---
 
-
+`alpine:3.8`
 
 ```bash
 0 apk update
@@ -58,7 +58,7 @@ date: 2019-06-28 04:32 +0000
   48 history
 ```
 
-
+## Ready for `dockerfile`
 ```bash
 apk add --update curl openssl php5-cli php5-dev php5-xml php5-dom php5-openssl php5-pear autoconf gcc make libc6-compat libc-dev 
 ln -s /usr/bin/php5 /usr/bin/php
