@@ -9,6 +9,16 @@ title: Docker
 docker pull <image name>
 ```
 
+**Build Image**
+```
+docker build --rm --force-rm --no-cache . -t image-name
+```
+
+* `--rm`: Remove intermediate containers after a successful build (default true)
+* `--force-rm`: Always remove intermediate containers
+* `--no-cache`: Do not use cache when building the image
+* `--pull`: Always attempt to pull a newer version of the image
+
 **Run Image as container**
 ```
 docker run -it --name="container-name" -v ~/Code:/Code <image name:imageversion> /bin/bash
@@ -128,13 +138,25 @@ tar -C $centos_root -c . | docker import - centos
 - [如何加固你的微服务容器——Part 1](http://dockone.io/article/2620)
 
 
-
-
-
-
-
 ## Docker Compose
-`docker-compose up`
+
+* `-f`, `--file FILE`: Specify an alternate compose file (default: docker-compose.yml)
+
+### `up`
+
+`docker-compose up -f docker-compose.yml -d --force-recreate -V`
+
+* `-f`: `docker-compose.yml` file.
+* `-d`: Detached mode: Run containers in the background, print new container names. Incompatible with `--abort-on-container-exit`.
+* `-V`: `--renew-anon-volumes`, Recreate anonymous volumes instead of retrieving data from the previous containers.
+* `--force-recreate`: Recreate containers even if their configuration and image haven't changed.
+
+### `down`
+
+`docker-compose down -v`
+
+* `-v`, `--volumes`: Remove named volumes declared in the `volumes` section of the Compose file and anonymous volumes attached to containers.
+* `--remove-orphans`: Remove containers for services not defined in the Compose file
 
 
 ## Dockerfile
