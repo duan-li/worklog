@@ -40,8 +40,9 @@ firebase init
 
 ```
 gem install travis --no-rdoc --no-ri
-travis login --pro
-travis encrypt "key string" --add
+travis login --com --auto
+travis encrypt "key string" --pro
+travis encrypt "key string" --pro --add
 ```
 
 # Config [^3]
