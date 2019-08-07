@@ -234,8 +234,23 @@ git push --force
 
 `bind P !git push origin`
 
-http://jonas.nitro.dk/tig/manual.html
-https://devhints.io/tig
+
+## Tig refs
+ - http://jonas.nitro.dk/tig/manual.html
+ - https://devhints.io/tig
+
+
+## Tig sheet
+ - git fetch
+ - git reset
+ - git commit
+ - git push
+ - git pull
+ - git diff `file`
+ - git diff `branch`
+ - git stack
+ 
+
 
 
 ---
