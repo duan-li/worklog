@@ -17,7 +17,9 @@ A collection of many awesomen code, tools, project and application[^1].
 * [PHP Excel Lib](https://github.com/PHPOffice/PhpSpreadsheet)
 * [SOLID Design Principles in PHP](https://github.com/wataridori/solid-php-example) [^2]
 * [Design Patterns PHP](https://github.com/domnikl/DesignPatternsPHP)
+* [PHP Event-Listener best-practice](https://stackoverflow.com/questions/4471183/php-event-listener-best-practice-implementation) in [Observer Pattern](https://sourcemaking.com/design_patterns/observer) [^php-event-listener-example]
 
+[^php-event-listener-example]: [php-event-listener-example gist](https://gist.github.com/im4aLL/548c11c56dbc7267a2fe96bda6ed348b)
 
 [^2]: [SOLID Design Principles Explained](https://stackify.com/solid-design-principles/)
 
