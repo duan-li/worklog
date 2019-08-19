@@ -31,7 +31,7 @@ title: A ToDo
 - [ ] add wordpress post
 - [x] make search working
 - [ ] template [hydeout](https://github.com/fongandrew/hydeout)
-- [ ] [hash in windows power shell](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-6)
+- [x] [hash in windows power shell](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-6)
 
 ## AWS Lambda
 - [x] include package
