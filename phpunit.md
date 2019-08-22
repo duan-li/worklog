@@ -43,6 +43,34 @@ title: PHPUNIT
 </phpunit>
 ```
 
+**With code coverage**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="unit">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+
+    </testsuites>
+    <logging>
+        <log type="coverage-html" target="./test-log/codeCoverage" charset="UTF-8"
+             yui="true" highlight="true" lowUpperBound="50" highLowerBound="80"
+             showUncoveredFiles="false" />
+        <!-- <log type="testdox-html" target="./log/testdox.html" /> -->
+<!--        <log type="testdox-text" target="./log/box" />-->
+    </logging>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+</phpunit>
+```
+
 **Test case**
 ```php
 class MakeTest extends \PHPUnit\Framework\TestCase
