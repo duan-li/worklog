@@ -24,8 +24,6 @@ url: "https://liduan.net"
 twitter_username: inputx
 github_username:  duan-li
 
-paginate: 10
-
 # Build settings
 markdown: kramdown
 theme: minima
@@ -40,6 +38,7 @@ defaults:
     values:
       image: true
 
+paginate: 10
 #paginate_path: "/worklog/page:num/"
 paginate_path: "/page:num/"
 
