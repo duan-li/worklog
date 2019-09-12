@@ -63,6 +63,34 @@ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock centos /bin/bas
 * [Install GitLab Runner manually on GNU/Linux](https://docs.gitlab.com/runner/install/linux-manually.html)
 
 
+## Gitlab runner example in centos 
+
+```bash
+  972  curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+  973  sudo chmod +x /usr/local/bin/gitlab-runner
+  974  useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+  975  gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
+  976  gitlab-runner start
+  977  gitlab-runner register
+```
+
+### runner with docker [^with_docker]
+
+[^with_docker]: [Using Docker images](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#define-image-and-services-from-gitlab-ciyml)
+
+```bash
+sudo gitlab-runner register \
+  --url "https://gitlab.example.com/" \
+  --registration-token "PROJECT_REGISTRATION_TOKEN" \
+  --description "docker-ruby-2.1" \
+  --executor "docker" \
+  --docker-image ruby:2.1 \
+  --docker-services postgres:latest \
+  --docker-services mysql:latest
+```
+
+
+
 ## Register Gitlab runner [^1]
 
 [^1]: [Registering Runners](https://docs.gitlab.com/runner/register/index.html)
