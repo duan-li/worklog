@@ -5,13 +5,13 @@ date: 2018-10-04 13:15 +0000
 ---
 
 
-File header
+## File header
 
 ```bash
 #!/bin/bash
 ```
 
-CLI param
+## CLI param
 
 ```bash
 echo $1
@@ -19,7 +19,7 @@ echo $2
 # cli param1 param2
 ```
 
-Check param is (not) empty
+### Check param is (not) empty
 
 ```bash
 if [ -z "$1" ]; then
@@ -31,7 +31,45 @@ if [ ! -z "$1" ]; then
 fi
 ```
 
-Put value to dynamiclly varable 
+### Bash Equals-Separated (e.g., --option=argument) (without getopt[s]) [^opt]
+
+[^opt]: [How do I parse command line arguments in Bash?](https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash)
+
+```bash
+#!/bin/bash
+
+for i in "$@"
+do
+case $i in
+    -e=*|--extension=*)
+    EXTENSION="${i#*=}"
+    shift # past argument=value
+    ;;
+    -s=*|--searchpath=*)
+    SEARCHPATH="${i#*=}"
+    shift # past argument=value
+    ;;
+    -l=*|--lib=*)
+    LIBPATH="${i#*=}"
+    shift # past argument=value
+    ;;
+    --default)
+    DEFAULT=YES
+    shift # past argument with no value
+    ;;
+    *)
+          # unknown option
+    ;;
+esac
+done
+echo "FILE EXTENSION  = ${EXTENSION}"
+echo "SEARCH PATH     = ${SEARCHPATH}"
+echo "LIBRARY PATH    = ${LIBPATH}"
+echo "DEFAULT         = ${DEFAULT}"
+```
+
+
+## Put value to dynamiclly varable 
 
 ```
 A_VAR='a'
@@ -44,6 +82,8 @@ echo $A_VAR
 ## File and directory
 Getting the contents of a directory using shell script. [^1]
 
+[^1]: [How to get the list of files in a directory in a shell script?](https://stackoverflow.com/questions/2437452/how-to-get-the-list-of-files-in-a-directory-in-a-shell-script)
+
 ```bash
 for entry in "$search_dir"/*
 do
@@ -52,8 +92,51 @@ done
 
 ```
 
-[^1]: [How to get the list of files in a directory in a shell script?](https://stackoverflow.com/questions/2437452/how-to-get-the-list-of-files-in-a-directory-in-a-shell-script)
+### Check directory
+```bash
+if [ -d "$DIR" ]; then
+    exit 0
+else
+	exit 1
+fi
+```
 
+## Color 
+
+You can use these ANSI escape codes:[^color]
+
+[^color]: [How to change the output color of echo in Linux](https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux)
+
+```bash
+#    .---------- constant part!
+#    vvvv vvvv-- the code from above
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+printf "I ${RED}love${NC} Stack Overflow\n"
+```
+
+Color | Code | Color | Code
+------------ | ------------- | ------------ | -------------
+Black         | `0;30m`   |   Dark Gray     | `1;30m`
+Red           | `0;31m`   |   Light Red     | `1;31m`
+Green         | `0;32m`   |   Light Green   | `1;32m`
+Brown/Orange  | `0;33m`   |   Yellow        | `1;33m`
+Blue          | `0;34m`   |   Light Blue    | `1;34m`
+Purple        | `0;35m`   |   Light Purple  | `1;35m`
+Cyan          | `0;36m`   |   Light Cyan    | `1;36m`
+Light Gray    | `0;37m`   |   White         | `1;37m`
+
+
+## functions
+```bash
+function get_string()
+{
+	echo "string"
+}
+
+STRING=$(get_string)
+
+```
 
 ---
 
