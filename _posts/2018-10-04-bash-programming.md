@@ -115,6 +115,18 @@ NC='\033[0m' # No Color
 printf "I ${RED}love${NC} Stack Overflow\n"
 ```
 
+```bash
+#!/bin/bash
+
+RED='\033[0;31m'
+YELLO='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+echo -e "I ${RED}love${NC} coding"
+echo -e "I ${YELLO}love${NC} coding"
+echo -e "I ${GREEN}love${NC} coding"
+```
+
 Color | Code | Color | Code
 ------------ | ------------- | ------------ | -------------
 Black         | `0;30m`   |   Dark Gray     | `1;30m`
