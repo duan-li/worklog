@@ -136,7 +136,14 @@ tar -C $centos_root -c . | docker import - centos
 - [浅谈Docker安全性支持](http://dockone.io/article/8266)
 - [从自身漏洞与架构缺陷，谈Docker安全建设](http://www.yunweipai.com/archives/21610.html)
 - [如何加固你的微服务容器——Part 1](http://dockone.io/article/2620)
+- [Best practices writing a Dockerfile](https://engineering.bitnami.com/articles/best-practices-writing-a-dockerfile.html)
+- [Improve your Dockerfile, best practices](https://dev.to/azure/improve-your-dockerfile-best-practices-5ll)
+- [Testing Strategies for Docker Driven Development](https://codefresh.io/docker-tutorial/testing-strategies-for-docker/) [^tools]
+- [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [10 Docker Image Security Best Practices](https://snyk.io/blog/10-docker-image-security-best-practices/)
+- [Best Practices for working with Dockerfiles](https://medium.com/@nagarwal/best-practices-for-working-with-dockerfiles-fb2d22b78186)
 
+[^tools]: [habitus](http://www.habitus.io/) and [codefresh.io](https://codefresh.io/)
 
 ## Docker Compose
 
