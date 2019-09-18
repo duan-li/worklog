@@ -22,6 +22,16 @@ This is my personal recommendation for beginners: start by learning virtualenv a
 [^recommendation]: [What is the difference between venv, pyvenv, pyenv, virtualenv, virtualenvwrapper, pipenv, etc?](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe)
 
 
+## virtualenv
+
+```bash
+virtualenv project-name # create new project
+# or 
+virtualenv . # initial exist project
+
+source project-name/bin/activate
+```
+
 
 
 ## ref
