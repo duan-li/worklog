@@ -8,7 +8,7 @@ date: 2018-07-30 15:36 +0000
 
 ### Grant Types [^v2]
 
-[^v2]: [https://oauth.net/2/](https://oauth.net/2/)
+[^v2]: [https://oauth.net/2/](https://oauth.net/2/) [Understanding OAuth2](http://www.bubblecode.net/en/2016/01/22/understanding-oauth2/)
 
 * Authorization Code
 * Implicit
@@ -104,5 +104,6 @@ php -S localhost:8080 & php -S localhost:8081
 ```
 
 
+---
 
 
