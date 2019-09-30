@@ -221,5 +221,21 @@ STRING=$(get_string)
 
 ```
 
+### Pass params into function [^fun_params]
+
+[^fun_params]: [Bash Scripting Tutorial - 7. Functions!](https://ryanstutorials.net/bash-scripting-tutorial/bash-functions.php)
+
+```bash
+function get_string()
+{
+        echo "$1"
+}
+
+
+STRING=$(get_string aaa)
+
+echo $STRING
+```
+
 ---
 
