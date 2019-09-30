@@ -142,6 +142,36 @@ else
 fi
 ```
 
+## Conditionals [^taniarascia]
+
+[^taniarascia]: [How to Create and Use Bash Scripts](https://www.taniarascia.com/how-to-create-and-use-bash-scripts/)
+
+Bash Operator | Operator | Description
+------------ | ------------- | ------------
+`-eq` | `==`  | Equal
+`-ne` | `!=`  | Not equal
+`-gt` | `>` | Greater than
+`-ge` | `>=` |  Greater than or equal
+`-lt` | `<`  |  Less than
+`-le` | `<=`  | Less than or equal
+`-z` | `==`  | null Is null
+
+## Looping [^looping]
+
+[^looping]: [Looping in bash](https://www.taniarascia.com/how-to-create-and-use-bash-scripts/#looping)
+
+```bash
+#!/bin/bash
+
+FILES=/Users/tania/dev/*
+
+for file in $FILES
+do
+    echo $(basename $file)
+done
+
+```
+
 ## Color 
 
 You can use these ANSI escape codes:[^color]
