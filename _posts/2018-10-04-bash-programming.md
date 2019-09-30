@@ -69,7 +69,9 @@ echo "DEFAULT         = ${DEFAULT}"
 ```
 
 
-## Put value to dynamiclly varable 
+## Varable
+
+### Put value to dynamiclly varable 
 
 ```
 A_VAR='a'
@@ -77,6 +79,45 @@ eval "$1_VAR"='cc'
 echo $A_VAR
 ```
 
+### reference a file for variables [^stackoverflow_bash]
+
+[^stackoverflow_bash]: [How to reference a file for variables using Bash?](https://stackoverflow.com/questions/5228345/how-to-reference-a-file-for-variables-using-bash) and [How to include file in a bash shell script](https://stackoverflow.com/questions/10823635/how-to-include-file-in-a-bash-shell-script)
+
+```bash
+source FILE
+# or
+. FILE
+
+```
+
+## Path
+
+### Source path
+
+#### Dirname
+```bash
+$(dirname "$0")
+```
+
+#### Source path
+```bash
+SOURCE="${BASH_SOURCE[0]}"
+echo $SOURCE
+```
+
+#### Source directory path [^source_directory]
+
+[^source_directory]: [Get the source directory of a Bash script from within the script itself](https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself)
+
+```bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+```
+
+### Execution directory
+
+```bash
+echo $(pwd)
+```
 
 
 ## File and directory
