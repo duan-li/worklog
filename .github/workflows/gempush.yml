@@ -21,7 +21,7 @@ jobs:
       run: |
         sudo apt-get install npm -y
         gem install bundler
-        npm install -g firebase-tools
+        sudo npm install -g firebase-tools
     - name: install
       run: bundle install --jobs=4
     - name: building
