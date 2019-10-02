@@ -17,8 +17,11 @@ jobs:
       with:
         version: 2.4.x
 
-    - name: before install (gem install bundler)
-      run: gem install bundler
+    - name: before install (tools)
+      run: |
+        apt-get install npm -y
+        gem install bundler
+        npm install -g firebase-tools
     - name: install
       run: bundle install --jobs=4
     - name: building
