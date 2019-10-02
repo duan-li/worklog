@@ -20,6 +20,13 @@ jobs:
     - name: before install (gem install bundler)
       run: gem install bundler
     - name: install
+      run: bundle install --jobs=4
+    - name: building
+      run: bundle exec jekyll build --future
+    - name: after building - update algolia
+      run: bundle exec jekyll algolia
+
+    - name: before deploy - opt directory
       run: |
-        bundle install --jobs=4
-        bundle exec jekyll build --future
+        rm -R public
+        mv _site public
