@@ -28,6 +28,8 @@ jobs:
       run: bundle exec jekyll build --future
     - name: after building - update algolia
       run: bundle exec jekyll algolia
+      env:
+        ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
 
     - name: before deploy - opt directory
       run: |
