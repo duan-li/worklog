@@ -19,7 +19,7 @@ jobs:
 
     - name: before install (tools)
       run: |
-        apt-get install npm -y
+        sudo apt-get install npm -y
         gem install bundler
         npm install -g firebase-tools
     - name: install
