@@ -3,6 +3,8 @@ layout: page
 title: Google Cloud Platform
 ---
 
+
+
 ## Regions and Zones [^rz]
 
 [^rz]: [Regions and Zones](https://cloud.google.com/compute/docs/regions-zones/)
@@ -30,6 +32,7 @@ us-east4 | a, b, c | Ashburn, Northern Virginia, USA
 us-west1 | a, b, c | The Dalles, Oregon, USA
 us-west2 | a, b, c | Los Angeles, California, USA
 
+
 ### Setting a default compute zone
 
 ```bash
@@ -41,6 +44,11 @@ gcloud config set compute/zone us-central1-a
 ```bash
 gcloud config set compute/region us-central1
 ```
+
+
+## `gsutil` command line
+
+-[ ] TODO
 
 ## VM instances
 
@@ -186,5 +194,46 @@ kubectl get service hello-server
 ```bash
 gcloud container clusters delete cluster1
 ```
+
+#### kubectl
+
+##### check version
+```bash
+kubectl version
+```
+
+##### run instance
+```bash
+kubectl run nginx --image=nginx:1.10.0
+```
+
+
+##### get pots
+
+```bash
+kubectl get pods
+```
+
+##### expose deployment
+```bash
+
+kubectl expose deployment nginx --port 80 --type LoadBalancer
+```
+
+##### get services
+
+```bash
+kubectl get services
+```
+
+##### scale deployment
+
+```bash
+kubectl scale deployment nginx --replicas 3
+```
+
+
+
+
 
 ---

@@ -3,6 +3,18 @@ layout: page
 title: Laravel Migration
 ---
 
+
+# Database
+## SQlite
+
+### Create empty sqlite database [^sqlite_new]
+
+[^sqlite_new]: [Create empty sqlite db from command line](https://stackoverflow.com/questions/20155693/create-empty-sqlite-db-from-command-line)
+
+```bash
+sqlite3 file.db "VACUUM;"
+```
+
 # Table
 
 ## Check table
