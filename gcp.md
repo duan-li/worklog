@@ -232,8 +232,54 @@ kubectl get services
 kubectl scale deployment nginx --replicas 3
 ```
 
+--
+
+## App engine
+
+### deploy
+
+```bash
+gcloud app deploy ./index.yaml ./app.yaml
+```
+
+-- 
+
+## Deployment Manager and Stackdriver
 
 
+### `yaml` file
+```yaml
+resources:
+  - name: my-vm
+    type: compute.v1.instance
+    properties:
+      zone: us-central1-a
+      machineType: zones/ZONE/machineTypes/n1-standard-1
+      metadata:
+        items:
+        - key: startup-script
+          value: "apt-get update"
+      disks:
+      - deviceName: boot
+        type: PERSISTENT
+        boot: true
+        autoDelete: true
+        initializeParams:
+          sourceImage: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20180806
+      networkInterfaces:
+      - network: https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/networks/default
+        accessConfigs:
+        - name: External NAT
+          type: ONE_TO_ONE_NAT
+```
 
+### create deployment
+```bash
+gcloud deployment-manager deployments create my-first-depl --config mydeploy.yaml
+```
+### update deployment
+```bash
+gcloud deployment-manager deployments update my-first-depl --config mydeploy.yaml
+```
 
 ---
