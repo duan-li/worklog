@@ -35,6 +35,6 @@ jobs:
       run: |
         rm -R public
         mv _site public
-        firebase deploy --token "$FIREBASE_TOKEN"
+        sudo firebase deploy --token "$FIREBASE_TOKEN"
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
