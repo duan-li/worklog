@@ -242,6 +242,12 @@ kubectl scale deployment nginx --replicas 3
 gcloud app deploy ./index.yaml ./app.yaml
 ```
 
+--
+
+## Storage
+
+- [ ] to add
+
 -- 
 
 ## Deployment Manager and Stackdriver
