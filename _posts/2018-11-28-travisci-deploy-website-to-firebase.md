@@ -24,15 +24,52 @@ apt-get install npm ruby git ruby-dev -y
 ```
 
 ### firebase
-Run firebase [^1]
+Run firebase [^1], **Make sure you have 9005 port**
 ```
 npm install -g firebase-tools
 
 cd /website
 
-firebase login:ci
+firebase login:ci 
 
 firebase init
+
+export FIREBASE_TOKEN=TOKEN
+
+echo $FIREBASE_TOKEN
+```
+
+#### firebase json `firebase.json`
+
+```json
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+```
+
+
+
+#### firebase config `.firebaserc`
+
+```json
+{
+  "projects": {
+    "default": "project-id"
+  }
+}
 ```
 
 ### Travis CI
