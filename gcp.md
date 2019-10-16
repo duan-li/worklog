@@ -250,6 +250,29 @@ gcloud app deploy ./index.yaml ./app.yaml
 
 -- 
 
+
+## network
+
+list
+
+```bash
+gcloud compute networks list
+gcloud compute networks subnets list --sort-by=NETWORK
+```
+
+create
+```bash
+gcloud compute networks create privatenet --subnet-mode=custom
+```
+
+### firlistewall rules
+
+```bash
+gcloud compute firewall-rules list --sort-by=NETWORK
+```
+
+-- 
+
 ## Deployment Manager and Stackdriver
 
 
