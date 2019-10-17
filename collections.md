@@ -35,4 +35,14 @@ title: Collections
 ### development
 
 * [Rookout - Data collection and Debugging](https://www.rookout.com/solution/)
+
+### investment
+
+* [robinhood](https://robinhood.com/au/)
+* [fidelity](https://www.fidelity.com/) [^6park]
+
+[^6park]: https://club.6parkbbs.com/know1/index.php?app=forum&act=threadview&tid=13774505
+
+
+
 ---
