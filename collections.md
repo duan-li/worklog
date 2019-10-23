@@ -45,4 +45,10 @@ title: Collections
 
 
 
+### opportunities
+
+* [toptal](https://www.toptal.com)
+* [upwork](https://www.upwork.com/)
+
+
 ---
