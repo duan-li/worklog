@@ -160,3 +160,14 @@ U[User] -- one to one --> N[Name]
 $user->hasOne(Name::class)
 $name->hasOne(User::class)
 ```
+
+# Factory
+
+`create` persists to the database while `make` just creates a new instance of the model. Laravel `create` method is created the model instance and save data in the database. `make` function has created the instance of the class. [^laravel_factory]
+
+
+[^laravel_factory]: [Laravel Faker - What's the difference between create and make](https://stackoverflow.com/questions/44119401/laravel-faker-whats-the-difference-between-create-and-make)
+
+---
+
+
