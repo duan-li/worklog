@@ -127,6 +127,31 @@ tar -C $centos_root -c . | docker import - centos
 - [Apline docker image git repo](https://github.com/gliderlabs/docker-alpine/)
 - [Apline release archive files](http://dl-cdn.alpinelinux.org/alpine/v3.8/releases/x86_64/)
 
+### Clean up after building docker image
+
+#### Alpine liinux
+
+```bash
+apk del <package-name>
+rm -rf /var/cache/apk/*
+```
+
+#### Centos
+
+```bash
+yum clean all
+rm -rf /var/cache/yum
+```
+
+#### Other 
+
+```bash
+pecl clear-cache 
+rm -Rf /tmp/pear
+```
+
+
+
 ## Docker security
 - [5 Best Practices to Container Image Security](https://www.twistlock.com/2017/08/31/container-image-security-best-practices/)
 - [Five Docker Security Best Practices](https://thenewstack.io/5-docker-security-best-practices/)
