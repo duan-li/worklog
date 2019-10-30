@@ -129,7 +129,7 @@ tar -C $centos_root -c . | docker import - centos
 
 ### Clean up after building docker image
 
-#### Alpine liinux
+#### Alpine linux
 
 ```bash
 apk del <package-name>
@@ -150,6 +150,17 @@ pecl clear-cache
 rm -Rf /tmp/pear
 ```
 
+### Tools minimize size
+
+You can also try to reduce the size of your images using 2 tools [^tools]
+
+[^tools]: [How to reduce the size of RHEL/Centos/Fedora Docker image](https://stackoverflow.com/questions/46089219/how-to-reduce-the-size-of-rhel-centos-fedora-docker-image)
+
+https://github.com/mvanholsteijn/strip-docker-image
+
+and
+
+https://github.com/docker-slim/docker-slim
 
 
 ## Docker security
