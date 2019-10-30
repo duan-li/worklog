@@ -224,6 +224,10 @@ https://github.com/docker-slim/docker-slim
 
  # Docker Label Schema
 
+> Labels allow us to specify the metadata, but all it does is that. The next obvious step is to come up with some kind of a standard set of Labels that third party tools can look for in the Images. [^docker_label_schema]
+
+[^docker_label_schema]: [Let’s make your Docker Image better than 90% of existing ones](https://medium.com/@chamilad/lets-make-your-docker-image-better-than-90-of-existing-ones-8b1e5de950d)
+
  Build-time labels [^3]
 
  [^3]: [Label schema rc1](http://label-schema.org/rc1/)
