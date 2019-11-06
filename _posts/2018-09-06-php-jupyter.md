@@ -4,6 +4,26 @@ title: PHP jupyter
 date: 2018-09-06 09:53 +0000
 ---
 
+## Start from `jupyter`
+
+### docker anaconda3 [^docker]
+
+[^docker]: [docker-anaconda](https://github.com/ContinuumIO/docker-images/blob/anaconda3-5.0.1/anaconda3/README.md)
+
+```bash
+docker pull continuumio/anaconda3:2019.10
+docker run -it -p 8888:8888 --rm continuumio/anaconda3:2019.10 /bin/bash
+/opt/conda/bin/conda install jupyter -y --quiet
+mkdir /opt/notebooks
+/opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root
+```
+
+Also can reduce size by using `docker-miniconda`. [^docker2]
+
+
+
+
+
 ## You need 
 * jupyter `pip install jupyter`
 * zeroMQ `brew install zeromq`
