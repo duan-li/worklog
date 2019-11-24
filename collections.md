@@ -36,14 +36,19 @@ title: Collections
 
 * [Rookout - Data collection and Debugging](https://www.rookout.com/solution/)
 
+#### IDE
+
+* [Pythond tools with machine learning](https://kite.com/)
+* [source explorer](http://sourcetrail.com/) [^source_insight]
+
+[^source_insight]: [compare with source insight](https://www.v2ex.com/t/528588)
+
 ### investment
 
 * [robinhood](https://robinhood.com/au/)
 * [fidelity](https://www.fidelity.com/) [^6park]
 
 [^6park]: https://club.6parkbbs.com/know1/index.php?app=forum&act=threadview&tid=13774505
-
-
 
 ### opportunities
 
