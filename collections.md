@@ -35,6 +35,7 @@ title: Collections
 ### development
 
 * [Rookout - Data collection and Debugging](https://www.rookout.com/solution/)
+* [everything you need to know about refactoring, design patterns](https://refactoring.guru)
 
 #### IDE
 
