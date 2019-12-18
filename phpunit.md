@@ -459,6 +459,68 @@ event($event);
 ```
 
 
+## Mock external static methods [^mock_external_static_methods]
+
+[^mock_external_static_methods]: [phpunit - Mock external static methods](https://stackoverflow.com/questions/53481778/phpunit-mock-external-static-methods)
+
+```php
+
+namespace Library;
+
+
+class SomeClass
+{
+    public static function work()
+    {
+        return time();
+    }
+}
+
+class Foo
+{
+    public function __construct()
+    {
+    }
+
+    public function connect()
+    {
+        return SomeClass::work();
+    }
+}
+
+
+```
+
+### Aliasing and Overloading
+
+Alias mocks create a class alias with the given classname to stdClass and are generally used to enable the mocking of public static methods. Expectations set on the new mock object which refer to static methods will be used by all static calls to this class. [^a_and_o]
+
+[^a_and_o]: [mockery document](http://docs.mockery.io/en/latest/reference/creating_test_doubles.html#aliasing)
+
+
+
+**Test case**
+
+```php
+namespace Tests\Unit;
+class TestClass extends TestCase
+{
+    public function test_connect()
+    {
+        $ab = \Mockery::mock('overload:Library\SomeClass')
+            ->shouldReceive('work')
+            ->once()
+            ->andReturn(true);
+
+
+        $foo = new Foo();
+        static::assertTrue($foo->connect());
+    }
+}
+```
+
+
+
 ---
 
 
