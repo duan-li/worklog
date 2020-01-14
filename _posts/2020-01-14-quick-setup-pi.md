@@ -54,3 +54,7 @@ $ sudo apt clean
 ```
 
 
+## Battery
+
+8:08am until 21:28, Unknown capbility, likely 6000mAh.
+
