@@ -160,7 +160,10 @@ https://github.com/mvanholsteijn/strip-docker-image
 
 and
 
-https://github.com/docker-slim/docker-slim
+[docker-slim/docker-slim](https://github.com/docker-slim/docker-slim) [^docker-slim]
+
+
+[^docker-slim]: DockerSlim (docker-slim): Don't change anything in your Docker container image and minify it by up to 30x (and for compiled languages even more) making it secure too! (free and open source) https://dockersl.im
 
 
 ## Docker security
