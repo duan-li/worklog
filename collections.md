@@ -58,4 +58,10 @@ title: Collections
 * [upwork](https://www.upwork.com/)
 
 
+### Recources
+
+#### Ebook
+
+* https://b-ok.org/
+
 ---
