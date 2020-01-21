@@ -279,4 +279,9 @@ and
 - [Container Registries You Might Have Missed](https://rancher.com/container-registries-might-missed/)
 
 
+# Docker client to a remote Docker host
+
+- [Connect your Docker client to a remote Docker host](https://www.kevinkuszyk.com/2016/11/28/connect-your-docker-client-to-a-remote-docker-host/)
+- [Docker Tip #73: Connecting to a Remote Docker Daemon](https://nickjanetakis.com/blog/docker-tip-73-connecting-to-a-remote-docker-daemon)
+
  ---
