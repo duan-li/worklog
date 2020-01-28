@@ -64,4 +64,17 @@ title: Collections
 
 * https://b-ok.org/
 
+#### Hire worker
+
+* [Essay Writing service](https://cheapwritingservice.com/)
+
+
+#### Shopping
+
+ * https://cplonline.com.au
+ * https://www.ple.com.au/
+ * https://www.scorptec.com.au/
+ * https://www.msy.com.au/ 
+
+
 ---
