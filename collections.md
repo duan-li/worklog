@@ -60,6 +60,9 @@ title: Collections
 
 ### Recources
 
+#### Learn
+ * www.mindvalley.com
+
 #### Ebook
 
 * https://b-ok.org/
@@ -75,6 +78,11 @@ title: Collections
  * https://www.ple.com.au/
  * https://www.scorptec.com.au/
  * https://www.msy.com.au/ 
+
+
+
+### ? 
+ * coda.io
 
 
 ---
