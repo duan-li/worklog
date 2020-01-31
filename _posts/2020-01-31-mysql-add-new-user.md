@@ -1,0 +1,17 @@
+---
+layout: post
+title: Mysql add new user
+date: 2020-01-31 03:07 +0000
+---
+
+
+```sql
+
+select password('password');
+# *5466208975C12343BD1235913A123C2F213CC872
+
+GRANT ALL PRIVILEGES ON database.* TO 'username'@'%' IDENTIFIED BY PASSWORD '*5466208975C12343BD1235913A123C2F213CC872';# WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+```
