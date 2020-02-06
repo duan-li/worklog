@@ -58,3 +58,18 @@ $ sudo apt clean
 
 8:08am until 21:28, Unknown capbility, likely 6000mAh.
 
+## Hardware detail
+
+`vcgencmd` [^vcgencmd]
+
+[^vcgencmd]: [RPI vcgencmd usages](https://elinux.org/RPI_vcgencmd_usage)
+
+```bash
+cat /sys/class/thermal/thermal_zone0/temp 
+/opt/vc/bin/vcgencmd measure_temp
+/opt/vc/bin/vcgencmd measure_volts
+```
+
+* [Software Monitoring of Supply Voltage and CPU Temperature](https://www.raspberrypi.org/forums/viewtopic.php?t=30697)
+* [RPi CPU temp with Python](https://www.raspberrypi.org/forums/viewtopic.php?t=185244)
+
