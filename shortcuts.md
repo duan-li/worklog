@@ -7,13 +7,11 @@ title: Shortcuts
 
 Windows | Mac OS
 ------------ | -------------
-`Ctrl` | `^`
+`Ctrl` Control key | `^`
 `Alt` | `Option` `⌥`
+Shift key | `⇧`
+ `⊞` Windows key | Command key `⌘` 
 
-* `⌘`: Command key
-* `⌥`: Option key (ALT in windows)
-* `^`: Control key
-* `⇧`: Shift key
 
 
 
