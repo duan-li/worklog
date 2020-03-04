@@ -67,6 +67,7 @@ title: Collections
 
 #### Learn
  * www.mindvalley.com
+ * [real environments learning - katacoda](https://www.katacoda.com/)
 
 #### Ebook
 
