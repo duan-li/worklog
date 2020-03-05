@@ -13,6 +13,25 @@ $ sudo apt dist-upgrade
 $ sudo rpi-update
 ```
 
+## Wifi [^wifi]
+
+[^wifi]: [How to auto-connect your Raspberry Pi to a hidden SSID wifi network](https://raspi.tv/2017/how-to-auto-connect-your-raspberry-pi-to-a-hidden-ssid-wifi-network)
+
+`sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+
+```bash
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=AU
+ 
+network={
+        scan_ssid=1
+        ssid="hidden_SSID_here"
+        psk="password_here"
+        key_mgmt=WPA-PSK
+}
+```
+
 ## Config
 
 ```bash
@@ -42,6 +61,8 @@ In `/etc/fstab`, add
 ```
 <ip>:/<dir>		/home/user		nfs 	defaults	0	0
 ```
+
+Options can be `nolock,nofail,x-systemd.automount,x-systemd.requires=network-online.target`. 
 
 
 ## Clean up
