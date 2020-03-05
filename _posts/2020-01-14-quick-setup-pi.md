@@ -45,9 +45,16 @@ Enable
 
 ## Install
 
+For old system
 
 ```bash
-$ sudo apt docker.io docker-compose nfs-common portmap
+sudo apt install docker.io docker-compose nfs-common portmap
+```
+
+For new system
+
+```bash
+sudo apt install docker.io docker-compose gnupg2 pass -y
 ```
 
 
@@ -65,13 +72,53 @@ In `/etc/fstab`, add
 Options can be `nolock,nofail,x-systemd.automount,x-systemd.requires=network-online.target`. 
 
 
+## PHP [^php]
+
+[^php]: [Installing PHP7.4 on a Rapsberry Pi](https://janw.me/2019/installing-php7-4-rapsberry-pi/)
+
+```bash
+sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ buster main" | sudo tee /etc/apt/sources.list.d/php.list
+sudo apt update
+```
+
+```bash
+
+sudo apt install php7.3 \
+	php7.3-bcmath \
+	php7.3-bz2 \
+	php7.3-cli \
+	php7.3-common \
+	php7.3-curl \
+	php7.3-gd \
+	php7.3-gmp \
+	php7.3-imap \
+	php7.3-intl \
+	php7.3-json \
+	php7.3-ldap \
+	php7.3-mbstring \
+	php7.3-mysql \
+	php7.3-opcache \
+	php7.3-readline \
+	php7.3-recode \
+	php7.3-snmp \
+	php7.3-soap \
+	php7.3-sqlite3 \
+	php7.3-tidy \
+	php7.3-xml \
+	php7.3-xmlrpc \
+	php7.3-xsl \
+	php7.3-zip -y
+```
+
+
 ## Clean up
 
 ```bash
-$ sudo apt purge vlc
-$ sudo apt autoremove
-$ sudo apt autoclean
-$ sudo apt clean
+sudo apt purge vlc
+sudo apt autoremove
+sudo apt autoclean
+sudo apt clean
 ```
 
 
