@@ -108,7 +108,8 @@ sudo apt install php7.3 \
 	php7.3-xml \
 	php7.3-xmlrpc \
 	php7.3-xsl \
-	php7.3-zip -y
+	php7.3-zip \
+	composer -y
 ```
 
 
