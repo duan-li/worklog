@@ -43,6 +43,7 @@ title: Collections
 * [Pythond tools with machine learning](https://kite.com/)
 * [source explorer](http://sourcetrail.com/) [^source_insight]
 * [Sourcegraph provides this standard developer platform to help every elite development team ship better software faster.](https://about.sourcegraph.com/)
+* [typora - a markdown editor](https://typora.io/)
 
 [^source_insight]: [compare with source insight](https://www.v2ex.com/t/528588)
 
