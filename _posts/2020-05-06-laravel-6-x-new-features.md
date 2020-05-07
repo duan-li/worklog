@@ -14,13 +14,13 @@ date: 2020-05-06 23:50 +0000
 6. Improved Exceptions Via Ignition
 7. Laravel Vapor Compatibility
 
-##Semantic Versioning
+## Semantic Versioning
 
 Semantic versioning is just like a set of rules and instructions that elaborate on the typical changes that rises the number of versions or possible each of the three numbers representing the version. [^l]
 
 [^l]: [Difference between Laravel 6.0 and It’s previous versions](https://medium.com/@samwatsonets/difference-between-laravel-6-0-and-its-previous-versions-efb2829d0f55)
 
-##The extraction of frontend Laravel/UI
+## The extraction of frontend Laravel/UI
 
 [Laravel UI](https://github.com/laravel/ui) is an authorized package of Laravel 6.0 that includes the extracted UI parts from a Laravel project.
 
@@ -32,7 +32,7 @@ php artisan ui vue --auth
 
 ```
 
-##Improved authorization responses:
+## Improved authorization responses:
 
 In Laravel 6, this is now much easier using authorization response messages and the new `Gate::inspect` method. [^official]
 
@@ -69,7 +69,7 @@ if ($response->denied()) {
 
 ```
 
-##Lazy Collections
+## Lazy Collections
 
 ```php
 use App\LogEntry;
@@ -91,7 +91,7 @@ LazyCollection::make(function () {
 });
 ```
 
-##Job Middleware and Laravel Spark
+## Job Middleware and Laravel Spark
 
 ```php
 
