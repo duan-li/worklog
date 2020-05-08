@@ -352,7 +352,3 @@ class ProcessPodcast implements ShouldQueue
 
 ```
 
-
-## Markdown Mail Template Improvements
-
-
