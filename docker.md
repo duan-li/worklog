@@ -277,6 +277,10 @@ and
 - [GitLab Container Registry](https://docs.gitlab.com/ee/user/project/container_registry.html)
 - [GitLab Container Registry administration](https://docs.gitlab.com/ee/administration/container_registry.html)
 - [Container Registries You Might Have Missed](https://rancher.com/container-registries-might-missed/)
+- [Harbor self-hosed](https://goharbor.io/) - [github repo](https://github.com/goharbor/harbor)
+- [SELF-HOSTED DOCKER REGISTRIES SHOWDOWN](https://www.objectif-libre.com/en/blog/2018/08/02/self-hosted-docker-registries-showdown/) - www.objectif-libre.com
+  - Portus
+- [QUAY.IO](https://quay.io/plans/)
 
 
 # Docker client to a remote Docker host
