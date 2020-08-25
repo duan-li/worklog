@@ -11,7 +11,7 @@ date: 2020-08-25 05:37 +0000
 ```bash
 use Symfony\Component\Ldap\Ldap;
 
-$ldap = Ldap::create('ext_ldap', ['host' => '10.248.11.64', 'port' => '389']);
+$ldap = Ldap::create('ext_ldap', ['host' => 'ldap.service.address.ip', 'port' => '389']);
 
 $ldap->bind('user@dn', 'password');
 
