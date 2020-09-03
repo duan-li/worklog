@@ -164,6 +164,12 @@ Create a `.gitignore` file in directory.
 `git push origin master`
 
 
+> In order to clean up remote-tracking branches while fetching, use the “git fetch” command with the “–prune” option. [^git_remote_fetch]
+`git fetch --prune origin`
+
+[^git_remote_fetch]: [how-to-clean-up-git-branches](https://devconnected.com/how-to-clean-up-git-branches/)
+
+
 ## Pull request (Github)
 Update `.git/config`
 ```
