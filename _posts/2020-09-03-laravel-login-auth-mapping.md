@@ -19,5 +19,5 @@ D(attemptLogin<> with $request) -- call --> F(Auth::guard<>)
 F(Auth::guard<>) -- get --> G(guard instance)
 G(guard instance) -- has --> H(attempt<>)
 G(guard instance) -- call --> H(attempt<>)
-
 ```
+
