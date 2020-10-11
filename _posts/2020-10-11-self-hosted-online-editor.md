@@ -15,7 +15,9 @@ For a good experience, we recommend at least: [^request]
 1 GB of RAM
 2 cores
 
-### Run on docker
+### Run on docker [^run]
+
+[^run]: [install.md](https://github.com/cdr/code-server/blob/v3.5.0/doc/install.md#docker)
 
 ```bash
 # This will start a code-server container and expose it at http://127.0.0.1:8080.
