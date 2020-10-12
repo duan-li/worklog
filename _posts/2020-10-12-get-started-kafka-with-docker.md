@@ -4,11 +4,6 @@ title: Get started Kafka with Docker
 date: 2020-10-11 05:37 +0000
 ---
 
-
-
-https://medium.com/rahasak/kafka-and-zookeeper-with-docker-65cff2c2c34f
-
-
 ## Zookeeper [^docker_zookeeper]
 
 [^docker_zookeeper]: [bitnami/zookeeper](https://hub.docker.com/r/bitnami/zookeeper/)
