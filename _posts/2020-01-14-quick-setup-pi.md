@@ -63,6 +63,18 @@ sudo apt install docker.io docker-compose gnupg2 pass -y
 $ sudo mount -t nfs <ip>:/<dir> /mnt
 ```
 
+### Copy file [^cp]
+
+[^cp]: [How to copy with cp to include hidden files and hidden directories and their contents?
+](https://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con)
+
+```bash
+$ cp -rT /home/usr /mnt
+```
+
+
+### Update fstab, mount NFS when boot
+
 In `/etc/fstab`, add 
 
 ```
