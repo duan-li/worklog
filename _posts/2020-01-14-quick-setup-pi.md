@@ -65,8 +65,7 @@ $ sudo mount -t nfs <ip>:/<dir> /mnt
 
 ### Copy file [^cp]
 
-[^cp]: [How to copy with cp to include hidden files and hidden directories and their contents?
-](https://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con)
+[^cp]: [How to copy with cp to include hidden files and hidden directories and their contents?](https://superuser.com/questions/61611/how-to-copy-with-cp-to-include-hidden-files-and-hidden-directories-and-their-con)
 
 ```bash
 $ cp -rT /home/usr /mnt
