@@ -91,6 +91,31 @@ git branch -d <branchname>
 > unarchive branch
 `git checkout -b <branchname> archive/<branchname>`
 
+
+## Remote
+
+> prunes tracking branches not on the remote.
+`git remote prune origin`
+
+> lists branches that have been merged into the current branch.
+`git branch --merged`
+
+
+> deletes branches listed on standard input.
+`xargs git branch -d`
+
+
+> Remove tracking branches no longer on remote [^rm_remote_b]
+
+[^rm_remote_b]: [Remove tracking branches no longer on remote](https://stackoverflow.com/questions/7726949/remove-tracking-branches-no-longer-on-remote)
+
+```bash
+git branch --merged >/tmp/merged-branches && \
+  vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches
+```
+
+
+
 ## Commit empty directory
 
 Create a `.gitignore` file in directory.
