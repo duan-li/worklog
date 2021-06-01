@@ -16,6 +16,29 @@ date: 2018-10-31 22:57 +0000
 [^3]: [Install a patched font](https://gist.github.com/kevin-smets/8568070#install-a-patched-font)
 
 
+After `brew install zsh zsh-completions`, can see.
+```bash
+
+To activate these completions, add the following to your .zshrc:
+
+  autoload -Uz compinit
+  compinit
+
+You may also need to force rebuild `zcompdump`:
+
+  rm -f ~/.zcompdump; compinit
+
+Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+to load these completions, you may need to run this:
+
+  chmod -R go-w '/usr/local/share/zsh'
+
+zsh completions have been installed to:
+  /usr/local/share/zsh/site-functions
+
+```
+
+
 ## Edit file `~/.zshrc`
 
 ### Update theme 
