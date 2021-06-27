@@ -54,6 +54,7 @@ As Package
 ### Provisioning tools
 * CloudFormation
 * Terraform
+* Pulumi
 * Ansible
 
 

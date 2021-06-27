@@ -37,6 +37,7 @@ jobs:
       run: |
         rm -R public
         mv _site public
+        echo "google.com, pub-4673823046199887, DIRECT, f08c47fec0942fa0" > public/ads.txt
         sudo firebase deploy --token "$FIREBASE_TOKEN"
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
