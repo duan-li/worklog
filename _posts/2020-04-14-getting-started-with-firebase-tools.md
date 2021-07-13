@@ -21,7 +21,7 @@ Make sure `9005` port is open.
 
 If using docker 
 ```bash
-docker run -it -v 9005:9005
+docker run -it -p 9005:9005
 ```
 
 ### Login and Token
