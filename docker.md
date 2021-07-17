@@ -166,6 +166,18 @@ and
 [^docker-slim]: DockerSlim (docker-slim): Don't change anything in your Docker container image and minify it by up to 30x (and for compiled languages even more) making it secure too! (free and open source) https://dockersl.im
 
 
+## Docker network
+
+```bash
+
+ip -o -br -4 a
+
+ip -o -4 a
+
+docker network list
+```
+
+
 ## Docker security
 - [5 Best Practices to Container Image Security](https://www.twistlock.com/2017/08/31/container-image-security-best-practices/)
 - [Five Docker Security Best Practices](https://thenewstack.io/5-docker-security-best-practices/)
