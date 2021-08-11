@@ -22,3 +22,6 @@ find "$dir_to_check" ! -newermt "$last_month" -type f -exec rm {} \;
 find <dir> -type f -mtime +31 -exec rm {} \;
 
 ```
+
+
+[How to delete files before 1st of previous month](https://unix.stackexchange.com/questions/426546/how-to-delete-files-before-1st-of-previous-month)
