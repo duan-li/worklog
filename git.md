@@ -282,6 +282,19 @@ git push --force
  - git stack
  
 
+## `.tigrc` example [^tigrc]
+
+[^tigrc]: [tig document](https://jonas.github.io/tig/doc/tigrc.5.html)
+
+```bash
+bind status P !git push --set-upstream origin
+bind status U !git pull origin
+
+bind refs P ?git push --set-upstream origin %(branch)
+bind refs E !git fetch --prune origin
+bind refs M !git checkout master
+bind refs F ?git branch "%(prompt Enter branch name: )"
+```
 
 
 ---
