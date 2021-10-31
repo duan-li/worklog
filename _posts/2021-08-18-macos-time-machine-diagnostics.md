@@ -11,4 +11,8 @@ date: 2021-08-18 03:12 +0000
 
 ```bash
 log show --predicate 'subsystem == "com.apple.TimeMachine"' --info --last 4h|grep -i error
+
+# or
+log stream --level debug --predicate 'subsystem == "com.apple.TimeMachine"'
 ```
+
