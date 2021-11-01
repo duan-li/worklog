@@ -16,3 +16,9 @@ log show --predicate 'subsystem == "com.apple.TimeMachine"' --info --last 4h|gre
 log stream --level debug --predicate 'subsystem == "com.apple.TimeMachine"'
 ```
 
+
+Hold down the `Option key` on the iMac while you click on the Time Machine "clock" icon at the top of the screen. Click **Verify Backups** to see if the procedure will run.
+
+If no luck, hold down the `Shift key` on the iMac while you click on the Time Machine "clock" icon. Click **Back up with Consistency Scan** to see if things will run that way. [^2]
+
+[^2]: [Apple support ticket](https://discussions.apple.com/thread/7862627)
