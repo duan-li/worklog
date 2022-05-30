@@ -4,6 +4,18 @@ title: Using OPcache in Docker
 date: 2018-12-04 21:59 +0000
 ---
 
+## Opcache and JIT
+
+* [What's the difference between the opcache of PHP and the latest PHP jit?](https://developpaper.com/question/whats-the-difference-between-the-opcache-of-php-and-the-latest-php-jit/)
+* [Best Zend OpCache Settings / Tuning / Configurations](https://gist.github.com/rohankhudedev/1a9c0a3c7fb375f295f9fc11aeb116fe)
+* [Exploring the New PHP JIT Compiler - Zend](https://www.zend.com/blog/exploring-new-php-jit-compiler)
+* [PHP 8: How to setup the JIT](https://stitcher.io/blog/php-8-jit-setup)
+* [Runtime Configuration - Official](https://www.php.net/manual/en/opcache.configuration.php#ini.opcache.jit-buffer-size)
+
+
+## Example Config on Container 
+
+
 ```bash
 [opcache]
 opcache.enable=1
@@ -36,6 +48,8 @@ opcache.fast_shutdown=1
 The most important setting for development is the `opcache.validate_timestamps=1` which allows us to make changes to our code. If you’re using a Docker volume, it means that OPcache will respect file timestamps and your changes will reflect immediately. In a production environment that’s not ideal, and that’s where our dynamic configuration will come into play shortly.[^1]
 
 [^1]: [Speeding Up PHP with OPcache in Docker](https://laravel-news.com/php-opcache-docker)
+
+
 
 
 
