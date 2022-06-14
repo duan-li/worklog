@@ -73,6 +73,9 @@ title: Collections
 #### Ebook
 
 * https://b-ok.org/
+* https://sobooks.net/
+* https://www.fast8.cc/
+
 
 #### Hire worker
 
