@@ -19,4 +19,6 @@ date: 2022-06-24 01:03 +0000
 
 * [Vim PHP IDE](https://thevaluable.dev/vim-php-ide/)
 
+## Other
 
+* [How to Update Basic Settings in Vim](https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/)
