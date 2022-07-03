@@ -107,7 +107,7 @@ endfunc
 
 
 
-" STATUS LINE ------------------------------------------------------------ {{{
+" STATUS LINE ------------------------------------------------------------
 
 " Clear status line when vimrc is reloaded.
 set statusline=
@@ -124,6 +124,5 @@ set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
 " Show the status on the second to last line.
 set laststatus=2
 
-" }}}
 
 ```
