@@ -23,5 +23,8 @@ DIP | Dependency Injection Principle | One should depend upon abstractions, not 
 * [The SOLID Principles](https://code.tutsplus.com/series/the-solid-principles--cms-634)
 * [SOLID(blog posts)](https://sergeyzhuk.me/tag/solid/)
 * [What is an example of the Liskov Substitution Principle?](https://stackoverflow.com/questions/56860/what-is-an-example-of-the-liskov-substitution-principle/8279878)
+* [SOLID in python (GIST)](https://gist.github.com/dmmeteo/f630fa04c7a79d3c132b9e9e5d037bfd)
+* [SOLID Principles In Python](https://www.hashbangcode.com/article/solid-principles-python)
+* [SOLID Design: The Open-Close Principle (OCP)](https://blog.ndepend.com/solid-design-the-open-close-principle-ocp/)
 
 --- 
