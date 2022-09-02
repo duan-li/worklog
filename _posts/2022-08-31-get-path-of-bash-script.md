@@ -60,6 +60,10 @@ $ /home/mike/bin/script_link
 
 ## Script 3
 
+What about if get path of script when wexecuted through a symlink. [^link]
+
+[^link]: [Get path of current script when executed through a symlink](https://unix.stackexchange.com/questions/17499/get-path-of-current-script-when-executed-through-a-symlink)
+
 ```bash
 #!/usr/bin/env bash
 # content of /tmp/foo/bin/script.sh
