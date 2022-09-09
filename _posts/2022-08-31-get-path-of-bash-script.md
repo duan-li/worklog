@@ -18,7 +18,7 @@ Example depth-indented listing of files
  |-/home
  |  |-mike
  |  |  |-bin
- |  |-script_link -> (symlink to /tmp/foo/bin/script.sh)
+ |  |  |  |-script_link -> (symlink to /tmp/foo/bin/script.sh)
 ```
 
 ## Script 1
