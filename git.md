@@ -110,8 +110,10 @@ git branch -d <branchname>
 [^rm_remote_b]: [Remove tracking branches no longer on remote](https://stackoverflow.com/questions/7726949/remove-tracking-branches-no-longer-on-remote)
 
 ```bash
-git branch --merged >/tmp/merged-branches && \
-  vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches
+git branch --merged > /tmp/merged-branches && \
+  vi /tmp/merged-branches && \
+  xargs git branch -d < /tmp/merged-branches && \
+  rm /tmp/merged-branches
 ```
 
 
