@@ -291,11 +291,17 @@ git push --force
 ```bash
 bind status P !git push --set-upstream origin
 bind status U !git pull origin
+bind status R ?git reset %(file)
 
 bind refs P ?git push --set-upstream origin %(branch)
+bind refs F ?git branch "%(prompt Enter branch name: )"
+bind refs G ?git merge %(branch)
+bind refs T ?git push --delete origin %(tag)
+bind refs ! ?git branch --merged > /tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches && rm /tmp/merged-branches
+
+bind refs L !git pull
 bind refs E !git fetch --prune origin
 bind refs M !git checkout master
-bind refs F ?git branch "%(prompt Enter branch name: )"
 ```
 
 
