@@ -291,7 +291,7 @@ git push --force
 ```bash
 bind status P !git push --set-upstream origin
 bind status U !git pull origin
-bind status R ?git reset %(file)
+bind status T ?git checkout %(file)
 
 bind refs P ?git push --set-upstream origin %(branch)
 bind refs F ?git branch "%(prompt Enter branch name: )"
