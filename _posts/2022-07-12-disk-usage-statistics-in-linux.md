@@ -2,6 +2,8 @@
 layout: post
 title: Disk usage statistics in linux
 date: 2022-07-12 03:56 +0000
+categories: [System]
+tags: [command line, bash, linux, disk usage]
 ---
 
 In Linux, you can use various commands and tools to obtain disk usage statistics, like `df` or `du`. 
