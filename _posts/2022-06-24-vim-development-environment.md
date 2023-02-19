@@ -2,29 +2,68 @@
 layout: post
 title: Vim development environment
 date: 2022-06-24 01:03 +0000
+categories: [Code]
+tags: [vim, editor, ide]
 ---
 
-## For `python`
+Vim (Vi Improved) is a highly configurable, powerful, and widely used text editor available on various platforms, including Linux, macOS, and Windows. It is based on the older Vi editor, which was originally created for the Unix operating system.
+
+Vim is known for its modal editing approach, where it provides different modes for different tasks, such as normal mode for navigation and editing commands, insert mode for inserting text, visual mode for selecting text, and more. This modal editing paradigm allows for efficient and fast text editing once you become familiar with the editor.
+
+
+## Use Vim as IDE
+
+Vim can be configured and customized to serve as a powerful programming IDE (Integrated Development Environment). By installing plugins and making certain configurations, you can enhance Vim's capabilities for coding and make it more suitable for software development. 
+
+### Configuring Vim
+
+1. Plugin Manager: Install a plugin manager for Vim, such as Vundle, Pathogen, or vim-plug. These managers simplify the process of installing and managing plugins. Instructions for installation can be found on their respective GitHub repositories.
+
+1. Syntax Highlighting: Enable syntax highlighting in Vim to visually differentiate different programming language elements. Vim already supports syntax highlighting for many languages by default. If you want to add support for additional languages, you can install plugins like `vim-polyglot` or specific language syntax plugins.
+
+1. Code Completion: Install a code completion plugin to assist you while writing code. Plugins like `YouCompleteMe`, `coc.nvim`, or `deoplete` provide intelligent code completion capabilities for various programming languages.
+
+1. Linter/Static Analysis: Set up a linter or static analysis tool to check your code for errors or potential issues. Plugins like `ALE` (Asynchronous Lint Engine), `syntastic`, or language-specific linter plugins can be used to integrate these tools into Vim.
+
+1. Tagging and Navigation: Install a tags plugin such as `ctags` and a related Vim plugin (`tagbar`, `gutentags`) to generate and navigate through tags for functions, classes, and variables within your codebase. This allows for quick code navigation.
+
+1. Git Integration: If you are using Git for version control, consider installing plugins like `vim-fugitive` or `vim-gitgutter` to provide Git integration within Vim. This enables features like viewing file diffs, staging changes, and more.
+
+1. Customization and Keybindings: Customize Vim to match your preferences and workflow. You can modify the appearance, define custom keybindings, create code snippets, and configure various options according to your needs. This is typically done in your `.vimrc` configuration file.
+
+
+## Vim as IDE for specific language
+
+### For `python`
+
+Vim can be an excellent choice for Python development, offering a lightweight and efficient environment for coding.
 
 * [Vim python](https://www.fullstackpython.com/vim.html)
 * [Vim python IDE](https://zhuanlan.zhihu.com/p/30022074)
 
 
-## For `golang`
+### For `golang`
+
+
+Vim can be an excellent choice for Golang development, offering a lightweight and efficient environment for coding. 
 
 * [Vim Go IDE](https://learnku.com/articles/24924)
 
 
-## For `PHP`
+### For `PHP`
+
+Vim can be a powerful choice for PHP development, providing a flexible and customizable environment for coding.
 
 * [Vim PHP IDE](https://thevaluable.dev/vim-php-ide/)
 
-## Other
+### Other
 
 * [How to Update Basic Settings in Vim](https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/)
 
-```
 
+### Example
+
+```
 "------------------------------------------------------
 " basic setting
 set nocompatible
