@@ -2,6 +2,8 @@
 layout: post
 title: Container runtime and alternatives
 date: 2022-03-24 11:03 +0000
+categories: [Development]
+tags: [container, docker, podman, lima]
 ---
 
 A container runtime, also known as a container engine, is a software component responsible for running and managing containers on a host system. It is a crucial part of containerization technologies like Docker and Kubernetes. The container runtime provides the necessary infrastructure and functionality to create, deploy, and manage containers efficiently.

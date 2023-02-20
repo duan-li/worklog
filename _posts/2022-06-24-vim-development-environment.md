@@ -2,7 +2,7 @@
 layout: post
 title: Vim development environment
 date: 2022-06-24 01:03 +0000
-categories: [Code]
+categories: [Development]
 tags: [vim, editor, ide]
 ---
 
