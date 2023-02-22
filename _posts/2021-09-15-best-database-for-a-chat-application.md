@@ -2,6 +2,8 @@
 layout: post
 title: Best database for a chat application
 date: 2021-09-15 04:08 +0000
+categories: [Database]
+tags: [database, chat application]
 ---
 
 
