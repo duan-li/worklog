@@ -2,6 +2,8 @@
 layout: post
 title: Delete local Time Machine snapshots
 date: 2021-09-14 11:36 +0000
+categories: [System]
+tags: [macos, time machine, snapshots]
 ---
 
 ## Time Machine
