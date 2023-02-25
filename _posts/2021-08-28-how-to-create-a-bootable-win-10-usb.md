@@ -2,6 +2,8 @@
 layout: post
 title: How to Create a Bootable Win 10 USB
 date: 2021-08-28 23:35 +0000
+categories: [System]
+tags: [Windows]
 ---
 
 Booting Windows from a USB device provides flexibility, enables troubleshooting and repairs, facilitates system installations and upgrades, and allows for testing and data recovery. It offers an alternative way to access and work with Windows, especially in situations where the computer's internal storage or operating system is unavailable or problematic.
