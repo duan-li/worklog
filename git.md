@@ -289,19 +289,21 @@ git push --force
 [^tigrc]: [tig document](https://jonas.github.io/tig/doc/tigrc.5.html)
 
 ```bash
+bind refs P ?git push --set-upstream origin %(branch)
 bind status P !git push --set-upstream origin
 bind status U !git pull origin
 bind status T ?git checkout %(file)
+bind status E !git fetch --prune origin
+bind status O ?git checkout "%(prompt Enter branch name: )"
 
-bind refs P ?git push --set-upstream origin %(branch)
+bind refs E !git fetch --prune origin
+bind refs M !git checkout master
+bind refs D !git checkout develop
 bind refs F ?git branch "%(prompt Enter branch name: )"
+bind refs L !git pull
 bind refs G ?git merge %(branch)
 bind refs T ?git push --delete origin %(tag)
 bind refs ! ?git branch --merged > /tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches && rm /tmp/merged-branches
-
-bind refs L !git pull
-bind refs E !git fetch --prune origin
-bind refs M !git checkout master
 ```
 
 
