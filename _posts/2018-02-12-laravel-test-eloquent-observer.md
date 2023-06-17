@@ -2,7 +2,8 @@
 layout: post
 title: Laravel test eloquent observer
 date:   2018-02-12 15:06:03 +1000
-categories: code
+categories: [Code]
+tags: [design pattern, observer]
 ---
 
 ## Observer design pattern
