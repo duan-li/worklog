@@ -95,5 +95,53 @@ poetry run hello
 ```
 
 
-
 ## 2.1 Install Django
+
+Start by creating a new Django project. Navigate to the directory where you want to create your project and run the following command:
+
+```bash
+
+poetry init django myproject
+```
+But sometimes you may want to create a project in a directory that is not empty. Or get poetry error `No arguments expected for "init" command, got "django"`.
+
+Run the following command to initialize a new Poetry project without add any dependencies.
+
+```bash
+# in your poetry project
+poetry init
+```
+
+This command will prompt you to provide information about your project, such as name, version, author, and description. You can press Enter to accept the default values or provide your own.
+
+Once the Poetry project is initialized, you can install Django as a dependency by running the following command.
+
+```bash
+poetry add django
+```
+
+## Create a Django project
+
+To create a new Django project structure within your Poetry project, run the following command.
+
+```bash
+poetry run django-admin startproject myproject .
+```
+
+## Create a Django app
+
+To create a new Django app within your Poetry project, run the following command.
+
+```bash
+poetry run python manage.py startapp myapp
+```
+
+## Different between project and app
+
+A Django project is a collection of settings and apps that make up a Django site. A Django app is a Web application that does something – e.g., a Weblog system, a database of public records or a simple poll app. A project can contain multiple apps. An app can be in multiple projects.
+
+## Verify Django installation
+
+```bash
+poetry run python manage.py runserver
+```
