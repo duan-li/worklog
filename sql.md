@@ -3,6 +3,8 @@ layout: page
 title: SQL
 ---
 
+check if null
+
 `ifnull(name, 'NULL') as name,`
 
 https://stackoverflow.com/questions/806989/how-to-find-all-tables-that-have-foreign-keys-that-reference-particular-table-co
