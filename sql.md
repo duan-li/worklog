@@ -3,7 +3,7 @@ layout: page
 title: SQL
 ---
 
-check if null
+Check if null
 
 `ifnull(name, 'NULL') as name,`
 
